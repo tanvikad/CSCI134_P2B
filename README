@@ -12,3 +12,15 @@ Why do you believe these to be the most expensive parts of the code?
 Where do you believe most of the CPU time is being spent in the high-thread spin-lock tests?
 
 Where do you believe most of the CPU time is being spent in the high-thread mutex tests?
+
+
+
+QUESTION 2.3.2 - Execution Profiling:
+Where (what lines of code) are consuming most of the CPU time when the spin-lock version of the list exerciser is run with a large number of threads?
+
+Why does this operation become so expensive with large numbers of threads?
+
+The lines of code taking the most amount of time is in the sync_lock_test_and_set when a thread is left spinning while trying to change the value of the lock to 1.
+
+
+

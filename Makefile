@@ -52,8 +52,18 @@ tests:
 graphs: lab2_list.csv
 	gnuplot lab2_list.gp
 
+profile.out: 
+	rm -f perf.data perf.data.old 
+	perf record ./lab2_list --threads=12 --iterations=1000 --sync=s
+	perf report > $@
+	perf annotate >> $@
+	rm -f perf.data
+
+profile: profile.out
+
+
 clean:
-	rm -f lab2_list  lab2a-40205638.tar.gz
+	rm -f lab2_list  lab2a-40205638.tar.gz *.out *.data *.data.old
 
 dist:  lab2_list  lab2_list.csv lab2_list-1.png lab2_list-2.png lab2_list-3.png lab2_list-4.png
 	tar -zcvf lab2a-40205638.tar.gz README Makefile *.c *.h *.csv *.png  lab2_list.gp
