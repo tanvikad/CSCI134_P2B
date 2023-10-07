@@ -2,7 +2,7 @@
 all: lab2_list
 
 lab2_list: lab2_list.c
-	gcc -Wall -Wextra -g lab2_list.c SortedList.c -o lab2_list -lpthread
+	gcc -Wall -Wextra -g lab2_list.c SortedList.c -o lab2_list -lpthread -lm
 
 
 tests: 

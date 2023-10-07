@@ -16,7 +16,7 @@
 #include <netinet/in.h>
 #include <netdb.h> 
 #include <stdlib.h>
-
+#include <math.h>
 
 #include "SortedList.h"
 
@@ -26,14 +26,32 @@ int opt_yield = 0;
 int got_sync = 0;
 int got_pthread_mutex = 0;
 int got_spin_lock = 0;
+int num_lists = 1;
 
-pthread_mutex_t mutex_lock;
-int test_and_set_lock = 0;
+pthread_mutex_t* mutex_lock;
+int* test_and_set_lock;
 
-SortedList_t list;
+SortedList_t* list;
 SortedListElement_t* elements; 
 
-double lock() {
+int hash_string(const char* str) {
+    if(str == NULL) {
+        fprintf(stderr, "String passed is Null \n");
+    }
+    int length = strlen(str);
+    int P = 2;
+    long long  hash = 0;
+    for(int i = 0; i < length; i++) {
+        hash += (((long long)(str[i]) * (long long )(pow(P, i))));
+        // printf("the has is %d and list is %d \n", hash, num_lists);
+        hash %= num_lists;
+    }
+
+
+    return hash;
+}
+
+double lock(int list_num) {
     struct timespec start, stop;
     if( clock_gettime( CLOCK_MONOTONIC, &start) == -1 ) {
         fprintf(stderr, "Clock Get Time Fails %s\n", strerror(errno));
@@ -42,9 +60,9 @@ double lock() {
 
 
     if(got_pthread_mutex) {
-        pthread_mutex_lock(&mutex_lock);
+        pthread_mutex_lock(&mutex_lock[list_num]);
     } else if(got_spin_lock) {
-        while(__sync_lock_test_and_set(&test_and_set_lock, 1) == 1) 
+        while(__sync_lock_test_and_set(&test_and_set_lock[list_num], 1) == 1) 
             ;
     
     }
@@ -59,12 +77,12 @@ double lock() {
 
 }
 
-void unlock() {
+void unlock(int list_num) {
     if(got_pthread_mutex){
-        pthread_mutex_unlock(&mutex_lock);
+        pthread_mutex_unlock(&mutex_lock[list_num]);
     } else if(got_spin_lock) {
         // test_and_set_lock = 0;
-        __sync_lock_release(&test_and_set_lock);
+        __sync_lock_release(&test_and_set_lock[list_num]);
     }
 }
 
@@ -72,6 +90,28 @@ void handle_sigint(int sig)
 {
     fprintf(stderr, "Caught a segmentation fault with code %d", sig);
     exit(2);
+}
+
+
+int get_length_of_list(int* length) {
+    *length = 0;
+    int total_time = 0;
+    if(length == NULL) {
+        fprintf(stderr, "The length of the list was given a nullptr \n");
+    }
+    for (int i = 0; i < num_lists; i++) {
+        int time = lock(i);
+        total_time += time;
+        int sublist_length = SortedList_length(&list[i]);
+        if(sublist_length == -1) {
+            fprintf(stderr, "List %d: The list is corrupted when calling length \n", i);
+            exit(2);
+        }
+        *length += sublist_length;
+        unlock(i);
+    }   
+    
+    return total_time;
 }
 
 void* thread_action(void* i) {
@@ -83,35 +123,46 @@ void* thread_action(void* i) {
     long start = tid*num_iterations;
 
     for(int i = start; i < start+num_iterations; i++){
-        time = lock();
+        int list_num = hash_string( elements[i].key);
+        time = lock(list_num);
         *amount_time += time; 
-        SortedList_insert(&list, &elements[i]);
-        unlock();
+        SortedList_insert(&list[list_num], &elements[i]);
+        unlock(list_num);
     }
 
-    time = lock();
-    *amount_time += time;
-    int length = SortedList_length(&list);
-    unlock();
-    if(length == -1) {
-        fprintf(stderr, "Thread %ld: The list is corrupted when calling length \n", tid);
-        exit(2);
-    }
+    // for (int i = 0; i < num_lists; i++) {
+    //     time = lock(i);
+    // }   
+    // time = lock();
+    // *amount_time += time;
+    // int length = SortedList_length(&list);
+    // unlock();
+    // if(length == -1) {
+    //     fprintf(stderr, "Thread %ld: The list is corrupted when calling length \n", tid);
+    //     exit(2);
+    // }
+
+    int length = 0;
+    int time_of_length = get_length_of_list(&length);
+
+    printf("Thread %ld: the length of the list is %d \n", tid, length);
+    *amount_time += time_of_length;
 
     for(int i =start; i < start+num_iterations; i++) {
         const char* string_to_lookup = elements[i].key;
+        int list_num = hash_string(string_to_lookup);
         int return_delete = 0;
-        time = lock();
+        time = lock(list_num);
         *amount_time += time; 
-        SortedListElement_t* element = SortedList_lookup(&list, string_to_lookup);
+        SortedListElement_t* element = SortedList_lookup(&list[list_num], string_to_lookup);
         if(element == NULL) {
             printf("Thread %ld: The element for key %s is null due to corruption\n", tid, string_to_lookup);
-            unlock();
+            unlock(list_num);
             exit(2);
         } else{
             return_delete = SortedList_delete(element);
         }
-        unlock();
+        unlock(list_num);
 
         if(return_delete == 1) {
             fprintf(stderr, "Thread %ld: Deletion failed on key due to corruption %s \n", tid, string_to_lookup);
@@ -123,19 +174,20 @@ void* thread_action(void* i) {
 }
 
 
+
 char* get_rand_string() {
-    static char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.-#'?!";        
-    int length = 3;
-    char* random_string = malloc(sizeof(char) * (length +1));
+    static char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789,.-#'?!";    
+    int length_of_string = 3;    
+    char* random_string = malloc(sizeof(char) * (length_of_string +1));
 
     if(random_string) {
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length_of_string; i++) {
 
             int key = rand() % (int)(sizeof(charset) -1) + i;
             random_string[i] = charset[key];
         }
 
-        random_string[length] = '\0';
+        random_string[length_of_string] = '\0';
 
     }else {
         fprintf(stderr, "Unable to malloc a random string \n");
@@ -145,8 +197,8 @@ char* get_rand_string() {
     return random_string;
 }
 
-void print_list() {
-    SortedListElement_t* curr = list.next;
+void print_list(int list_num) {
+    SortedListElement_t* curr = list[list_num].next;
     while(1) {
         if(curr == NULL) break;
         if(curr->key != NULL) {
@@ -160,6 +212,7 @@ void print_list() {
 }
 
 int main(int argc, char *argv[]) {
+
     srand(time(0));
 
     signal(SIGSEGV, handle_sigint);
@@ -170,6 +223,7 @@ int main(int argc, char *argv[]) {
         { "iterations", required_argument, NULL,  'i' },
         { "yield", required_argument, NULL, 'y'},
         { "sync", required_argument, NULL, 's'},
+        { "list", required_argument, NULL, 'l'},
         { 0, 0, 0, 0}
     };
 
@@ -183,6 +237,9 @@ int main(int argc, char *argv[]) {
             case 'i':
                 sscanf(optarg, "%d", &num_iterations);
                 // num_iterations = optarg;
+                break;
+            case 'l':
+                num_lists = atoi(optarg);
                 break;
             case 'y':
                 yield_argument = optarg;  
@@ -222,20 +279,37 @@ int main(int argc, char *argv[]) {
     }
 
     //iinitalized list;
-    list.prev = NULL;
-    list.next = NULL;
-    list.key = NULL;
+    // list.prev = NULL;
+    // list.next = NULL;
+    // list.key = NULL;
 
-    elements = malloc(sizeof(SortedListElement_t) * num_threads * num_iterations);
-    pthread_t *threads = malloc(sizeof(pthread_t) * num_threads);
+    list = malloc(sizeof(SortedList_t) * num_lists);
+    test_and_set_lock = malloc(sizeof(int) * num_lists);
+    mutex_lock = malloc(sizeof(pthread_mutex_t) * num_lists);
+    if(mutex_lock == NULL) {
+        fprintf(stderr, "Unable to malloc mutex lock");
+    }
 
-    if(got_pthread_mutex) {
-        int rc = pthread_mutex_init(&mutex_lock, NULL);
+
+    for (int i = 0; i < num_lists; i++) {
+        list[i].prev = NULL;
+        list[i].next = NULL;
+        list[i].key = NULL;
+
+        test_and_set_lock[i] = 0;
+
+        int rc = pthread_mutex_init(&mutex_lock[i], NULL);
         if(rc != 0) {
             fprintf(stderr, "Failed to initialize the pthread mutex \n");
             exit(1);
         }
+
     }
+
+
+    elements = malloc(sizeof(SortedListElement_t) * num_threads * num_iterations);
+    
+    pthread_t *threads = malloc(sizeof(pthread_t) * num_threads);
 
     //initalize the elements
     for (int i = 0; i < (num_threads*num_iterations); i++) {
@@ -277,7 +351,9 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    int length_at_the_end = SortedList_length(&list);
+    int length_at_the_end;
+    get_length_of_list(&length_at_the_end);
+    
     double accum = (stop.tv_sec - start.tv_sec) * 1000000000
           + (stop.tv_nsec - start.tv_nsec);
 
@@ -312,16 +388,19 @@ int main(int argc, char *argv[]) {
     if(!got_pthread_mutex) {
         total_time_waiting = 0;
     }
-    
+
+
     snprintf(list_csv_buff, 200, "%s,%d,%d,%d,%d,%ld,%ld,%ld\n", type_of_str, num_threads, num_iterations, num_lists,num_operations, 
     (long)(accum), (long)(accum/num_operations), (long)(total_time_waiting/number_lock_operations));   
-    
-    
+
+
     write(list_csv_fd, list_csv_buff, strlen(list_csv_buff));
     write(1, list_csv_buff, strlen(list_csv_buff));
 
 
-
+    free(list);
+    free(mutex_lock);
+    free(test_and_set_lock);
     free(elements);
     free(threads);
 }
