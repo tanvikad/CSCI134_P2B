@@ -2,67 +2,13 @@ NAME: Tanvika Dasari
 EMAIL: tdasari@hmc.edu
 ID: 40205638
 
+google-pprof
 
-QUESTION 2.1.1 - causing conflicts:
-Why does it take many iterations before errors are seen?
-Why does a significantly smaller number of iterations so seldom fail?
+QUESTION 2.3.1 - CPU time in the basic list implementation:
+Where do you believe most of the CPU time is spent in the 1 and 2-thread list tests ?
 
-I got conflicts when I used 2 threads and 1000 iterations. It takes a more iterations to cause errors because it increases the chance that 2 threads are accessing the variable at the same time. With smaller iterations, there are fewer chances for the threads to overlap because after accessing the counter they exit. 
+Why do you believe these to be the most expensive parts of the code?
 
-- many iteratiosn fits in the time slice,  a thread can update the counter and create a corrupted shared value 
+Where do you believe most of the CPU time is being spent in the high-thread spin-lock tests?
 
-QUESTION 2.1.2 - cost of yielding:
-Why are the --yield runs so much slower?
-Where is the additional time going?
-Is it possible to get valid per-operation timings if we are using the --yield option?
-If so, explain how. If not, explain why not.
-
-
-Yields runs much slower as it requires more context switches as it allows pre-emptions that interupt the current thread. Setting up the registers and the thread state takes some time.  You may be possible to get a valid per-operation time that include the overhead of preemptions as the total average cost per operation will sum to total operations so it would not matter if a thread swtiched in between.
-
-
-QUESTION 2.1.3 - measurement errors:
-Why does the average cost per operation drop with increasing iterations?
-If the cost per iteration is a function of the number of iterations, how do we know how many iterations to run (or what the "correct" cost is)?
-
-We see that the cost per operation decreases as the iteration increases. This may be because the thread setup cost is more significant when there are fewer iterations. To determine the number of iterations to run, we would look for an asympote, which occurs when iterations = 1*10^6 or 1*10^7 and that would be the correct cost. 
-
-QUESTION 2.1.4 - costs of serialization:
-Why do all of the options perform similarly for low numbers of threads?
-Why do the three protected operations slow down as the number of threads rises?
-
-When there are fewer threads there is lower amount of thread contention leading to less locking making all the options acting similarly. However for larger amount of threads we see that there is some cost of locking to prevent multiple access of shared resource. Since locking adds some overhead, we see that it causes the operations to slow down. 
-
-
-
-
-QUESTION 2.2.1 - scalability of Mutex
-Compare the variation in time per mutex-protected operation vs the number of threads in Part-1 (adds) and Part-2 (sorted lists).
-Comment on the general shapes of the curves, and explain why they have this shape.
-Comment on the relative rates of increase and differences in the shapes of the curves, and offer an explanation for these differences.
-
-The shape of the cost per operation per thread for mutexes seems to be increasing for the list, but seems to approach a constant line for add. This may be because operation for the list is longer (it requires O(n) with the number of threads) vs O(1) for add, therefore other threads have to wait for the shared resource for a longer time, creating that increasing curve. 
-
-
-QUESTION 2.2.2 - scalability of spin locks
-
-Compare the variation in time per protected operation vs the number of threads for list operations protected by Mutex vs Spin locks. Comment on the general shapes of the curves, and explain why they have this shape.
-Comment on the relative rates of increase and differences in the shapes of the curves, and offer an explanation for these differences.
-
-For both add and list, the spin locks show a general increase pattern.This is because the threads use up their entire time slice, so there is an increase in waiting as the number of threads increases. As there is more time waiting, the cost per operation increases. 
-
-
-Explaining the files
-
-README: answers to the questions
-SortedList.c implements the methods defined in SortedList.h
-SortedList.h given file that outlines the header for insert, deletion in the list
-lab2_list.c the program that implements the various threads on the list
-lab2_list.csv the csv gerenated from lab2_list.c
-lab2_add.c the program the implement various threads on the add
-lab2_list.add the csv generated from lab2_add.c
-Makefile. commands to test the programs and to make the program
-
-Citations:
-
-Referenced https://codereview.stackexchange.com/questions/29198/random-string-generator-in-c to create a random string
+Where do you believe most of the CPU time is being spent in the high-thread mutex tests?
