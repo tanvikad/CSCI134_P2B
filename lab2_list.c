@@ -33,14 +33,30 @@ int test_and_set_lock = 0;
 SortedList_t list;
 SortedListElement_t* elements; 
 
-void lock() {
+double lock() {
+    struct timespec start, stop;
+    if( clock_gettime( CLOCK_MONOTONIC, &start) == -1 ) {
+        fprintf(stderr, "Clock Get Time Fails %s\n", strerror(errno));
+        exit(1);
+    }
+
+
     if(got_pthread_mutex) {
         pthread_mutex_lock(&mutex_lock);
     } else if(got_spin_lock) {
         while(__sync_lock_test_and_set(&test_and_set_lock, 1) == 1) 
             ;
     
-    } 
+    }
+
+    if( clock_gettime( CLOCK_MONOTONIC, &stop) == -1 ) {
+        fprintf(stderr, "Clock Get Time Fails %s\n", strerror(errno));
+        exit(1);
+    }
+
+    double accum = (stop.tv_sec - start.tv_sec) * 1000000000 + (stop.tv_nsec - start.tv_nsec);
+    return accum;
+
 }
 
 void unlock() {
@@ -59,16 +75,22 @@ void handle_sigint(int sig)
 }
 
 void* thread_action(void* i) {
+    double *amount_time= malloc(sizeof(double));
+    *amount_time = 0;
+    double time = 0;
+
     long tid = (long)i;
     long start = tid*num_iterations;
 
     for(int i = start; i < start+num_iterations; i++){
-        lock();
+        time = lock();
+        *amount_time += time; 
         SortedList_insert(&list, &elements[i]);
         unlock();
     }
 
-    lock();
+    time = lock();
+    *amount_time += time;
     int length = SortedList_length(&list);
     unlock();
     if(length == -1) {
@@ -79,7 +101,8 @@ void* thread_action(void* i) {
     for(int i =start; i < start+num_iterations; i++) {
         const char* string_to_lookup = elements[i].key;
         int return_delete = 0;
-        lock();
+        time = lock();
+        *amount_time += time; 
         SortedListElement_t* element = SortedList_lookup(&list, string_to_lookup);
         if(element == NULL) {
             printf("Thread %ld: The element for key %s is null due to corruption\n", tid, string_to_lookup);
@@ -95,9 +118,8 @@ void* thread_action(void* i) {
             exit(2);
         }
     }
-
-    pthread_exit(NULL);
-    return NULL;
+    // pthread_exit(NULL);
+    return (void*) amount_time;
 }
 
 
@@ -237,9 +259,18 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    double total_time_waiting = 0;
+    double* time;
     for (int i = 0; i < num_threads; i++) {
-        pthread_join(threads[i], NULL);
+
+        pthread_join(threads[i], (void**) &time);
+        total_time_waiting += *time; 
     }
+
+
+    int number_lock_operations = (2*num_iterations+1) * num_threads;
+    // total_time_waiting /= num_threads * (2 * num_iterations + 1);
+
 
     if( clock_gettime( CLOCK_MONOTONIC, &stop) == -1 ) {
         fprintf(stderr, "Clock Get Time Fails %s\n", strerror(errno));
@@ -277,8 +308,15 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "The length at the end is not 0 \n");
         exit(2);
     }
-    snprintf(list_csv_buff, 200, "%s,%d,%d,%d,%d,%ld,%ld \n", type_of_str, num_threads, num_iterations, num_lists,num_operations,
-        (long)(accum), (long)(accum/num_operations));
+ 
+    if(!got_pthread_mutex) {
+        total_time_waiting = 0;
+    }
+    
+    snprintf(list_csv_buff, 200, "%s,%d,%d,%d,%d,%ld,%ld,%ld\n", type_of_str, num_threads, num_iterations, num_lists,num_operations, 
+    (long)(accum), (long)(accum/num_operations), (long)(total_time_waiting/number_lock_operations));   
+    
+    
     write(list_csv_fd, list_csv_buff, strlen(list_csv_buff));
     write(1, list_csv_buff, strlen(list_csv_buff));
 
