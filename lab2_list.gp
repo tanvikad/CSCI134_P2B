@@ -64,3 +64,69 @@ plot \
 	title 'completion time' with linespoints lc rgb 'blue', \
      "< grep -e 'list-none-m,[0-9]*,1000,' lab2_list.csv" using ($2):($8) \
 	title 'wait for lock' with linespoints lc rgb 'red'
+
+
+
+set title "Scalability-3: Correct Synchronization of Partitioned Lists"
+set xlabel "Threads"
+set logscale x 2
+unset xrange
+set xrange [0.75:]
+set ylabel "Successful Iterations"
+set logscale y 10
+set output 'lab2b_3.png'
+set key left top
+plot \
+     "< grep -e 'list-id-none,[0-9]*' lab2_list.csv" using ($2):($3) \
+	title 'unprotected' with points lc rgb 'red', \
+     "< grep -e 'list-id-m,[0-9]*' lab2_list.csv" using ($2):($3) \
+	title 'mutex' with points lc rgb 'green', \
+     "< grep -e 'list-id-s,[0-9]*' lab2_list.csv" using ($2):($3) \
+	title 'Spin-lock' with points lc rgb 'blue'
+
+
+
+
+
+set title "Scalability-4: Throughput of Mutex-Synchronized Partitioned Lists"
+set xlabel "Threads"
+set logscale x 2
+unset xrange
+set xrange [0.75:]
+set ylabel "Throughput (operations/sec)"
+set logscale y 10
+set output 'lab2b_4.png'
+set key left top
+plot \
+     "< grep -e 'list-none-m,[0-1]*[0-5],1000,1,' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=1' with linespoints lc rgb 'blue', \
+     "< grep -e 'list-none-m,[0-9]*,1000,4' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=4' with linespoints lc rgb 'green', \
+     "< grep -e 'list-none-m,[0-9]*,1000,8' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=8' with linespoints lc rgb 'red', \
+     "< grep -e 'list-none-m,[0-9]*,1000,16' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=16' with linespoints lc rgb 'purple', \
+
+
+
+
+set title "Scalability-5: Throughput of Spin-Lock-Synchronized Partitioned Lists"
+set xlabel "Threads"
+set logscale x 2
+unset xrange
+set xrange [0.75:]
+set ylabel "Throughput (operations/sec)"
+set logscale y 10
+set output 'lab2b_5.png'
+set key left top
+plot \
+     "< grep -e 'list-none-s,[0-1]*[0-5],1000,1,' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=1' with linespoints lc rgb 'blue', \
+     "< grep -e 'list-none-s,[0-9]*,1000,4' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=4' with linespoints lc rgb 'green', \
+     "< grep -e 'list-none-s,[0-9]*,1000,8' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=8' with linespoints lc rgb 'red', \
+     "< grep -e 'list-none-s,[0-9]*,1000,16' lab2_list.csv" using ($2):(1000000000/$7) \
+	title 'lists=16' with linespoints lc rgb 'purple', \
+
+

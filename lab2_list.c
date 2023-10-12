@@ -130,22 +130,9 @@ void* thread_action(void* i) {
         unlock(list_num);
     }
 
-    // for (int i = 0; i < num_lists; i++) {
-    //     time = lock(i);
-    // }   
-    // time = lock();
-    // *amount_time += time;
-    // int length = SortedList_length(&list);
-    // unlock();
-    // if(length == -1) {
-    //     fprintf(stderr, "Thread %ld: The list is corrupted when calling length \n", tid);
-    //     exit(2);
-    // }
-
     int length = 0;
     int time_of_length = get_length_of_list(&length);
-
-    printf("Thread %ld: the length of the list is %d \n", tid, length);
+    // printf("Thread %ld: the length of the list is %d \n", tid, length);
     *amount_time += time_of_length;
 
     for(int i =start; i < start+num_iterations; i++) {
@@ -223,7 +210,7 @@ int main(int argc, char *argv[]) {
         { "iterations", required_argument, NULL,  'i' },
         { "yield", required_argument, NULL, 'y'},
         { "sync", required_argument, NULL, 's'},
-        { "list", required_argument, NULL, 'l'},
+        { "lists", required_argument, NULL, 'l'},
         { 0, 0, 0, 0}
     };
 
@@ -342,7 +329,7 @@ int main(int argc, char *argv[]) {
     }
 
 
-    int number_lock_operations = (2*num_iterations+1) * num_threads;
+    int number_lock_operations = (2*num_iterations* num_threads)+(num_lists*num_threads);
     // total_time_waiting /= num_threads * (2 * num_iterations + 1);
 
 
@@ -353,12 +340,12 @@ int main(int argc, char *argv[]) {
 
     int length_at_the_end;
     get_length_of_list(&length_at_the_end);
-    
+
     double accum = (stop.tv_sec - start.tv_sec) * 1000000000
           + (stop.tv_nsec - start.tv_nsec);
 
     int num_operations = 3 * num_threads * num_iterations;
-    int num_lists = 1;
+    // int num_lists = 1;
 
     char type_of_str[100] = "list-";
     if(opt_yield&INSERT_YIELD) strcat(type_of_str, "i");
@@ -373,7 +360,7 @@ int main(int argc, char *argv[]) {
     else strcat(type_of_str, "none");
 
 
-    int list_csv_fd = open("lab2_list.csv", O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
+    int list_csv_fd = open("lab2b_list.csv", O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
     if(list_csv_fd == -1) {
         fprintf(stderr, "Opening the csv file failed %s \n", strerror(errno));
         exit(1);
@@ -389,6 +376,7 @@ int main(int argc, char *argv[]) {
         total_time_waiting = 0;
     }
 
+    // printf("the num lists is %d \n", num_lists);
 
     snprintf(list_csv_buff, 200, "%s,%d,%d,%d,%d,%ld,%ld,%ld\n", type_of_str, num_threads, num_iterations, num_lists,num_operations, 
     (long)(accum), (long)(accum/num_operations), (long)(total_time_waiting/number_lock_operations));   
@@ -399,7 +387,7 @@ int main(int argc, char *argv[]) {
 
 
     free(list);
-    free(mutex_lock);
+    free(mutex_lock);   
     free(test_and_set_lock);
     free(elements);
     free(threads);

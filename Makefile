@@ -6,48 +6,33 @@ lab2_list: lab2_list.c
 
 
 tests: 
-	> lab2_list.csv
-	# for its in 10 100 1000 10000 20000 ; do \
-	# 	./lab2_list --threads 1 --iterations $$its ; \
-	# done	
-
-	# -for its in 1 10 100 1000 ; do \
-	# 	for thr in 2 4 8 12 ; do \
-	# 		./lab2_list --threads $$thr --iterations $$its ; \
-	# 	done \
-	# done
-
-	# -for its in 1 2 4 8 16 32 ; do \
-	# 	for thr in 2 4 8 12 ; do \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=i ; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=d ; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=il ; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=dl ; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=i --sync=m; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=d --sync=m; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=il --sync=m; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=dl --sync=m; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=i --sync=s; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=d --sync=s; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=il --sync=s; \
-	# 		./lab2_list --threads $$thr --iterations $$its --yield=dl --sync=s; \
-	# 	done \
-	# done
-
-	# -for its in 1000 ; do \
-	# 	for thr in 2 4 8 12 16 24 ; do \
-	# 		./lab2_list --threads $$thr --iterations $$its --sync=m ; \
-	# 		./lab2_list --threads $$thr --iterations $$its --sync=s ; \
-	# 		./lab2_list --threads $$thr --iterations $$its ; \
-	# 	done \
-	# done	
-
+	> lab2b_list.csv
 	for its in 1000 ; do \
 		for thr in 1 2 4 8 12 16 24 ; do \
 			./lab2_list --threads $$thr --iterations $$its --sync=m ; \
 			./lab2_list --threads $$thr --iterations $$its --sync=s ; \
 		done \
 	done	
+
+	-for its in 1 2 4 8 16 ; do \
+		for thr in 1 4 8 12 16; do \
+			./lab2_list  --lists 4 --threads $$thr --iterations $$its --yield=id ; \
+		done \
+	done
+
+	for its in 10 20 40 80 ; do \
+		for thr in 1 4 8 12 16; do \
+			./lab2_list  --lists 4 --threads $$thr --iterations $$its --yield=id  --sync=m; \
+			./lab2_list  --lists 4 --threads $$thr --iterations $$its --yield=id  --sync=s; \
+		done \
+	done
+
+	for list_var in  4 8 16; do \
+		for thr in 1 2 4 8 12; do \
+			./lab2_list  --lists $$list_var --threads $$thr --iterations 1000 --sync=m; \
+			./lab2_list  --lists $$list_var --threads $$thr --iterations 1000 --sync=s; \
+		done \
+	done
 
 graphs: lab2_list.csv
 	gnuplot lab2_list.gp
@@ -63,10 +48,10 @@ profile: profile.out
 
 
 clean:
-	rm -f lab2_list  lab2a-40205638.tar.gz *.out *.data *.data.old
+	rm -f lab2_list  lab2b-40205638.tar.gz  *.data *.data.old 
 
-dist:  lab2_list  lab2_list.csv lab2_list-1.png lab2_list-2.png lab2_list-3.png lab2_list-4.png
-	tar -zcvf lab2a-40205638.tar.gz README Makefile *.c *.h *.csv *.png  lab2_list.gp
+dist:  lab2_list profile tests
+	tar -zcvf lab2b-40205638.tar.gz README Makefile *.c *.h *.csv *.png  lab2_list.gp lab2b_list.csv profile.out
 
 clobber:
 	rm -f lab2_list  lab2a-40205638.tar.gz *.csv *.png

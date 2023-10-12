@@ -1,0 +1,2986 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 14K of event 'cycles'
+# Event count (approx.): 14097431260
+#
+# Overhead  Command    Shared Object     Symbol                       
+# ........  .........  ................  .............................
+#
+    88.69%  lab2_list  lab2_list         [.] lock
+     4.85%  lab2_list  lab2_list         [.] SortedList_lookup
+     4.45%  lab2_list  libc-2.31.so      [.] __strcmp_avx2
+     1.42%  lab2_list  lab2_list         [.] SortedList_insert
+     0.16%  lab2_list  lab2_list         [.] 0x00000000000012e4
+     0.06%  lab2_list  libm-2.31.so      [.] __ieee754_pow_fma
+     0.05%  lab2_list  lab2_list         [.] hash_string
+     0.05%  lab2_list  [vdso]            [.] __vdso_clock_gettime
+     0.03%  lab2_list  lab2_list         [.] SortedList_length
+     0.03%  lab2_list  libc-2.31.so      [.] __strlen_avx2
+     0.02%  lab2_list  lab2_list         [.] thread_action
+     0.02%  lab2_list  libc-2.31.so      [.] _int_malloc
+     0.02%  lab2_list  [unknown]         [k] 0xffffffffbb6bbf40
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbb94f055
+     0.01%  lab2_list  libm-2.31.so      [.] pow@@GLIBC_2.29
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbc401536
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbc401149
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbc401207
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbb7122dd
+     0.01%  lab2_list  lab2_list         [.] SortedList_delete
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbb73a538
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbb762b1e
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbc37d78b
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbc4011c6
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbb71cb00
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbc400ecb
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbc4011bf
+     0.01%  lab2_list  libc-2.31.so      [.] clock_gettime@GLIBC_2.2.5
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbb788651
+     0.01%  lab2_list  [unknown]         [k] 0xffffffffbb695a98
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb90154f
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb6cde13
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbbe27400
+     0.00%  lab2_list  libc-2.31.so      [.] __clone
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb76c7a0
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbc401600
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb899535
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb8993f2
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbc40179e
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb6433ac
+     0.00%  perf-exec  [unknown]         [k] 0xffffffffbc388850
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb6433a9
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb896b90
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb649ae1
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb649afd
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb649b20
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb649af9
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb649a8a
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb649a79
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb695c38
+     0.00%  perf-exec  [unknown]         [k] 0xffffffffbb695c34
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb695c34
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb695c36
+     0.00%  lab2_list  [unknown]         [k] 0xffffffffbb60f7a6
+     0.00%  perf-exec  [unknown]         [k] 0xffffffffbb695c36
+     0.00%  lab2_list  [unknown]         [.] 0000000000000000
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
+ Percent |	Source code & Disassembly of lab2_list for cycles (12665 samples, percent: local period)
+--------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    0000000000001585 <lock>:
+         : 6    lock():
+         :
+         :
+         : 56   return hash;
+         : 57   }
+         :
+         : 59   double lock(int list_num) {
+    0.00 :   1585:   endbr64
+    0.00 :   1589:   push   %rbp
+    0.00 :   158a:   mov    %rsp,%rbp
+    0.00 :   158d:   sub    $0x50,%rsp
+    0.00 :   1591:   mov    %edi,-0x44(%rbp)
+    0.00 :   1594:   mov    %fs:0x28,%rax
+    0.00 :   159d:   mov    %rax,-0x8(%rbp)
+    0.00 :   15a1:   xor    %eax,%eax
+         : 56   struct timespec start, stop;
+         : 57   if( clock_gettime( CLOCK_MONOTONIC, &start) == -1 ) {
+    0.00 :   15a3:   lea    -0x30(%rbp),%rax
+    0.00 :   15a7:   mov    %rax,%rsi
+    0.00 :   15aa:   mov    $0x1,%edi
+    0.00 :   15af:   callq  1240 <clock_gettime@plt>
+    0.00 :   15b4:   cmp    $0xffffffff,%eax
+    0.00 :   15b7:   jne    15ef <lock+0x6a>
+         : 57   fprintf(stderr, "Clock Get Time Fails %s\n", strerror(errno));
+    0.00 :   15b9:   callq  1230 <__errno_location@plt>
+    0.00 :   15be:   mov    (%rax),%eax
+    0.00 :   15c0:   mov    %eax,%edi
+    0.00 :   15c2:   callq  13a0 <strerror@plt>
+    0.00 :   15c7:   mov    %rax,%rdx
+    0.00 :   15ca:   mov    0x3aef(%rip),%rax        # 50c0 <stderr@@GLIBC_2.2.5>
+    0.00 :   15d1:   lea    0x1a48(%rip),%rsi        # 3020 <_IO_stdin_used+0x20>
+    0.00 :   15d8:   mov    %rax,%rdi
+    0.00 :   15db:   mov    $0x0,%eax
+    0.00 :   15e0:   callq  1300 <fprintf@plt>
+         : 58   exit(1);
+    0.00 :   15e5:   mov    $0x1,%edi
+    0.00 :   15ea:   callq  1380 <exit@plt>
+         : 62   }
+         :
+         :
+         : 65   if(got_pthread_mutex) {
+    0.00 :   15ef:   mov    0x3adf(%rip),%eax        # 50d4 <got_pthread_mutex>
+    0.00 :   15f5:   test   %eax,%eax
+    0.00 :   15f7:   je     1621 <lock+0x9c>
+         : 63   pthread_mutex_lock(&mutex_lock[list_num]);
+    0.00 :   15f9:   mov    0x3ae0(%rip),%rcx        # 50e0 <mutex_lock>
+    0.00 :   1600:   mov    -0x44(%rbp),%eax
+    0.00 :   1603:   movslq %eax,%rdx
+    0.00 :   1606:   mov    %rdx,%rax
+    0.00 :   1609:   shl    $0x2,%rax
+    0.00 :   160d:   add    %rdx,%rax
+    0.00 :   1610:   shl    $0x3,%rax
+    0.00 :   1614:   add    %rcx,%rax
+    0.00 :   1617:   mov    %rax,%rdi
+    0.00 :   161a:   callq  13c0 <pthread_mutex_lock@plt>
+    0.00 :   161f:   jmp    164c <lock+0xc7>
+         : 64   } else if(got_spin_lock) {
+    0.00 :   1621:   mov    0x3ab1(%rip),%eax        # 50d8 <got_spin_lock>
+    0.00 :   1627:   test   %eax,%eax
+    0.00 :   1629:   je     164c <lock+0xc7>
+         : 65   while(__sync_lock_test_and_set(&test_and_set_lock[list_num], 1) == 1)
+    0.00 :   162b:   nop
+    0.04 :   162c:   mov    0x3ab5(%rip),%rax        # 50e8 <test_and_set_lock>
+    0.00 :   1633:   mov    -0x44(%rbp),%edx
+    0.00 :   1636:   movslq %edx,%rdx
+    0.17 :   1639:   shl    $0x2,%rdx
+    0.06 :   163d:   add    %rax,%rdx
+    0.00 :   1640:   mov    $0x1,%eax
+   99.45 :   1645:   xchg   %eax,(%rdx)
+    0.00 :   1647:   cmp    $0x1,%eax
+    0.26 :   164a:   je     162c <lock+0xa7>
+         : 70   ;
+         :
+         : 72   }
+         :
+         : 74   if( clock_gettime( CLOCK_MONOTONIC, &stop) == -1 ) {
+    0.01 :   164c:   lea    -0x20(%rbp),%rax
+    0.00 :   1650:   mov    %rax,%rsi
+    0.00 :   1653:   mov    $0x1,%edi
+    0.00 :   1658:   callq  1240 <clock_gettime@plt>
+    0.00 :   165d:   cmp    $0xffffffff,%eax
+    0.00 :   1660:   jne    1698 <lock+0x113>
+         : 71   fprintf(stderr, "Clock Get Time Fails %s\n", strerror(errno));
+    0.00 :   1662:   callq  1230 <__errno_location@plt>
+    0.00 :   1667:   mov    (%rax),%eax
+    0.00 :   1669:   mov    %eax,%edi
+    0.00 :   166b:   callq  13a0 <strerror@plt>
+    0.00 :   1670:   mov    %rax,%rdx
+    0.00 :   1673:   mov    0x3a46(%rip),%rax        # 50c0 <stderr@@GLIBC_2.2.5>
+    0.00 :   167a:   lea    0x199f(%rip),%rsi        # 3020 <_IO_stdin_used+0x20>
+    0.00 :   1681:   mov    %rax,%rdi
+    0.00 :   1684:   mov    $0x0,%eax
+    0.00 :   1689:   callq  1300 <fprintf@plt>
+         : 72   exit(1);
+    0.00 :   168e:   mov    $0x1,%edi
+    0.00 :   1693:   callq  1380 <exit@plt>
+         : 75   }
+         :
+         : 77   double accum = (stop.tv_sec - start.tv_sec) * 1000000000 + (stop.tv_nsec - start.tv_nsec);
+    0.00 :   1698:   mov    -0x20(%rbp),%rdx
+    0.00 :   169c:   mov    -0x30(%rbp),%rax
+    0.00 :   16a0:   sub    %rax,%rdx
+    0.00 :   16a3:   mov    %rdx,%rax
+    0.00 :   16a6:   imul   $0x3b9aca00,%rax,%rax
+    0.00 :   16ad:   mov    -0x18(%rbp),%rcx
+    0.00 :   16b1:   mov    -0x28(%rbp),%rdx
+    0.00 :   16b5:   sub    %rdx,%rcx
+    0.00 :   16b8:   mov    %rcx,%rdx
+    0.00 :   16bb:   add    %rdx,%rax
+    0.00 :   16be:   cvtsi2sd %rax,%xmm0
+    0.00 :   16c3:   movsd  %xmm0,-0x38(%rbp)
+         : 76   return accum;
+    0.00 :   16c8:   movsd  -0x38(%rbp),%xmm0
+         :
+         : 79   }
+    0.00 :   16cd:   mov    -0x8(%rbp),%rax
+    0.02 :   16d1:   xor    %fs:0x28,%rax
+    0.00 :   16da:   je     16e1 <lock+0x15c>
+    0.00 :   16dc:   callq  1280 <__stack_chk_fail@plt>
+    0.00 :   16e1:   leaveq
+    0.01 :   16e2:   retq
+ Percent |	Source code & Disassembly of lab2_list for cycles (703 samples, percent: local period)
+------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    0000000000002c5a <SortedList_lookup>:
+         : 6    SortedList_lookup():
+         :
+         : 81   return 0;
+         : 82   }
+         :
+         :
+         : 85   SortedListElement_t *SortedList_lookup(SortedList_t *list, const char *key) {
+    0.00 :   2c5a:   endbr64
+    0.00 :   2c5e:   push   %rbp
+    0.00 :   2c5f:   mov    %rsp,%rbp
+    0.00 :   2c62:   sub    $0x20,%rsp
+    0.00 :   2c66:   mov    %rdi,-0x18(%rbp)
+    0.00 :   2c6a:   mov    %rsi,-0x20(%rbp)
+         : 81   if(list == NULL) return NULL;
+    0.00 :   2c6e:   cmpq   $0x0,-0x18(%rbp)
+    0.00 :   2c73:   jne    2c7c <SortedList_lookup+0x22>
+    0.00 :   2c75:   mov    $0x0,%eax
+    0.00 :   2c7a:   jmp    2cf4 <SortedList_lookup+0x9a>
+         : 82   if(key == NULL) return NULL;
+    0.00 :   2c7c:   cmpq   $0x0,-0x20(%rbp)
+    0.00 :   2c81:   jne    2c8a <SortedList_lookup+0x30>
+    0.00 :   2c83:   mov    $0x0,%eax
+    0.00 :   2c88:   jmp    2cf4 <SortedList_lookup+0x9a>
+         : 83   SortedListElement_t* current_element = list->next;
+    0.00 :   2c8a:   mov    -0x18(%rbp),%rax
+    0.28 :   2c8e:   mov    0x8(%rax),%rax
+    0.00 :   2c92:   mov    %rax,-0x8(%rbp)
+         : 85   while(1) {
+         : 86   if(current_element == NULL) return NULL;
+    0.00 :   2c96:   cmpq   $0x0,-0x8(%rbp)
+    4.25 :   2c9b:   jne    2ca4 <SortedList_lookup+0x4a>
+    0.00 :   2c9d:   mov    $0x0,%eax
+    0.00 :   2ca2:   jmp    2cf4 <SortedList_lookup+0x9a>
+         : 86   if(current_element->key == NULL) return NULL;
+    0.00 :   2ca4:   mov    -0x8(%rbp),%rax
+   16.89 :   2ca8:   mov    0x10(%rax),%rax
+    0.00 :   2cac:   test   %rax,%rax
+    3.40 :   2caf:   jne    2cb8 <SortedList_lookup+0x5e>
+    0.00 :   2cb1:   mov    $0x0,%eax
+    0.00 :   2cb6:   jmp    2cf4 <SortedList_lookup+0x9a>
+         : 87   if(*current_element->key == *key) return current_element;
+    0.00 :   2cb8:   mov    -0x8(%rbp),%rax
+    2.27 :   2cbc:   mov    0x10(%rax),%rax
+   65.07 :   2cc0:   movzbl (%rax),%edx
+    0.28 :   2cc3:   mov    -0x20(%rbp),%rax
+    0.00 :   2cc7:   movzbl (%rax),%eax
+    0.00 :   2cca:   cmp    %al,%dl
+    2.12 :   2ccc:   jne    2cd4 <SortedList_lookup+0x7a>
+    0.00 :   2cce:   mov    -0x8(%rbp),%rax
+    0.00 :   2cd2:   jmp    2cf4 <SortedList_lookup+0x9a>
+         :
+         : 90   if(opt_yield & LOOKUP_YIELD) sched_yield();
+    0.00 :   2cd4:   mov    0x23f2(%rip),%eax        # 50cc <opt_yield>
+    0.43 :   2cda:   and    $0x4,%eax
+    0.00 :   2cdd:   test   %eax,%eax
+    1.99 :   2cdf:   je     2ce6 <SortedList_lookup+0x8c>
+    0.00 :   2ce1:   callq  12c0 <sched_yield@plt>
+         :
+         : 92   current_element = current_element->next;
+    0.00 :   2ce6:   mov    -0x8(%rbp),%rax
+    0.14 :   2cea:   mov    0x8(%rax),%rax
+    0.85 :   2cee:   mov    %rax,-0x8(%rbp)
+         : 85   if(current_element == NULL) return NULL;
+    2.03 :   2cf2:   jmp    2c96 <SortedList_lookup+0x3c>
+         : 95   }
+         :
+         : 97   return NULL;
+         : 98   }
+    0.00 :   2cf4:   leaveq
+    0.00 :   2cf5:   retq
+ Percent |	Source code & Disassembly of libc-2.31.so for cycles (626 samples, percent: local period)
+---------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3      Disassembly of section .text:
+         :
+         : 5      0000000000183ae0 <__nss_database_lookup@GLIBC_2.2.5+0x20770>:
+    0.00 :   183ae0: endbr64
+    0.00 :   183ae4: mov    %edi,%eax
+    0.31 :   183ae6: xor    %edx,%edx
+    4.43 :   183ae8: vpxor  %ymm7,%ymm7,%ymm7
+    0.00 :   183aec: or     %esi,%eax
+    0.00 :   183aee: and    $0xfff,%eax
+    0.77 :   183af3: cmp    $0xf80,%eax
+    0.16 :   183af8: jg     183e50 <__nss_database_lookup@GLIBC_2.2.5+0x20ae0>
+    2.85 :   183afe: vmovdqu (%rdi),%ymm1
+   39.51 :   183b02: vpcmpeqb (%rsi),%ymm1,%ymm0
+    1.24 :   183b06: vpminub %ymm1,%ymm0,%ymm0
+    2.43 :   183b0a: vpcmpeqb %ymm7,%ymm0,%ymm0
+    0.16 :   183b0e: vpmovmskb %ymm0,%ecx
+    1.09 :   183b12: test   %ecx,%ecx
+    0.00 :   183b14: je     183b90 <__nss_database_lookup@GLIBC_2.2.5+0x20820>
+    3.42 :   183b16: tzcnt  %ecx,%edx
+   12.09 :   183b1a: movzbl (%rdi,%rdx,1),%eax
+    0.93 :   183b1e: movzbl (%rsi,%rdx,1),%edx
+    1.42 :   183b22: sub    %edx,%eax
+    2.36 :   183b24: vzeroupper
+    0.00 :   183b27: retq
+    0.00 :   183b28: nopl   0x0(%rax,%rax,1)
+    0.00 :   183b30: tzcnt  %ecx,%edx
+    0.00 :   183b34: movzbl 0x20(%rdi,%rdx,1),%eax
+    0.00 :   183b39: movzbl 0x20(%rsi,%rdx,1),%edx
+    0.00 :   183b3e: sub    %edx,%eax
+    0.00 :   183b40: vzeroupper
+    0.00 :   183b43: retq
+    0.00 :   183b44: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183b4f: nop
+    0.00 :   183b50: tzcnt  %ecx,%edx
+    0.00 :   183b54: movzbl 0x40(%rdi,%rdx,1),%eax
+    0.00 :   183b59: movzbl 0x40(%rsi,%rdx,1),%edx
+    0.00 :   183b5e: sub    %edx,%eax
+    0.00 :   183b60: vzeroupper
+    0.00 :   183b63: retq
+    0.00 :   183b64: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183b6f: nop
+    0.00 :   183b70: tzcnt  %ecx,%edx
+    0.00 :   183b74: movzbl 0x60(%rdi,%rdx,1),%eax
+    0.00 :   183b79: movzbl 0x60(%rsi,%rdx,1),%edx
+    0.00 :   183b7e: sub    %edx,%eax
+    0.00 :   183b80: vzeroupper
+    0.00 :   183b83: retq
+    0.00 :   183b84: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183b8f: nop
+    0.00 :   183b90: vmovdqu 0x20(%rdi),%ymm6
+    0.00 :   183b95: vpcmpeqb 0x20(%rsi),%ymm6,%ymm3
+    0.00 :   183b9a: vpminub %ymm6,%ymm3,%ymm3
+    0.00 :   183b9e: vpcmpeqb %ymm7,%ymm3,%ymm3
+    0.00 :   183ba2: vpmovmskb %ymm3,%ecx
+    0.00 :   183ba6: test   %ecx,%ecx
+    0.00 :   183ba8: jne    183b30 <__nss_database_lookup@GLIBC_2.2.5+0x207c0>
+    0.00 :   183baa: vmovdqu 0x40(%rdi),%ymm5
+    0.00 :   183baf: vmovdqu 0x60(%rdi),%ymm4
+    0.00 :   183bb4: vmovdqu 0x60(%rsi),%ymm0
+    0.00 :   183bb9: vpcmpeqb 0x40(%rsi),%ymm5,%ymm2
+    0.00 :   183bbe: vpminub %ymm5,%ymm2,%ymm2
+    0.00 :   183bc2: vpcmpeqb %ymm4,%ymm0,%ymm0
+    0.00 :   183bc6: vpcmpeqb %ymm7,%ymm2,%ymm2
+    0.00 :   183bca: vpmovmskb %ymm2,%ecx
+    0.00 :   183bce: test   %ecx,%ecx
+    0.00 :   183bd0: jne    183b50 <__nss_database_lookup@GLIBC_2.2.5+0x207e0>
+    0.00 :   183bd6: vpminub %ymm4,%ymm0,%ymm0
+    0.00 :   183bda: vpcmpeqb %ymm7,%ymm0,%ymm0
+    0.00 :   183bde: vpmovmskb %ymm0,%ecx
+    0.00 :   183be2: test   %ecx,%ecx
+    0.00 :   183be4: jne    183b70 <__nss_database_lookup@GLIBC_2.2.5+0x20800>
+    0.00 :   183be6: lea    0x80(%rdi),%rdx
+    0.00 :   183bed: mov    $0x1000,%ecx
+    0.00 :   183bf2: and    $0xffffffffffffff80,%rdx
+    0.00 :   183bf6: sub    %rdi,%rdx
+    0.00 :   183bf9: lea    (%rdi,%rdx,1),%rax
+    0.00 :   183bfd: add    %rsi,%rdx
+    0.00 :   183c00: mov    %rdx,%rsi
+    0.00 :   183c03: and    $0xfff,%esi
+    0.00 :   183c09: sub    %rsi,%rcx
+    0.00 :   183c0c: shr    $0x7,%rcx
+    0.00 :   183c10: mov    %ecx,%esi
+    0.00 :   183c12: jmp    183c2d <__nss_database_lookup@GLIBC_2.2.5+0x208bd>
+    0.00 :   183c14: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183c1f: nop
+    0.00 :   183c20: add    $0x80,%rax
+    0.00 :   183c26: add    $0x80,%rdx
+    0.00 :   183c2d: test   %esi,%esi
+    0.00 :   183c2f: lea    -0x1(%esi),%esi
+    0.00 :   183c33: je     183d10 <__nss_database_lookup@GLIBC_2.2.5+0x209a0>
+    0.00 :   183c39: vmovdqa (%rax),%ymm0
+    0.00 :   183c3d: vmovdqa 0x20(%rax),%ymm3
+    0.00 :   183c42: vpcmpeqb (%rdx),%ymm0,%ymm4
+    0.00 :   183c46: vpcmpeqb 0x20(%rdx),%ymm3,%ymm1
+    0.00 :   183c4b: vpminub %ymm0,%ymm4,%ymm4
+    0.00 :   183c4f: vpminub %ymm3,%ymm1,%ymm1
+    0.00 :   183c53: vmovdqa 0x40(%rax),%ymm2
+    0.00 :   183c58: vpminub %ymm1,%ymm4,%ymm0
+    0.00 :   183c5c: vmovdqa 0x60(%rax),%ymm3
+    0.00 :   183c61: vpcmpeqb 0x40(%rdx),%ymm2,%ymm5
+    0.00 :   183c66: vpcmpeqb 0x60(%rdx),%ymm3,%ymm6
+    0.00 :   183c6b: vpminub %ymm2,%ymm5,%ymm5
+    0.00 :   183c6f: vpminub %ymm3,%ymm6,%ymm6
+    0.00 :   183c73: vpminub %ymm5,%ymm0,%ymm0
+    0.00 :   183c77: vpminub %ymm6,%ymm0,%ymm0
+    0.00 :   183c7b: vpcmpeqb %ymm7,%ymm0,%ymm0
+    0.00 :   183c7f: vpmovmskb %ymm0,%ecx
+    0.00 :   183c83: test   %ecx,%ecx
+    0.00 :   183c85: je     183c20 <__nss_database_lookup@GLIBC_2.2.5+0x208b0>
+    0.00 :   183c87: vpcmpeqb %ymm7,%ymm4,%ymm0
+    0.00 :   183c8b: vpmovmskb %ymm0,%edi
+    0.00 :   183c8f: test   %edi,%edi
+    0.00 :   183c91: je     183cb0 <__nss_database_lookup@GLIBC_2.2.5+0x20940>
+    0.00 :   183c93: tzcnt  %edi,%ecx
+    0.00 :   183c97: movzbl (%rax,%rcx,1),%eax
+    0.00 :   183c9b: movzbl (%rdx,%rcx,1),%edx
+    0.00 :   183c9f: sub    %edx,%eax
+    0.00 :   183ca1: vzeroupper
+    0.00 :   183ca4: retq
+    0.00 :   183ca5: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183cb0: vpcmpeqb %ymm7,%ymm1,%ymm1
+    0.00 :   183cb4: vpmovmskb %ymm1,%ecx
+    0.00 :   183cb8: test   %ecx,%ecx
+    0.00 :   183cba: je     183cd0 <__nss_database_lookup@GLIBC_2.2.5+0x20960>
+    0.00 :   183cbc: tzcnt  %ecx,%edi
+    0.00 :   183cc0: movzbl 0x20(%rax,%rdi,1),%eax
+    0.00 :   183cc5: movzbl 0x20(%rdx,%rdi,1),%edx
+    0.00 :   183cca: sub    %edx,%eax
+    0.00 :   183ccc: vzeroupper
+    0.00 :   183ccf: retq
+    0.00 :   183cd0: vpcmpeqb %ymm7,%ymm5,%ymm5
+    0.00 :   183cd4: vpmovmskb %ymm5,%ecx
+    0.00 :   183cd8: test   %ecx,%ecx
+    0.00 :   183cda: je     183cf0 <__nss_database_lookup@GLIBC_2.2.5+0x20980>
+    0.00 :   183cdc: tzcnt  %ecx,%edi
+    0.00 :   183ce0: movzbl 0x40(%rax,%rdi,1),%eax
+    0.00 :   183ce5: movzbl 0x40(%rdx,%rdi,1),%edx
+    0.00 :   183cea: sub    %edx,%eax
+    0.00 :   183cec: vzeroupper
+    0.00 :   183cef: retq
+    0.00 :   183cf0: vpcmpeqb %ymm7,%ymm6,%ymm6
+    0.00 :   183cf4: vpmovmskb %ymm6,%esi
+    0.00 :   183cf8: tzcnt  %esi,%ecx
+    0.00 :   183cfc: movzbl 0x60(%rax,%rcx,1),%eax
+    0.00 :   183d01: movzbl 0x60(%rdx,%rcx,1),%edx
+    0.00 :   183d06: sub    %edx,%eax
+    0.00 :   183d08: vzeroupper
+    0.00 :   183d0b: retq
+    0.00 :   183d0c: nopl   0x0(%rax)
+    0.00 :   183d10: xor    %r10d,%r10d
+    0.00 :   183d13: mov    %rdx,%rcx
+    0.00 :   183d16: and    $0x7f,%ecx
+    0.00 :   183d19: sub    %rcx,%r10
+    0.00 :   183d1c: cmp    $0x40,%ecx
+    0.00 :   183d1f: jge    183d80 <__nss_database_lookup@GLIBC_2.2.5+0x20a10>
+    0.00 :   183d21: vmovdqu (%rax,%r10,1),%ymm2
+    0.00 :   183d27: vmovdqu 0x20(%rax,%r10,1),%ymm3
+    0.00 :   183d2e: vpcmpeqb (%rdx,%r10,1),%ymm2,%ymm0
+    0.00 :   183d34: vpcmpeqb 0x20(%rdx,%r10,1),%ymm3,%ymm1
+    0.00 :   183d3b: vpminub %ymm2,%ymm0,%ymm0
+    0.00 :   183d3f: vpminub %ymm3,%ymm1,%ymm1
+    0.00 :   183d43: vpcmpeqb %ymm7,%ymm0,%ymm0
+    0.00 :   183d47: vpcmpeqb %ymm7,%ymm1,%ymm1
+    0.00 :   183d4b: vpmovmskb %ymm0,%edi
+    0.00 :   183d4f: vpmovmskb %ymm1,%esi
+    0.00 :   183d53: shl    $0x20,%rsi
+    0.00 :   183d57: xor    %rsi,%rdi
+    0.00 :   183d5a: shr    %cl,%rdi
+    0.00 :   183d5d: test   %rdi,%rdi
+    0.00 :   183d60: je     183d80 <__nss_database_lookup@GLIBC_2.2.5+0x20a10>
+    0.00 :   183d62: tzcnt  %rdi,%rcx
+    0.00 :   183d67: movzbl (%rax,%rcx,1),%eax
+    0.00 :   183d6b: movzbl (%rdx,%rcx,1),%edx
+    0.00 :   183d6f: sub    %edx,%eax
+    0.00 :   183d71: vzeroupper
+    0.00 :   183d74: retq
+    0.00 :   183d75: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183d80: vmovdqu 0x40(%rax,%r10,1),%ymm2
+    0.00 :   183d87: vmovdqu 0x60(%rax,%r10,1),%ymm3
+    0.00 :   183d8e: vpcmpeqb 0x40(%rdx,%r10,1),%ymm2,%ymm5
+    0.00 :   183d95: vpminub %ymm2,%ymm5,%ymm5
+    0.00 :   183d99: vpcmpeqb 0x60(%rdx,%r10,1),%ymm3,%ymm6
+    0.00 :   183da0: vpcmpeqb %ymm7,%ymm5,%ymm5
+    0.00 :   183da4: vpminub %ymm3,%ymm6,%ymm6
+    0.00 :   183da8: vpcmpeqb %ymm7,%ymm6,%ymm6
+    0.00 :   183dac: vpmovmskb %ymm5,%edi
+    0.00 :   183db0: vpmovmskb %ymm6,%esi
+    0.00 :   183db4: shl    $0x20,%rsi
+    0.00 :   183db8: xor    %rsi,%rdi
+    0.00 :   183dbb: xor    %r8d,%r8d
+    0.00 :   183dbe: sub    $0x40,%ecx
+    0.00 :   183dc1: jle    183dc9 <__nss_database_lookup@GLIBC_2.2.5+0x20a59>
+    0.00 :   183dc3: shr    %cl,%rdi
+    0.00 :   183dc6: mov    %ecx,%r8d
+    0.00 :   183dc9: mov    $0x1f,%esi
+    0.00 :   183dce: test   %rdi,%rdi
+    0.00 :   183dd1: je     183c39 <__nss_database_lookup@GLIBC_2.2.5+0x208c9>
+    0.00 :   183dd7: tzcnt  %rdi,%rcx
+    0.00 :   183ddc: add    %r10,%rcx
+    0.00 :   183ddf: add    %r8,%rcx
+    0.00 :   183de2: movzbl 0x40(%rax,%rcx,1),%eax
+    0.00 :   183de7: movzbl 0x40(%rdx,%rcx,1),%edx
+    0.00 :   183dec: sub    %edx,%eax
+    0.00 :   183dee: vzeroupper
+    0.00 :   183df1: retq
+    0.00 :   183df2: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183dfd: nopl   (%rax)
+    0.00 :   183e00: sub    %ecx,%eax
+    0.00 :   183e02: jne    183e21 <__nss_database_lookup@GLIBC_2.2.5+0x20ab1>
+    0.00 :   183e04: add    $0x1,%edx
+    0.00 :   183e07: cmp    $0x80,%edx
+    0.00 :   183e0d: je     183be6 <__nss_database_lookup@GLIBC_2.2.5+0x20876>
+    0.00 :   183e13: movzbl (%rdi,%rdx,1),%eax
+    0.00 :   183e17: movzbl (%rsi,%rdx,1),%ecx
+    0.00 :   183e1b: test   %eax,%eax
+    0.00 :   183e1d: jne    183e00 <__nss_database_lookup@GLIBC_2.2.5+0x20a90>
+    0.00 :   183e1f: sub    %ecx,%eax
+    0.00 :   183e21: vzeroupper
+    0.00 :   183e24: retq
+    0.00 :   183e25: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   183e30: add    %rdx,%rdi
+    0.00 :   183e33: add    %rdx,%rsi
+    1.10 :   183e36: tzcnt  %ecx,%edx
+    3.27 :   183e3a: movzbl (%rdi,%rdx,1),%eax
+    0.31 :   183e3e: movzbl (%rsi,%rdx,1),%edx
+    1.08 :   183e42: sub    %edx,%eax
+    0.96 :   183e44: vzeroupper
+    0.00 :   183e47: retq
+    0.00 :   183e48: nopl   0x0(%rax,%rax,1)
+    4.84 :   183e50: cmp    $0xfe0,%eax
+    0.00 :   183e55: jg     183e7e <__nss_database_lookup@GLIBC_2.2.5+0x20b0e>
+    1.10 :   183e57: vmovdqu (%rdi,%rdx,1),%ymm1
+   11.51 :   183e5c: vpcmpeqb (%rsi,%rdx,1),%ymm1,%ymm0
+    0.93 :   183e61: vpminub %ymm1,%ymm0,%ymm0
+    0.76 :   183e65: vpcmpeqb %ymm7,%ymm0,%ymm0
+    0.00 :   183e69: vpmovmskb %ymm0,%ecx
+    0.00 :   183e6d: test   %ecx,%ecx
+    0.97 :   183e6f: jne    183e30 <__nss_database_lookup@GLIBC_2.2.5+0x20ac0>
+    0.00 :   183e71: add    $0x20,%edx
+    0.00 :   183e74: add    $0x20,%eax
+    0.00 :   183e77: cmp    $0xfe0,%eax
+    0.00 :   183e7c: jle    183e57 <__nss_database_lookup@GLIBC_2.2.5+0x20ae7>
+    0.00 :   183e7e: cmp    $0xff0,%eax
+    0.00 :   183e83: jg     183ea5 <__nss_database_lookup@GLIBC_2.2.5+0x20b35>
+    0.00 :   183e85: vmovdqu (%rdi,%rdx,1),%xmm1
+    0.00 :   183e8a: vpcmpeqb (%rsi,%rdx,1),%xmm1,%xmm0
+    0.00 :   183e8f: vpminub %xmm1,%xmm0,%xmm0
+    0.00 :   183e93: vpcmpeqb %xmm7,%xmm0,%xmm0
+    0.00 :   183e97: vpmovmskb %xmm0,%ecx
+    0.00 :   183e9b: test   %ecx,%ecx
+    0.00 :   183e9d: jne    183e30 <__nss_database_lookup@GLIBC_2.2.5+0x20ac0>
+    0.00 :   183e9f: add    $0x10,%edx
+    0.00 :   183ea2: add    $0x10,%eax
+    0.00 :   183ea5: cmp    $0xff8,%eax
+    0.00 :   183eaa: jg     183eda <__nss_database_lookup@GLIBC_2.2.5+0x20b6a>
+    0.00 :   183eac: vmovq  (%rdi,%rdx,1),%xmm1
+    0.00 :   183eb1: vmovq  (%rsi,%rdx,1),%xmm0
+    0.00 :   183eb6: vpcmpeqb %xmm0,%xmm1,%xmm0
+    0.00 :   183eba: vpminub %xmm1,%xmm0,%xmm0
+    0.00 :   183ebe: vpcmpeqb %xmm7,%xmm0,%xmm0
+    0.00 :   183ec2: vpmovmskb %xmm0,%ecx
+    0.00 :   183ec6: and    $0xff,%ecx
+    0.00 :   183ecc: test   %ecx,%ecx
+    0.00 :   183ece: jne    183e30 <__nss_database_lookup@GLIBC_2.2.5+0x20ac0>
+    0.00 :   183ed4: add    $0x8,%edx
+    0.00 :   183ed7: add    $0x8,%eax
+    0.00 :   183eda: cmp    $0xffc,%eax
+    0.00 :   183edf: jg     183f09 <__nss_database_lookup@GLIBC_2.2.5+0x20b99>
+    0.00 :   183ee1: vmovd  (%rdi,%rdx,1),%xmm1
+    0.00 :   183ee6: vmovd  (%rsi,%rdx,1),%xmm0
+    0.00 :   183eeb: vpcmpeqb %xmm0,%xmm1,%xmm0
+    0.00 :   183eef: vpminub %xmm1,%xmm0,%xmm0
+    0.00 :   183ef3: vpcmpeqb %xmm7,%xmm0,%xmm0
+    0.00 :   183ef7: vpmovmskb %xmm0,%ecx
+    0.00 :   183efb: and    $0xf,%ecx
+    0.00 :   183efe: test   %ecx,%ecx
+    0.00 :   183f00: jne    183e30 <__nss_database_lookup@GLIBC_2.2.5+0x20ac0>
+    0.00 :   183f06: add    $0x4,%edx
+    0.00 :   183f09: movzbl (%rdi,%rdx,1),%eax
+    0.00 :   183f0d: movzbl (%rsi,%rdx,1),%ecx
+    0.00 :   183f11: test   %eax,%eax
+    0.00 :   183f13: jne    183e00 <__nss_database_lookup@GLIBC_2.2.5+0x20a90>
+    0.00 :   183f19: sub    %ecx,%eax
+    0.00 :   183f1b: vzeroupper
+    0.00 :   183f1e: retq
+ Percent |	Source code & Disassembly of lab2_list for cycles (202 samples, percent: local period)
+------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    0000000000002a10 <SortedList_insert>:
+         : 6    SortedList_insert():
+         : 6    #include "SortedList.h"
+         : 7    #include <pthread.h>
+         : 8    #include <stdio.h>
+         : 9    #include <string.h>
+         :
+         : 11   void SortedList_insert(SortedList_t *list, SortedListElement_t *element) {
+    0.00 :   2a10:   endbr64
+    0.00 :   2a14:   push   %rbp
+    0.00 :   2a15:   mov    %rsp,%rbp
+    0.00 :   2a18:   sub    $0x30,%rsp
+    0.00 :   2a1c:   mov    %rdi,-0x28(%rbp)
+    0.00 :   2a20:   mov    %rsi,-0x30(%rbp)
+         : 7    if(list->next == NULL) {
+    0.00 :   2a24:   mov    -0x28(%rbp),%rax
+    0.48 :   2a28:   mov    0x8(%rax),%rax
+    0.00 :   2a2c:   test   %rax,%rax
+    0.00 :   2a2f:   jne    2a76 <SortedList_insert+0x66>
+         : 8    if(opt_yield & INSERT_YIELD) sched_yield();
+    0.00 :   2a31:   mov    0x2695(%rip),%eax        # 50cc <opt_yield>
+    0.00 :   2a37:   and    $0x1,%eax
+    0.00 :   2a3a:   test   %eax,%eax
+    0.00 :   2a3c:   je     2a43 <SortedList_insert+0x33>
+    0.00 :   2a3e:   callq  12c0 <sched_yield@plt>
+         : 9    list->next = element;
+    0.00 :   2a43:   mov    -0x28(%rbp),%rax
+    0.00 :   2a47:   mov    -0x30(%rbp),%rdx
+    0.00 :   2a4b:   mov    %rdx,0x8(%rax)
+         : 10   list->prev = element;
+    0.00 :   2a4f:   mov    -0x28(%rbp),%rax
+    0.00 :   2a53:   mov    -0x30(%rbp),%rdx
+    0.00 :   2a57:   mov    %rdx,(%rax)
+         : 11   element->next = list;
+    0.00 :   2a5a:   mov    -0x30(%rbp),%rax
+    0.00 :   2a5e:   mov    -0x28(%rbp),%rdx
+    0.00 :   2a62:   mov    %rdx,0x8(%rax)
+         : 12   element->prev = list;
+    0.00 :   2a66:   mov    -0x30(%rbp),%rax
+    0.00 :   2a6a:   mov    -0x28(%rbp),%rdx
+    0.00 :   2a6e:   mov    %rdx,(%rax)
+         : 13   return;
+    0.00 :   2a71:   jmpq   2b59 <SortedList_insert+0x149>
+         : 17   }
+         :
+         :
+         : 20   SortedListElement_t* current = list->next;
+    0.00 :   2a76:   mov    -0x28(%rbp),%rax
+    0.00 :   2a7a:   mov    0x8(%rax),%rax
+    0.00 :   2a7e:   mov    %rax,-0x18(%rbp)
+         : 19   while(1) {
+         : 20   if(current->key == NULL) {
+    0.97 :   2a82:   mov    -0x18(%rbp),%rax
+   40.06 :   2a86:   mov    0x10(%rax),%rax
+    0.00 :   2a8a:   test   %rax,%rax
+    9.71 :   2a8d:   jne    2adc <SortedList_insert+0xcc>
+         : 21   //we should add it right before the element
+         : 22   SortedListElement_t* previous_element = current->prev;
+    0.00 :   2a8f:   mov    -0x18(%rbp),%rax
+    0.00 :   2a93:   mov    (%rax),%rax
+    0.00 :   2a96:   mov    %rax,-0x8(%rbp)
+         : 22   if(opt_yield & INSERT_YIELD) sched_yield();
+    0.00 :   2a9a:   mov    0x262c(%rip),%eax        # 50cc <opt_yield>
+    0.00 :   2aa0:   and    $0x1,%eax
+    0.00 :   2aa3:   test   %eax,%eax
+    0.00 :   2aa5:   je     2aac <SortedList_insert+0x9c>
+    0.00 :   2aa7:   callq  12c0 <sched_yield@plt>
+         : 23   current->prev = element;
+    0.00 :   2aac:   mov    -0x18(%rbp),%rax
+    0.00 :   2ab0:   mov    -0x30(%rbp),%rdx
+    0.00 :   2ab4:   mov    %rdx,(%rax)
+         : 24   element->next = current;
+    0.00 :   2ab7:   mov    -0x30(%rbp),%rax
+    0.00 :   2abb:   mov    -0x18(%rbp),%rdx
+    0.00 :   2abf:   mov    %rdx,0x8(%rax)
+         : 25   element->prev = previous_element;
+    0.00 :   2ac3:   mov    -0x30(%rbp),%rax
+    0.00 :   2ac7:   mov    -0x8(%rbp),%rdx
+    0.00 :   2acb:   mov    %rdx,(%rax)
+         : 26   previous_element->next = element;
+    0.00 :   2ace:   mov    -0x8(%rbp),%rax
+    0.00 :   2ad2:   mov    -0x30(%rbp),%rdx
+    0.00 :   2ad6:   mov    %rdx,0x8(%rax)
+         : 27   break;
+    0.00 :   2ada:   jmp    2b59 <SortedList_insert+0x149>
+         : 30   }
+         : 31   //a b c d f
+         : 32   if(strcmp(element->key, current->key) < 0) {
+    0.00 :   2adc:   mov    -0x18(%rbp),%rax
+    2.88 :   2ae0:   mov    0x10(%rax),%rdx
+    0.00 :   2ae4:   mov    -0x30(%rbp),%rax
+   10.64 :   2ae8:   mov    0x10(%rax),%rax
+    0.00 :   2aec:   mov    %rdx,%rsi
+    1.93 :   2aef:   mov    %rax,%rdi
+   12.24 :   2af2:   callq  12e0 <strcmp@plt>
+    0.00 :   2af7:   test   %eax,%eax
+    9.73 :   2af9:   jns    2b48 <SortedList_insert+0x138>
+         : 31   SortedListElement_t* previous_element = current->prev;
+    0.00 :   2afb:   mov    -0x18(%rbp),%rax
+    1.16 :   2aff:   mov    (%rax),%rax
+    0.49 :   2b02:   mov    %rax,-0x10(%rbp)
+         : 32   if(opt_yield & INSERT_YIELD) sched_yield();
+    0.00 :   2b06:   mov    0x25c0(%rip),%eax        # 50cc <opt_yield>
+    0.00 :   2b0c:   and    $0x1,%eax
+    0.00 :   2b0f:   test   %eax,%eax
+    0.00 :   2b11:   je     2b18 <SortedList_insert+0x108>
+    0.00 :   2b13:   callq  12c0 <sched_yield@plt>
+         : 33   current->prev = element;
+    0.00 :   2b18:   mov    -0x18(%rbp),%rax
+    0.00 :   2b1c:   mov    -0x30(%rbp),%rdx
+    0.00 :   2b20:   mov    %rdx,(%rax)
+         : 34   element->next = current;
+    0.00 :   2b23:   mov    -0x30(%rbp),%rax
+    0.00 :   2b27:   mov    -0x18(%rbp),%rdx
+    0.00 :   2b2b:   mov    %rdx,0x8(%rax)
+         : 35   element->prev = previous_element;
+    0.00 :   2b2f:   mov    -0x30(%rbp),%rax
+    0.00 :   2b33:   mov    -0x10(%rbp),%rdx
+    0.00 :   2b37:   mov    %rdx,(%rax)
+         : 36   previous_element->next = element;
+    0.00 :   2b3a:   mov    -0x10(%rbp),%rax
+    0.00 :   2b3e:   mov    -0x30(%rbp),%rdx
+    0.00 :   2b42:   mov    %rdx,0x8(%rax)
+         : 37   break;
+    0.00 :   2b46:   jmp    2b59 <SortedList_insert+0x149>
+         : 39   } else {
+         : 40   current = current->next;
+    0.49 :   2b48:   mov    -0x18(%rbp),%rax
+    0.00 :   2b4c:   mov    0x8(%rax),%rax
+    0.00 :   2b50:   mov    %rax,-0x18(%rbp)
+         : 19   if(current->key == NULL) {
+    9.21 :   2b54:   jmpq   2a82 <SortedList_insert+0x72>
+         : 44   continue;
+         : 45   }
+         : 46   }
+         :
+         : 48   }
+    0.00 :   2b59:   leaveq
+    0.00 :   2b5a:   retq
+ Percent |	Source code & Disassembly of libm-2.31.so for cycles (9 samples, percent: local period)
+-------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3     Disassembly of section .text:
+         :
+         : 5     0000000000081160 <f64xsubf128@@GLIBC_2.28+0xd50>:
+    0.00 :   81160:  endbr64
+    0.00 :   81164:  vmovq  %xmm0,%rdx
+    0.00 :   81169:  vmovq  %xmm1,%r9
+    0.00 :   8116e:  vmovapd %xmm0,%xmm2
+    0.00 :   81172:  shr    $0x34,%rdx
+    0.00 :   81176:  vmovq  %xmm0,%rsi
+    0.00 :   8117b:  vmovq  %xmm1,%r8
+    0.00 :   81180:  shr    $0x34,%r9
+    0.00 :   81184:  lea    -0x1(%rdx),%eax
+    0.00 :   81187:  mov    %edx,%ecx
+    0.00 :   81189:  cmp    $0x7fd,%eax
+    0.00 :   8118e:  ja     81380 <f64xsubf128@@GLIBC_2.28+0xf70>
+    0.00 :   81194:  mov    %r9d,%eax
+    0.00 :   81197:  xor    %edi,%edi
+    0.00 :   81199:  and    $0x7ff,%eax
+    0.00 :   8119e:  sub    $0x3be,%eax
+   11.06 :   811a3:  cmp    $0x7f,%eax
+    0.00 :   811a6:  ja     81380 <f64xsubf128@@GLIBC_2.28+0xf70>
+    0.00 :   811ac:  movabs $0xc0196aab00000000,%rdx
+    0.00 :   811b6:  vxorps %xmm3,%xmm3,%xmm3
+   11.07 :   811ba:  vmovsd 0x471de(%rip),%xmm4        # c83a0 <f64xsubf128@@GLIBC_2.28+0x47f90>
+    0.00 :   811c2:  vmovsd 0x691b6(%rip),%xmm2        # ea380 <f64xsubf128@@GLIBC_2.28+0x69f70>
+    0.00 :   811ca:  add    %rsi,%rdx
+    0.00 :   811cd:  vmovsd 0x691cb(%rip),%xmm10        # ea3a0 <f64xsubf128@@GLIBC_2.28+0x69f90>
+    0.00 :   811d5:  vmovsd 0x691d3(%rip),%xmm11        # ea3b0 <f64xsubf128@@GLIBC_2.28+0x69fa0>
+    0.00 :   811dd:  mov    %rdx,%rax
+    0.00 :   811e0:  mov    %rdx,%rcx
+    0.00 :   811e3:  vmovsd 0x691cd(%rip),%xmm12        # ea3b8 <f64xsubf128@@GLIBC_2.28+0x69fa8>
+    0.00 :   811eb:  sar    $0x34,%rcx
+    0.00 :   811ef:  shr    $0x2d,%rax
+    0.00 :   811f3:  vcvtsi2sd %ecx,%xmm3,%xmm3
+    0.00 :   811f7:  and    $0x7f,%eax
+    0.00 :   811fa:  movabs $0xfff0000000000000,%rcx
+    0.00 :   81204:  and    %rcx,%rdx
+    0.00 :   81207:  add    $0x2,%rax
+    0.00 :   8120b:  sub    %rdx,%rsi
+    0.00 :   8120e:  shl    $0x5,%rax
+    0.00 :   81212:  lea    0x69167(%rip),%rdx        # ea380 <f64xsubf128@@GLIBC_2.28+0x69f70>
+    0.00 :   81219:  add    %rdx,%rax
+    0.00 :   8121c:  vmovq  %rsi,%xmm0
+    0.00 :   81221:  vfmadd213sd 0x18(%rax),%xmm3,%xmm2
+   11.06 :   81227:  vfmadd132sd 0x8(%rax),%xmm4,%xmm0
+    0.00 :   8122d:  vmulsd 0x6915b(%rip),%xmm0,%xmm9        # ea390 <f64xsubf128@@GLIBC_2.28+0x69f80>
+    0.00 :   81235:  vmovsd 0x20(%rax),%xmm7
+    0.00 :   8123a:  vfmadd213sd 0x69155(%rip),%xmm0,%xmm10        # ea398 <f64xsubf128@@GLIBC_2.28+0x69f88>
+    0.00 :   81243:  vfmadd132sd 0x6913c(%rip),%xmm7,%xmm3        # ea388 <f64xsubf128@@GLIBC_2.28+0x69f78>
+    0.00 :   8124c:  vfmadd213sd 0x69153(%rip),%xmm0,%xmm11        # ea3a8 <f64xsubf128@@GLIBC_2.28+0x69f98>
+    0.00 :   81255:  vaddsd %xmm2,%xmm0,%xmm6
+    0.00 :   81259:  vsubsd %xmm6,%xmm2,%xmm2
+    0.00 :   8125d:  vaddsd %xmm0,%xmm2,%xmm8
+    0.00 :   81261:  vmulsd %xmm9,%xmm0,%xmm2
+    0.00 :   81266:  vaddsd %xmm8,%xmm3,%xmm3
+    0.00 :   8126b:  vmulsd %xmm2,%xmm0,%xmm7
+    0.00 :   8126f:  vfmsub132sd %xmm0,%xmm2,%xmm9
+    0.00 :   81274:  vaddsd %xmm2,%xmm6,%xmm5
+   11.07 :   81278:  vfmadd132sd 0x6913f(%rip),%xmm12,%xmm0        # ea3c0 <f64xsubf128@@GLIBC_2.28+0x69fb0>
+    0.00 :   81281:  vsubsd %xmm5,%xmm6,%xmm6
+   11.06 :   81285:  vaddsd %xmm9,%xmm3,%xmm3
+    0.00 :   8128a:  vfmadd132sd %xmm2,%xmm11,%xmm0
+    0.00 :   8128f:  vaddsd %xmm2,%xmm6,%xmm6
+   11.28 :   81293:  vaddsd %xmm6,%xmm3,%xmm3
+    0.00 :   81297:  vfmadd132sd %xmm2,%xmm10,%xmm0
+    0.00 :   8129c:  vfmadd132sd %xmm7,%xmm3,%xmm0
+    0.00 :   812a1:  vaddsd %xmm0,%xmm5,%xmm6
+    0.00 :   812a5:  vsubsd %xmm6,%xmm5,%xmm2
+    0.00 :   812a9:  vaddsd %xmm0,%xmm2,%xmm2
+    0.00 :   812ad:  vmulsd %xmm6,%xmm1,%xmm0
+    0.00 :   812b1:  vfmsub132sd %xmm1,%xmm0,%xmm6
+    0.00 :   812b6:  vmovq  %xmm0,%rdx
+    0.00 :   812bb:  vmovq  %xmm0,%rcx
+    0.00 :   812c0:  shr    $0x34,%rdx
+    0.00 :   812c4:  and    $0x7ff,%edx
+    0.00 :   812ca:  lea    -0x3c9(%rdx),%eax
+    0.00 :   812d0:  vfmadd132sd %xmm2,%xmm6,%xmm1
+    0.00 :   812d5:  cmp    $0x3e,%eax
+    0.00 :   812d8:  ja     81400 <f64xsubf128@@GLIBC_2.28+0xff0>
+    0.00 :   812de:  vmovsd 0x66ee2(%rip),%xmm3        # e81c8 <f64xsubf128@@GLIBC_2.28+0x67db8>
+    0.00 :   812e6:  vmovapd %xmm0,%xmm2
+   11.07 :   812ea:  vfmadd132sd 0x66ecd(%rip),%xmm3,%xmm2        # e81c0 <f64xsubf128@@GLIBC_2.28+0x67db0>
+    0.00 :   812f3:  lea    0x66ec6(%rip),%r8        # e81c0 <f64xsubf128@@GLIBC_2.28+0x67db0>
+    0.00 :   812fa:  vmovsd 0x66eee(%rip),%xmm7        # e81f0 <f64xsubf128@@GLIBC_2.28+0x67de0>
+    0.00 :   81302:  vmovq  %xmm2,%rsi
+    0.00 :   81307:  vsubsd %xmm3,%xmm2,%xmm2
+    0.00 :   8130b:  vfmadd231sd 0x66ebc(%rip),%xmm2,%xmm0        # e81d0 <f64xsubf128@@GLIBC_2.28+0x67dc0>
+    0.00 :   81314:  mov    %rsi,%rcx
+    0.00 :   81317:  lea    (%rsi,%rdi,1),%rax
+   11.05 :   8131b:  vfmadd231sd 0x66eb4(%rip),%xmm2,%xmm0        # e81d8 <f64xsubf128@@GLIBC_2.28+0x67dc8>
+    0.00 :   81324:  and    $0x7f,%ecx
+    0.00 :   81327:  shl    $0x2d,%rax
+    0.00 :   8132b:  vmovsd 0x66eb5(%rip),%xmm2        # e81e8 <f64xsubf128@@GLIBC_2.28+0x67dd8>
+    0.00 :   81333:  add    %rcx,%rcx
+    0.00 :   81336:  add    0x78(%r8,%rcx,8),%rax
+    0.00 :   8133b:  vaddsd %xmm0,%xmm1,%xmm1
+   11.28 :   8133f:  vaddsd 0x70(%r8,%rcx,8),%xmm1,%xmm3
+    0.00 :   81346:  vfmadd213sd 0x66e91(%rip),%xmm1,%xmm2        # e81e0 <f64xsubf128@@GLIBC_2.28+0x67dd0>
+    0.00 :   8134f:  vmulsd %xmm1,%xmm1,%xmm0
+    0.00 :   81353:  vfmadd132sd 0x66e9c(%rip),%xmm7,%xmm1        # e81f8 <f64xsubf128@@GLIBC_2.28+0x67de8>
+    0.00 :   8135c:  vfmadd132sd %xmm0,%xmm3,%xmm2
+    0.00 :   81361:  vmulsd %xmm0,%xmm0,%xmm0
+    0.00 :   81365:  vfmadd132sd %xmm0,%xmm2,%xmm1
+    0.00 :   8136a:  test   %edx,%edx
+    0.00 :   8136c:  je     81428 <f64xsubf128@@GLIBC_2.28+0x1018>
+    0.00 :   81372:  vmovq  %rax,%xmm0
+    0.00 :   81377:  vfmadd132sd %xmm1,%xmm0,%xmm0
+    0.00 :   8137c:  retq
+    0.00 :   8137d:  nopl   (%rax)
+    0.00 :   81380:  movabs $0xffdffffffffffffe,%rax
+    0.00 :   8138a:  lea    (%r8,%r8,1),%rdi
+    0.00 :   8138e:  lea    -0x1(%rdi),%r10
+    0.00 :   81392:  cmp    %rax,%r10
+    0.00 :   81395:  ja     815c8 <f64xsubf128@@GLIBC_2.28+0x11b8>
+    0.00 :   8139b:  lea    (%rsi,%rsi,1),%rdi
+    0.00 :   8139f:  lea    -0x1(%rdi),%r10
+    0.00 :   813a3:  cmp    %rax,%r10
+    0.00 :   813a6:  ja     81640 <f64xsubf128@@GLIBC_2.28+0x1230>
+    0.00 :   813ac:  xor    %edi,%edi
+    0.00 :   813ae:  test   %rsi,%rsi
+    0.00 :   813b1:  js     81480 <f64xsubf128@@GLIBC_2.28+0x1070>
+    0.00 :   813b7:  mov    %r9d,%eax
+    0.00 :   813ba:  and    $0x7ff,%eax
+    0.00 :   813bf:  lea    -0x3be(%rax),%edx
+    0.00 :   813c5:  cmp    $0x7f,%edx
+    0.00 :   813c8:  jbe    814d8 <f64xsubf128@@GLIBC_2.28+0x10c8>
+    0.00 :   813ce:  movabs $0x3ff0000000000000,%rdx
+    0.00 :   813d8:  cmp    %rdx,%rsi
+    0.00 :   813db:  je     81580 <f64xsubf128@@GLIBC_2.28+0x1170>
+    0.00 :   813e1:  cmp    $0x3bd,%eax
+    0.00 :   813e6:  ja     81590 <f64xsubf128@@GLIBC_2.28+0x1180>
+    0.00 :   813ec:  cmp    %rdx,%rsi
+    0.00 :   813ef:  jbe    81698 <f64xsubf128@@GLIBC_2.28+0x1288>
+    0.00 :   813f5:  vaddsd 0x32ec3(%rip),%xmm1,%xmm0        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   813fd:  retq
+    0.00 :   813fe:  xchg   %ax,%ax
+    0.00 :   81400:  test   %eax,%eax
+    0.00 :   81402:  js     815b0 <f64xsubf128@@GLIBC_2.28+0x11a0>
+    0.00 :   81408:  cmp    $0x408,%edx
+    0.00 :   8140e:  jbe    81508 <f64xsubf128@@GLIBC_2.28+0x10f8>
+    0.00 :   81414:  test   %rcx,%rcx
+    0.00 :   81417:  js     815aa <f64xsubf128@@GLIBC_2.28+0x119a>
+    0.00 :   8141d:  jmpq   7c390 <__iscanonicall@@GLIBC_2.25+0x6580>
+    0.00 :   81422:  nopw   0x0(%rax,%rax,1)
+    0.00 :   81428:  test   $0x80000000,%esi
+    0.00 :   8142e:  je     81670 <f64xsubf128@@GLIBC_2.28+0x1260>
+    0.00 :   81434:  movabs $0x3fe0000000000000,%rdx
+    0.00 :   8143e:  vmovsd 0x32e7a(%rip),%xmm3        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   81446:  add    %rdx,%rax
+    0.00 :   81449:  vmovq  %rax,%xmm2
+    0.00 :   8144e:  vmulsd %xmm2,%xmm1,%xmm1
+    0.00 :   81452:  vaddsd %xmm1,%xmm2,%xmm0
+    0.00 :   81456:  vmovapd %xmm0,%xmm5
+    0.00 :   8145a:  vandpd 0x32e4e(%rip),%xmm5,%xmm5        # b42b0 <f64xsubf128@@GLIBC_2.28+0x33ea0>
+    0.00 :   81462:  vcomisd %xmm5,%xmm3
+    0.00 :   81466:  ja     81510 <f64xsubf128@@GLIBC_2.28+0x1100>
+    0.00 :   8146c:  vmovsd 0x3bb4c(%rip),%xmm1        # bcfc0 <f64xsubf128@@GLIBC_2.28+0x3cbb0>
+    0.00 :   81474:  vmulsd %xmm1,%xmm0,%xmm0
+    0.00 :   81478:  jmpq   7c400 <__iscanonicall@@GLIBC_2.25+0x65f0>
+    0.00 :   8147d:  nopl   (%rax)
+    0.00 :   81480:  mov    %r9d,%eax
+    0.00 :   81483:  and    $0x7ff,%eax
+    0.00 :   81488:  cmp    $0x3fe,%eax
+    0.00 :   8148d:  jle    81570 <f64xsubf128@@GLIBC_2.28+0x1160>
+    0.00 :   81493:  cmp    $0x433,%eax
+    0.00 :   81498:  jg     814c3 <f64xsubf128@@GLIBC_2.28+0x10b3>
+    0.00 :   8149a:  mov    $0x433,%ecx
+    0.00 :   8149f:  sub    %eax,%ecx
+    0.00 :   814a1:  mov    $0xffffffffffffffff,%rax
+    0.00 :   814a8:  shl    %cl,%rax
+    0.00 :   814ab:  not    %rax
+    0.00 :   814ae:  test   %r8,%rax
+    0.00 :   814b1:  jne    81570 <f64xsubf128@@GLIBC_2.28+0x1160>
+    0.00 :   814b7:  mov    %r8,%rdi
+    0.00 :   814ba:  shr    %cl,%rdi
+    0.00 :   814bd:  and    $0x1,%edi
+    0.00 :   814c0:  shl    $0x12,%edi
+    0.00 :   814c3:  mov    %edx,%ecx
+    0.00 :   814c5:  btr    $0x3f,%rsi
+    0.00 :   814ca:  and    $0x7ff,%ecx
+    0.00 :   814d0:  jmpq   813b7 <f64xsubf128@@GLIBC_2.28+0xfa7>
+    0.00 :   814d5:  nopl   (%rax)
+    0.00 :   814d8:  test   %ecx,%ecx
+    0.00 :   814da:  jne    811ac <f64xsubf128@@GLIBC_2.28+0xd9c>
+    0.00 :   814e0:  vmulsd 0x32e08(%rip),%xmm2,%xmm4        # b42f0 <f64xsubf128@@GLIBC_2.28+0x33ee0>
+    0.00 :   814e8:  movabs $0xfcc0000000000000,%rax
+    0.00 :   814f2:  vmovq  %xmm4,%rsi
+    0.00 :   814f7:  btr    $0x3f,%rsi
+    0.00 :   814fc:  add    %rax,%rsi
+    0.00 :   814ff:  jmpq   811ac <f64xsubf128@@GLIBC_2.28+0xd9c>
+    0.00 :   81504:  nopl   0x0(%rax)
+    0.00 :   81508:  xor    %edx,%edx
+    0.00 :   8150a:  jmpq   812de <f64xsubf128@@GLIBC_2.28+0xece>
+    0.00 :   8150f:  nop
+    0.00 :   81510:  vxorpd %xmm5,%xmm5,%xmm5
+    0.00 :   81514:  vsubsd %xmm0,%xmm2,%xmm2
+    0.00 :   81518:  vcmpltsd %xmm5,%xmm0,%xmm6
+    0.00 :   8151d:  vaddsd %xmm1,%xmm2,%xmm1
+    0.00 :   81521:  vblendvpd %xmm6,%xmm4,%xmm3,%xmm4
+    0.00 :   81527:  vaddsd %xmm4,%xmm0,%xmm3
+    0.00 :   8152b:  vsubsd %xmm3,%xmm4,%xmm2
+    0.00 :   8152f:  vaddsd %xmm0,%xmm2,%xmm0
+    0.00 :   81533:  vaddsd %xmm1,%xmm0,%xmm1
+    0.00 :   81537:  vaddsd %xmm3,%xmm1,%xmm0
+    0.00 :   8153b:  vsubsd %xmm4,%xmm0,%xmm0
+    0.00 :   8153f:  vucomisd %xmm5,%xmm0
+    0.00 :   81543:  jp     81559 <f64xsubf128@@GLIBC_2.28+0x1149>
+    0.00 :   81545:  jne    81559 <f64xsubf128@@GLIBC_2.28+0x1149>
+    0.00 :   81547:  movabs $0x8000000000000000,%rdx
+    0.00 :   81551:  and    %rdx,%rax
+    0.00 :   81554:  vmovq  %rax,%xmm0
+    0.00 :   81559:  vmovsd 0x3ba5f(%rip),%xmm1        # bcfc0 <f64xsubf128@@GLIBC_2.28+0x3cbb0>
+    0.00 :   81561:  vmovapd %xmm1,%xmm2
+    0.00 :   81565:  vmulsd %xmm1,%xmm2,%xmm2
+    0.00 :   81569:  jmpq   81474 <f64xsubf128@@GLIBC_2.28+0x1064>
+    0.00 :   8156e:  xchg   %ax,%ax
+    0.00 :   81570:  vmovapd %xmm2,%xmm0
+    0.00 :   81574:  jmpq   7c3d0 <__iscanonicall@@GLIBC_2.25+0x65c0>
+    0.00 :   81579:  nopl   0x0(%rax)
+    0.00 :   81580:  vmovsd 0x32d38(%rip),%xmm0        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   81588:  retq
+    0.00 :   81589:  nopl   0x0(%rax)
+    0.00 :   81590:  cmp    %rdx,%rsi
+    0.00 :   81593:  setbe  %dl
+    0.00 :   81596:  cmp    $0x7ff,%r9d
+    0.00 :   8159d:  setbe  %al
+    0.00 :   815a0:  xor    %edi,%edi
+    0.00 :   815a2:  cmp    %al,%dl
+    0.00 :   815a4:  jne    8141d <f64xsubf128@@GLIBC_2.28+0x100d>
+    0.00 :   815aa:  jmpq   7c370 <__iscanonicall@@GLIBC_2.25+0x6560>
+    0.00 :   815af:  nop
+    0.00 :   815b0:  vaddsd 0x32d08(%rip),%xmm0,%xmm0        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   815b8:  test   %edi,%edi
+    0.00 :   815ba:  je     81588 <f64xsubf128@@GLIBC_2.28+0x1178>
+    0.00 :   815bc:  vxorpd 0x32d1c(%rip),%xmm0,%xmm0        # b42e0 <f64xsubf128@@GLIBC_2.28+0x33ed0>
+    0.00 :   815c4:  retq
+    0.00 :   815c5:  nopl   (%rax)
+    0.00 :   815c8:  test   %rdi,%rdi
+    0.00 :   815cb:  je     816a5 <f64xsubf128@@GLIBC_2.28+0x1295>
+    0.00 :   815d1:  movabs $0x3ff0000000000000,%rax
+    0.00 :   815db:  cmp    %rax,%rsi
+    0.00 :   815de:  je     81736 <f64xsubf128@@GLIBC_2.28+0x1326>
+    0.00 :   815e4:  movabs $0xffe0000000000000,%rax
+    0.00 :   815ee:  add    %rsi,%rsi
+    0.00 :   815f1:  cmp    %rax,%rdi
+    0.00 :   815f4:  jne    816c9 <f64xsubf128@@GLIBC_2.28+0x12b9>
+    0.00 :   815fa:  cmp    %rax,%rsi
+    0.00 :   815fd:  ja     816c9 <f64xsubf128@@GLIBC_2.28+0x12b9>
+    0.00 :   81603:  movabs $0x7fe0000000000000,%rax
+    0.00 :   8160d:  cmp    %rax,%rsi
+    0.00 :   81610:  je     81752 <f64xsubf128@@GLIBC_2.28+0x1342>
+    0.00 :   81616:  sub    $0x1,%rax
+    0.00 :   8161a:  not    %r8
+    0.00 :   8161d:  vxorpd %xmm0,%xmm0,%xmm0
+    0.00 :   81621:  cmp    %rax,%rsi
+    0.00 :   81624:  seta   %al
+    0.00 :   81627:  shr    $0x3f,%r8
+    0.00 :   8162b:  cmp    %r8b,%al
+    0.00 :   8162e:  jne    81588 <f64xsubf128@@GLIBC_2.28+0x1178>
+    0.00 :   81634:  vmulsd %xmm1,%xmm1,%xmm0
+    0.00 :   81638:  retq
+    0.00 :   81639:  nopl   0x0(%rax)
+    0.00 :   81640:  vmulsd %xmm2,%xmm2,%xmm0
+    0.00 :   81644:  xor    %r10d,%r10d
+    0.00 :   81647:  test   %rsi,%rsi
+    0.00 :   8164a:  js     816ce <f64xsubf128@@GLIBC_2.28+0x12be>
+    0.00 :   81650:  test   %rdi,%rdi
+    0.00 :   81653:  jne    81720 <f64xsubf128@@GLIBC_2.28+0x1310>
+    0.00 :   81659:  test   %r8,%r8
+    0.00 :   8165c:  jns    81588 <f64xsubf128@@GLIBC_2.28+0x1178>
+    0.00 :   81662:  mov    %r10d,%edi
+    0.00 :   81665:  jmpq   7c3a0 <__iscanonicall@@GLIBC_2.25+0x6590>
+    0.00 :   8166a:  nopw   0x0(%rax,%rax,1)
+    0.00 :   81670:  movabs $0xc0f0000000000000,%rdx
+    0.00 :   8167a:  add    %rdx,%rax
+    0.00 :   8167d:  vmovq  %rax,%xmm0
+    0.00 :   81682:  vfmadd132sd %xmm1,%xmm0,%xmm0
+    0.00 :   81687:  vmulsd 0x469c9(%rip),%xmm0,%xmm0        # c8058 <f64xsubf128@@GLIBC_2.28+0x47c48>
+    0.00 :   8168f:  jmpq   7c420 <__iscanonicall@@GLIBC_2.25+0x6610>
+    0.00 :   81694:  nopl   0x0(%rax)
+    0.00 :   81698:  vmovsd 0x32c20(%rip),%xmm2        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   816a0:  vsubsd %xmm1,%xmm2,%xmm0
+    0.00 :   816a4:  retq
+    0.00 :   816a5:  btc    $0x33,%rsi
+    0.00 :   816aa:  vmovsd 0x32c0e(%rip),%xmm0        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   816b2:  movabs $0xfff0000000000000,%rdx
+    0.00 :   816bc:  lea    (%rsi,%rsi,1),%rax
+    0.00 :   816c0:  cmp    %rdx,%rax
+    0.00 :   816c3:  jbe    81588 <f64xsubf128@@GLIBC_2.28+0x1178>
+    0.00 :   816c9:  vaddsd %xmm1,%xmm2,%xmm0
+    0.00 :   816cd:  retq
+    0.00 :   816ce:  and    $0x7ff,%r9d
+    0.00 :   816d5:  lea    -0x3ff(%r9),%eax
+    0.00 :   816dc:  cmp    $0x34,%eax
+    0.00 :   816df:  ja     81650 <f64xsubf128@@GLIBC_2.28+0x1240>
+    0.00 :   816e5:  mov    $0x433,%ecx
+    0.00 :   816ea:  mov    $0xffffffffffffffff,%rax
+    0.00 :   816f1:  sub    %r9d,%ecx
+    0.00 :   816f4:  shl    %cl,%rax
+    0.00 :   816f7:  not    %rax
+    0.00 :   816fa:  test   %r8,%rax
+    0.00 :   816fd:  jne    81650 <f64xsubf128@@GLIBC_2.28+0x1240>
+    0.00 :   81703:  bt     %rcx,%r8
+    0.00 :   81707:  jae    81650 <f64xsubf128@@GLIBC_2.28+0x1240>
+    0.00 :   8170d:  vxorpd 0x32bcb(%rip),%xmm0,%xmm0        # b42e0 <f64xsubf128@@GLIBC_2.28+0x33ed0>
+    0.00 :   81715:  mov    $0x1,%r10d
+    0.00 :   8171b:  jmpq   81650 <f64xsubf128@@GLIBC_2.28+0x1240>
+    0.00 :   81720:  test   %r8,%r8
+    0.00 :   81723:  jns    81588 <f64xsubf128@@GLIBC_2.28+0x1178>
+    0.00 :   81729:  vmovsd 0x32b8f(%rip),%xmm1        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   81731:  vdivsd %xmm0,%xmm1,%xmm0
+    0.00 :   81735:  retq
+    0.00 :   81736:  movabs $0xfff0000000000000,%rdx
+    0.00 :   81740:  btc    $0x33,%r8
+    0.00 :   81745:  lea    (%r8,%r8,1),%rax
+    0.00 :   81749:  cmp    %rdx,%rax
+    0.00 :   8174c:  ja     816c9 <f64xsubf128@@GLIBC_2.28+0x12b9>
+    0.00 :   81752:  vmovsd 0x32b66(%rip),%xmm0        # b42c0 <f64xsubf128@@GLIBC_2.28+0x33eb0>
+    0.00 :   8175a:  retq
+ Percent |	Source code & Disassembly of lab2_list for cycles (7 samples, percent: local period)
+----------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    00000000000014c9 <hash_string>:
+         : 6    hash_string():
+         : 37   int* test_and_set_lock;
+         :
+         : 39   SortedList_t* list;
+         : 40   SortedListElement_t* elements;
+         :
+         : 42   int hash_string(const char* str) {
+    0.00 :   14c9:   endbr64
+    0.00 :   14cd:   push   %rbp
+    0.00 :   14ce:   mov    %rsp,%rbp
+    0.00 :   14d1:   push   %rbx
+    0.00 :   14d2:   sub    $0x38,%rsp
+    0.00 :   14d6:   mov    %rdi,-0x38(%rbp)
+         : 38   if(str == NULL) {
+    0.00 :   14da:   cmpq   $0x0,-0x38(%rbp)
+    0.00 :   14df:   jne    1501 <hash_string+0x38>
+         : 39   fprintf(stderr, "String passed is Null \n");
+    0.00 :   14e1:   mov    0x3bd8(%rip),%rax        # 50c0 <stderr@@GLIBC_2.2.5>
+    0.00 :   14e8:   mov    %rax,%rcx
+    0.00 :   14eb:   mov    $0x17,%edx
+    0.00 :   14f0:   mov    $0x1,%esi
+    0.00 :   14f5:   lea    0x1b0c(%rip),%rdi        # 3008 <_IO_stdin_used+0x8>
+    0.00 :   14fc:   callq  1390 <fwrite@plt>
+         : 41   }
+         : 42   int length = strlen(str);
+    0.00 :   1501:   mov    -0x38(%rbp),%rax
+    0.00 :   1505:   mov    %rax,%rdi
+    0.00 :   1508:   callq  1270 <strlen@plt>
+    0.00 :   150d:   mov    %eax,-0x20(%rbp)
+         : 42   int P = 2;
+    0.00 :   1510:   movl   $0x2,-0x1c(%rbp)
+         : 43   long long  hash = 0;
+    0.00 :   1517:   movq   $0x0,-0x18(%rbp)
+         : 44   for(int i = 0; i < length; i++) {
+    0.00 :   151f:   movl   $0x0,-0x24(%rbp)
+    0.00 :   1526:   jmp    1572 <hash_string+0xa9>
+         : 45   hash += (((long long)(str[i]) * (long long )(pow(P, i))));
+    0.00 :   1528:   mov    -0x24(%rbp),%eax
+    0.00 :   152b:   movslq %eax,%rdx
+    0.00 :   152e:   mov    -0x38(%rbp),%rax
+    0.00 :   1532:   add    %rdx,%rax
+    0.00 :   1535:   movzbl (%rax),%eax
+    0.00 :   1538:   movsbq %al,%rbx
+    0.00 :   153c:   cvtsi2sdl -0x24(%rbp),%xmm1
+    0.00 :   1541:   cvtsi2sdl -0x1c(%rbp),%xmm0
+    0.00 :   1546:   callq  1260 <pow@plt>
+    0.00 :   154b:   cvttsd2si %xmm0,%rax
+    0.00 :   1550:   imul   %rbx,%rax
+    0.00 :   1554:   add    %rax,-0x18(%rbp)
+         : 47   // printf("the has is %d and list is %d \n", hash, num_lists);
+         : 48   hash %= num_lists;
+    0.00 :   1558:   mov    0x3aca(%rip),%eax        # 5028 <num_lists>
+    0.00 :   155e:   movslq %eax,%rcx
+   14.37 :   1561:   mov    -0x18(%rbp),%rax
+    0.00 :   1565:   cqto
+   85.63 :   1567:   idiv   %rcx
+    0.00 :   156a:   mov    %rdx,-0x18(%rbp)
+         : 44   for(int i = 0; i < length; i++) {
+    0.00 :   156e:   addl   $0x1,-0x24(%rbp)
+    0.00 :   1572:   mov    -0x24(%rbp),%eax
+    0.00 :   1575:   cmp    -0x20(%rbp),%eax
+    0.00 :   1578:   jl     1528 <hash_string+0x5f>
+         : 51   }
+         :
+         :
+         : 54   return hash;
+    0.00 :   157a:   mov    -0x18(%rbp),%rax
+         : 52   }
+    0.00 :   157e:   add    $0x38,%rsp
+    0.00 :   1582:   pop    %rbx
+    0.00 :   1583:   pop    %rbp
+    0.00 :   1584:   retq
+ Percent |	Source code & Disassembly of [vdso] for cycles (5 samples, percent: local period)
+-------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3   Disassembly of section .text:
+         :
+         : 5   0000000000000a10 <__vdso_clock_gettime@@LINUX_2.6>:
+    0.00 :   a10:    push   %rbp
+    0.00 :   a11:    mov    %rsp,%rbp
+    0.00 :   a14:    push   %r15
+    0.00 :   a16:    push   %r14
+    0.00 :   a18:    push   %r13
+    0.00 :   a1a:    push   %r12
+   14.27 :   a1c:    push   %rbx
+    0.00 :   a1d:    cmp    $0xf,%edi
+    0.00 :   a20:    ja     ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   a26:    mov    $0x1,%eax
+    0.00 :   a2b:    mov    %edi,%ecx
+    0.00 :   a2d:    lea    -0x49b4(%rip),%r8        # ffffffffffffc080 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffb1c0>
+    0.00 :   a34:    shl    %cl,%eax
+    0.00 :   a36:    mov    %eax,%edx
+    0.00 :   a38:    and    $0x883,%edx
+    0.00 :   a3e:    je     b0a <__vdso_clock_gettime@@LINUX_2.6+0xfa>
+    0.00 :   a44:    movslq %edi,%r10
+    0.00 :   a47:    shl    $0x4,%r10
+    0.00 :   a4b:    add    %r8,%r10
+    0.00 :   a4e:    mov    (%r8),%r11d
+    0.00 :   a51:    test   $0x1,%r11b
+    0.00 :   a55:    jne    af5 <__vdso_clock_gettime@@LINUX_2.6+0xe5>
+    0.00 :   a5b:    mov    0x4(%r8),%eax
+    0.00 :   a5f:    cmp    $0x1,%eax
+    0.00 :   a62:    jne    ad5 <__vdso_clock_gettime@@LINUX_2.6+0xc5>
+   13.89 :   a64:    rdtscp
+    0.00 :   a67:    xchg   %ax,%ax
+    0.00 :   a69:    shl    $0x20,%rdx
+    0.00 :   a6d:    or     %rax,%rdx
+    0.00 :   a70:    test   %rdx,%rdx
+    0.00 :   a73:    js     ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   a75:    mov    0x8(%r8),%rcx
+    0.00 :   a79:    mov    0x28(%r10),%rax
+    0.00 :   a7d:    mov    0x18(%r8),%r9d
+    0.00 :   a81:    cmp    %rdx,%rcx
+    0.00 :   a84:    jae    a90 <__vdso_clock_gettime@@LINUX_2.6+0x80>
+    0.00 :   a86:    sub    %rcx,%rdx
+    0.00 :   a89:    imul   %r9,%rdx
+    0.00 :   a8d:    add    %rdx,%rax
+    0.00 :   a90:    mov    0x1c(%r8),%ecx
+    0.00 :   a94:    mov    0x20(%r10),%r9
+    0.00 :   a98:    mov    (%r8),%edx
+    0.00 :   a9b:    cmp    %edx,%r11d
+    0.00 :   a9e:    jne    a4e <__vdso_clock_gettime@@LINUX_2.6+0x3e>
+    0.00 :   aa0:    shr    %cl,%rax
+    0.00 :   aa3:    cmp    $0x3b9ac9ff,%rax
+    0.00 :   aa9:    jbe    ac1 <__vdso_clock_gettime@@LINUX_2.6+0xb1>
+    0.00 :   aab:    xor    %edx,%edx
+    0.00 :   aad:    sub    $0x3b9aca00,%rax
+    0.00 :   ab3:    add    $0x1,%edx
+    0.00 :   ab6:    cmp    $0x3b9ac9ff,%rax
+    0.00 :   abc:    ja     aad <__vdso_clock_gettime@@LINUX_2.6+0x9d>
+    0.00 :   abe:    add    %rdx,%r9
+    0.00 :   ac1:    mov    %r9,(%rsi)
+    0.00 :   ac4:    mov    %rax,0x8(%rsi)
+    0.00 :   ac8:    xor    %eax,%eax
+    0.00 :   aca:    pop    %rbx
+    0.00 :   acb:    pop    %r12
+   18.42 :   acd:    pop    %r13
+    0.00 :   acf:    pop    %r14
+    0.00 :   ad1:    pop    %r15
+   53.41 :   ad3:    pop    %rbp
+    0.00 :   ad4:    retq
+    0.00 :   ad5:    cmp    $0x2,%eax
+    0.00 :   ad8:    je     b97 <__vdso_clock_gettime@@LINUX_2.6+0x187>
+    0.00 :   ade:    cmp    $0x3,%eax
+    0.00 :   ae1:    je     b1e <__vdso_clock_gettime@@LINUX_2.6+0x10e>
+    0.00 :   ae3:    pop    %rbx
+    0.00 :   ae4:    mov    $0xe4,%eax
+    0.00 :   ae9:    pop    %r12
+    0.00 :   aeb:    syscall
+    0.00 :   aed:    pop    %r13
+    0.00 :   aef:    pop    %r14
+    0.00 :   af1:    pop    %r15
+    0.00 :   af3:    pop    %rbp
+    0.00 :   af4:    retq
+    0.00 :   af5:    cmpl   $0x7fffffff,0x4(%r8)
+    0.00 :   afd:    je     c25 <__vdso_clock_gettime@@LINUX_2.6+0x215>
+    0.00 :   b03:    pause
+    0.00 :   b05:    jmpq   a4e <__vdso_clock_gettime@@LINUX_2.6+0x3e>
+    0.00 :   b0a:    test   $0x60,%al
+    0.00 :   b0c:    jne    b50 <__vdso_clock_gettime@@LINUX_2.6+0x140>
+    0.00 :   b0e:    test   $0x10,%al
+    0.00 :   b10:    je     ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   b12:    lea    -0x49a9(%rip),%r8        # ffffffffffffc170 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffb2b0>
+    0.00 :   b19:    jmpq   a44 <__vdso_clock_gettime@@LINUX_2.6+0x34>
+    0.00 :   b1e:    lea    -0x2b25(%rip),%r9        # ffffffffffffe000 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffd140>
+    0.00 :   b25:    jmp    b46 <__vdso_clock_gettime@@LINUX_2.6+0x136>
+    0.00 :   b27:    mov    -0x2b26(%rip),%r13        # ffffffffffffe008 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffd148>
+    0.00 :   b2e:    mov    -0x2b25(%rip),%rbx        # ffffffffffffe010 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffd150>
+    0.00 :   b35:    rdtscp
+    0.00 :   b38:    xchg   %ax,%ax
+    0.00 :   b3a:    mov    (%r9),%ecx
+    0.00 :   b3d:    cmp    %ecx,%r12d
+    0.00 :   b40:    je     c13 <__vdso_clock_gettime@@LINUX_2.6+0x203>
+    0.00 :   b46:    mov    (%r9),%r12d
+    0.00 :   b49:    test   %r12d,%r12d
+    0.00 :   b4c:    jne    b27 <__vdso_clock_gettime@@LINUX_2.6+0x117>
+    0.00 :   b4e:    jmp    ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   b50:    movslq %edi,%rdi
+    0.00 :   b53:    lea    0x2(%rdi),%rax
+    0.00 :   b57:    shl    $0x4,%rax
+    0.00 :   b5b:    add    %r8,%rax
+    0.00 :   b5e:    mov    (%r8),%ecx
+    0.00 :   b61:    test   $0x1,%cl
+    0.00 :   b64:    jne    b83 <__vdso_clock_gettime@@LINUX_2.6+0x173>
+    0.00 :   b66:    mov    (%rax),%r9
+    0.00 :   b69:    mov    %r9,(%rsi)
+    0.00 :   b6c:    mov    0x8(%rax),%r9
+    0.00 :   b70:    mov    %r9,0x8(%rsi)
+    0.00 :   b74:    mov    (%r8),%r9d
+    0.00 :   b77:    cmp    %r9d,%ecx
+    0.00 :   b7a:    jne    b5e <__vdso_clock_gettime@@LINUX_2.6+0x14e>
+    0.00 :   b7c:    xor    %eax,%eax
+    0.00 :   b7e:    jmpq   aca <__vdso_clock_gettime@@LINUX_2.6+0xba>
+    0.00 :   b83:    cmpl   $0x7fffffff,-0x4b09(%rip)        # ffffffffffffc084 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffb1c4>
+    0.00 :   b8d:    je     ce4 <__vdso_clock_gettime@@LINUX_2.6+0x2d4>
+    0.00 :   b93:    pause
+    0.00 :   b95:    jmp    b5e <__vdso_clock_gettime@@LINUX_2.6+0x14e>
+    0.00 :   b97:    mov    -0x3b9d(%rip),%edx        # ffffffffffffd000 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc140>
+    0.00 :   b9d:    lea    -0x3ba4(%rip),%r9        # ffffffffffffd000 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc140>
+    0.00 :   ba4:    mov    %edx,%ebx
+    0.00 :   ba6:    and    $0xfffffffe,%ebx
+    0.00 :   ba9:    testb  $0x1,-0x3b93(%rip)        # ffffffffffffd01d <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc15d>
+    0.00 :   bb0:    je     ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   bb6:    rdtscp
+    0.00 :   bb9:    xchg   %ax,%ax
+    0.00 :   bbb:    shl    $0x20,%rdx
+    0.00 :   bbf:    or     %rax,%rdx
+    0.00 :   bc2:    mov    %rdx,%rax
+    0.00 :   bc5:    movsbl -0x3bb0(%rip),%edx        # ffffffffffffd01c <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc15c>
+    0.00 :   bcc:    sub    -0x3bcb(%rip),%rax        # ffffffffffffd008 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc148>
+    0.00 :   bd3:    mov    %rax,%r12
+    0.00 :   bd6:    mov    %edx,%ecx
+    0.00 :   bd8:    neg    %ecx
+    0.00 :   bda:    shr    %cl,%r12
+    0.00 :   bdd:    mov    %edx,%ecx
+    0.00 :   bdf:    shl    %cl,%rax
+    0.00 :   be2:    test   %edx,%edx
+    0.00 :   be4:    mov    %r12,%rdx
+    0.00 :   be7:    mov    -0x3bd5(%rip),%ecx        # ffffffffffffd018 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc158>
+    0.00 :   bed:    cmovns %rax,%rdx
+    0.00 :   bf1:    mov    %rdx,%rax
+    0.00 :   bf4:    mul    %rcx
+    0.00 :   bf7:    shrd   $0x20,%rdx,%rax
+    0.00 :   bfc:    mov    -0x3bf3(%rip),%rcx        # ffffffffffffd010 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc150>
+    0.00 :   c03:    mov    (%r9),%edx
+    0.00 :   c06:    cmp    %edx,%ebx
+    0.00 :   c08:    jne    ba4 <__vdso_clock_gettime@@LINUX_2.6+0x194>
+    0.00 :   c0a:    lea    (%rax,%rcx,1),%rdx
+    0.00 :   c0e:    jmpq   a70 <__vdso_clock_gettime@@LINUX_2.6+0x60>
+    0.00 :   c13:    shl    $0x20,%rdx
+    0.00 :   c17:    or     %rdx,%rax
+    0.00 :   c1a:    mul    %r13
+    0.00 :   c1d:    add    %rbx,%rdx
+    0.00 :   c20:    jmpq   a70 <__vdso_clock_gettime@@LINUX_2.6+0x60>
+    0.00 :   c25:    lea    -0x1bac(%rip),%r10        # fffffffffffff080 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffe1c0>
+    0.00 :   c2c:    cmp    $0x4,%edi
+    0.00 :   c2f:    movslq %edi,%r11
+    0.00 :   c32:    lea    0xf0(%r10),%rax
+    0.00 :   c39:    cmove  %rax,%r10
+    0.00 :   c3d:    shl    $0x4,%r11
+    0.00 :   c41:    lea    (%r10,%r11,1),%r12
+    0.00 :   c45:    mov    (%r10),%ebx
+    0.00 :   c48:    test   $0x1,%bl
+    0.00 :   c4b:    jne    d53 <__vdso_clock_gettime@@LINUX_2.6+0x343>
+    0.00 :   c51:    mov    0x4(%r10),%eax
+    0.00 :   c55:    cmp    $0x1,%eax
+    0.00 :   c58:    jne    d61 <__vdso_clock_gettime@@LINUX_2.6+0x351>
+    0.00 :   c5e:    rdtscp
+    0.00 :   c61:    xchg   %ax,%ax
+    0.00 :   c63:    shl    $0x20,%rdx
+    0.00 :   c67:    mov    %rdx,%r15
+    0.00 :   c6a:    or     %rax,%r15
+    0.00 :   c6d:    test   %r15,%r15
+    0.00 :   c70:    js     ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   c76:    mov    0x8(%r10),%rcx
+    0.00 :   c7a:    mov    0x28(%r12),%rax
+    0.00 :   c7f:    mov    0x18(%r10),%edx
+    0.00 :   c83:    cmp    %r15,%rcx
+    0.00 :   c86:    jae    c92 <__vdso_clock_gettime@@LINUX_2.6+0x282>
+    0.00 :   c88:    sub    %rcx,%r15
+    0.00 :   c8b:    imul   %r15,%rdx
+    0.00 :   c8f:    add    %rdx,%rax
+    0.00 :   c92:    mov    0x1c(%r10),%ecx
+    0.00 :   c96:    mov    0x20(%r12),%rdx
+    0.00 :   c9b:    mov    (%r10),%r9d
+    0.00 :   c9e:    cmp    %ebx,%r9d
+    0.00 :   ca1:    jne    c45 <__vdso_clock_gettime@@LINUX_2.6+0x235>
+    0.00 :   ca3:    add    %r11,%r8
+    0.00 :   ca6:    shr    %cl,%rax
+    0.00 :   ca9:    mov    0x20(%r8),%rdi
+    0.00 :   cad:    add    0x28(%r8),%rax
+    0.00 :   cb1:    add    %rdx,%rdi
+    0.00 :   cb4:    cmp    $0x3b9ac9ff,%rax
+    0.00 :   cba:    jbe    d5a <__vdso_clock_gettime@@LINUX_2.6+0x34a>
+    0.00 :   cc0:    xor    %edx,%edx
+    0.00 :   cc2:    sub    $0x3b9aca00,%rax
+    0.00 :   cc8:    add    $0x1,%edx
+    0.00 :   ccb:    cmp    $0x3b9ac9ff,%rax
+    0.00 :   cd1:    ja     cc2 <__vdso_clock_gettime@@LINUX_2.6+0x2b2>
+    0.00 :   cd3:    add    %rdi,%rdx
+    0.00 :   cd6:    mov    %rax,0x8(%rsi)
+    0.00 :   cda:    xor    %eax,%eax
+    0.00 :   cdc:    mov    %rdx,(%rsi)
+    0.00 :   cdf:    jmpq   aca <__vdso_clock_gettime@@LINUX_2.6+0xba>
+    0.00 :   ce4:    add    $0x2,%rdi
+    0.00 :   ce8:    lea    -0x1c6f(%rip),%r9        # fffffffffffff080 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffe1c0>
+    0.00 :   cef:    mov    %rdi,%rcx
+    0.00 :   cf2:    shl    $0x4,%rcx
+    0.00 :   cf6:    lea    (%r9,%rcx,1),%r11
+    0.00 :   cfa:    mov    (%r9),%edi
+    0.00 :   cfd:    test   $0x1,%dil
+    0.00 :   d01:    jne    da0 <__vdso_clock_gettime@@LINUX_2.6+0x390>
+    0.00 :   d07:    mov    (%r11),%r10
+    0.00 :   d0a:    mov    0x8(%r11),%rax
+    0.00 :   d0e:    mov    (%r9),%ebx
+    0.00 :   d11:    cmp    %edi,%ebx
+    0.00 :   d13:    jne    cfa <__vdso_clock_gettime@@LINUX_2.6+0x2ea>
+    0.00 :   d15:    add    %rcx,%r8
+    0.00 :   d18:    add    0x8(%r8),%rax
+    0.00 :   d1c:    add    (%r8),%r10
+    0.00 :   d1f:    mov    %rax,%rcx
+    0.00 :   d22:    cmp    $0x3b9ac9ff,%rax
+    0.00 :   d28:    jbe    d40 <__vdso_clock_gettime@@LINUX_2.6+0x330>
+    0.00 :   d2a:    mov    %rcx,%rax
+    0.00 :   d2d:    add    $0x1,%edx
+    0.00 :   d30:    lea    -0x3b9aca00(%rax),%rcx
+    0.00 :   d37:    cmp    $0x3b9ac9ff,%rcx
+    0.00 :   d3e:    ja     d2a <__vdso_clock_gettime@@LINUX_2.6+0x31a>
+    0.00 :   d40:    mov    %edx,%eax
+    0.00 :   d42:    mov    %rcx,0x8(%rsi)
+    0.00 :   d46:    add    %r10,%rax
+    0.00 :   d49:    mov    %rax,(%rsi)
+    0.00 :   d4c:    xor    %eax,%eax
+    0.00 :   d4e:    jmpq   aca <__vdso_clock_gettime@@LINUX_2.6+0xba>
+    0.00 :   d53:    pause
+    0.00 :   d55:    jmpq   c45 <__vdso_clock_gettime@@LINUX_2.6+0x235>
+    0.00 :   d5a:    xor    %edx,%edx
+    0.00 :   d5c:    jmpq   cd3 <__vdso_clock_gettime@@LINUX_2.6+0x2c3>
+    0.00 :   d61:    cmp    $0x2,%eax
+    0.00 :   d64:    je     dbc <__vdso_clock_gettime@@LINUX_2.6+0x3ac>
+    0.00 :   d66:    cmp    $0x3,%eax
+    0.00 :   d69:    jne    ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   d6f:    lea    -0x2d76(%rip),%r9        # ffffffffffffe000 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffd140>
+    0.00 :   d76:    jmp    d93 <__vdso_clock_gettime@@LINUX_2.6+0x383>
+    0.00 :   d78:    mov    -0x2d77(%rip),%r14        # ffffffffffffe008 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffd148>
+    0.00 :   d7f:    mov    -0x2d76(%rip),%r15        # ffffffffffffe010 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffd150>
+    0.00 :   d86:    rdtscp
+    0.00 :   d89:    xchg   %ax,%ax
+    0.00 :   d8b:    mov    (%r9),%ecx
+    0.00 :   d8e:    cmp    %ecx,%r13d
+    0.00 :   d91:    je     da7 <__vdso_clock_gettime@@LINUX_2.6+0x397>
+    0.00 :   d93:    mov    (%r9),%r13d
+    0.00 :   d96:    test   %r13d,%r13d
+    0.00 :   d99:    jne    d78 <__vdso_clock_gettime@@LINUX_2.6+0x368>
+    0.00 :   d9b:    jmpq   ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   da0:    pause
+    0.00 :   da2:    jmpq   cfa <__vdso_clock_gettime@@LINUX_2.6+0x2ea>
+    0.00 :   da7:    shl    $0x20,%rdx
+    0.00 :   dab:    or     %rdx,%rax
+    0.00 :   dae:    mul    %r14
+    0.00 :   db1:    mov    %rdx,%rax
+    0.00 :   db4:    add    %rax,%r15
+    0.00 :   db7:    jmpq   c6d <__vdso_clock_gettime@@LINUX_2.6+0x25d>
+    0.00 :   dbc:    lea    -0x3dc3(%rip),%r9        # ffffffffffffd000 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc140>
+    0.00 :   dc3:    mov    (%r9),%r13d
+    0.00 :   dc6:    and    $0xfffffffe,%r13d
+    0.00 :   dca:    testb  $0x1,-0x3db4(%rip)        # ffffffffffffd01d <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc15d>
+    0.00 :   dd1:    je     ae3 <__vdso_clock_gettime@@LINUX_2.6+0xd3>
+    0.00 :   dd7:    rdtscp
+    0.00 :   dda:    xchg   %ax,%ax
+    0.00 :   ddc:    shl    $0x20,%rdx
+    0.00 :   de0:    movsbl -0x3dcb(%rip),%ecx        # ffffffffffffd01c <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc15c>
+    0.00 :   de7:    mov    -0x3dd6(%rip),%r14d        # ffffffffffffd018 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc158>
+    0.00 :   dee:    or     %rax,%rdx
+    0.00 :   df1:    sub    -0x3df0(%rip),%rdx        # ffffffffffffd008 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc148>
+    0.00 :   df8:    mov    %rdx,%rax
+    0.00 :   dfb:    shl    %cl,%rax
+    0.00 :   dfe:    test   %ecx,%ecx
+    0.00 :   e00:    jns    e0a <__vdso_clock_gettime@@LINUX_2.6+0x3fa>
+    0.00 :   e02:    neg    %ecx
+    0.00 :   e04:    mov    %rdx,%rax
+    0.00 :   e07:    shr    %cl,%rax
+    0.00 :   e0a:    mov    %r14d,%edx
+    0.00 :   e0d:    mov    -0x3e04(%rip),%r15        # ffffffffffffd010 <__vdso_sgx_enter_enclave@@LINUX_2.6+0xffffffffffffc150>
+    0.00 :   e14:    mul    %rdx
+    0.00 :   e17:    shrd   $0x20,%rdx,%rax
+    0.00 :   e1c:    cmp    (%r9),%r13d
+    0.00 :   e1f:    je     db4 <__vdso_clock_gettime@@LINUX_2.6+0x3a4>
+    0.00 :   e21:    jmp    dc3 <__vdso_clock_gettime@@LINUX_2.6+0x3b3>
+ Percent |	Source code & Disassembly of lab2_list for cycles (4 samples, percent: local period)
+----------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    0000000000002cf6 <SortedList_length>:
+         : 6    SortedList_length():
+         :
+         : 99   return NULL;
+         : 100  }
+         :
+         :
+         : 103  int SortedList_length(SortedList_t *list) {
+    0.00 :   2cf6:   endbr64
+    0.00 :   2cfa:   push   %rbp
+    0.00 :   2cfb:   mov    %rsp,%rbp
+    0.00 :   2cfe:   sub    $0x20,%rsp
+    0.00 :   2d02:   mov    %rdi,-0x18(%rbp)
+         : 99   if(list == NULL) return -1;
+    0.00 :   2d06:   cmpq   $0x0,-0x18(%rbp)
+    0.00 :   2d0b:   jne    2d17 <SortedList_length+0x21>
+    0.00 :   2d0d:   mov    $0xffffffff,%eax
+    0.00 :   2d12:   jmpq   2db7 <SortedList_length+0xc1>
+         : 100  int length = 0;
+    0.00 :   2d17:   movl   $0x0,-0xc(%rbp)
+         : 101  SortedListElement_t* current_element = list->next;
+    0.00 :   2d1e:   mov    -0x18(%rbp),%rax
+    0.00 :   2d22:   mov    0x8(%rax),%rax
+    0.00 :   2d26:   mov    %rax,-0x8(%rbp)
+         : 102  if(current_element == NULL) return 0;
+    0.00 :   2d2a:   cmpq   $0x0,-0x8(%rbp)
+    0.00 :   2d2f:   jne    2d38 <SortedList_length+0x42>
+    0.00 :   2d31:   mov    $0x0,%eax
+    0.00 :   2d36:   jmp    2db7 <SortedList_length+0xc1>
+         : 104  while(1) {
+         : 105  if(current_element->key == NULL) return length;
+   24.73 :   2d38:   mov    -0x8(%rbp),%rax
+    0.00 :   2d3c:   mov    0x10(%rax),%rax
+    0.00 :   2d40:   test   %rax,%rax
+    0.00 :   2d43:   jne    2d4a <SortedList_length+0x54>
+    0.00 :   2d45:   mov    -0xc(%rbp),%eax
+    0.00 :   2d48:   jmp    2db7 <SortedList_length+0xc1>
+         : 105  if(current_element->next ==NULL || current_element->prev == NULL) return -1;
+    0.00 :   2d4a:   mov    -0x8(%rbp),%rax
+    0.00 :   2d4e:   mov    0x8(%rax),%rax
+    0.00 :   2d52:   test   %rax,%rax
+    0.00 :   2d55:   je     2d63 <SortedList_length+0x6d>
+    0.00 :   2d57:   mov    -0x8(%rbp),%rax
+    0.00 :   2d5b:   mov    (%rax),%rax
+    0.00 :   2d5e:   test   %rax,%rax
+    0.00 :   2d61:   jne    2d6a <SortedList_length+0x74>
+    0.00 :   2d63:   mov    $0xffffffff,%eax
+    0.00 :   2d68:   jmp    2db7 <SortedList_length+0xc1>
+         : 106  if(current_element->next->prev != current_element || current_element->prev->next != current_element) return -1;
+    0.00 :   2d6a:   mov    -0x8(%rbp),%rax
+    0.00 :   2d6e:   mov    0x8(%rax),%rax
+   50.54 :   2d72:   mov    (%rax),%rax
+    0.00 :   2d75:   cmp    %rax,-0x8(%rbp)
+    0.00 :   2d79:   jne    2d8c <SortedList_length+0x96>
+   24.73 :   2d7b:   mov    -0x8(%rbp),%rax
+    0.00 :   2d7f:   mov    (%rax),%rax
+    0.00 :   2d82:   mov    0x8(%rax),%rax
+    0.00 :   2d86:   cmp    %rax,-0x8(%rbp)
+    0.00 :   2d8a:   je     2d93 <SortedList_length+0x9d>
+    0.00 :   2d8c:   mov    $0xffffffff,%eax
+    0.00 :   2d91:   jmp    2db7 <SortedList_length+0xc1>
+         :
+         : 109  if(opt_yield & LOOKUP_YIELD) sched_yield();
+    0.00 :   2d93:   mov    0x2333(%rip),%eax        # 50cc <opt_yield>
+    0.00 :   2d99:   and    $0x4,%eax
+    0.00 :   2d9c:   test   %eax,%eax
+    0.00 :   2d9e:   je     2da5 <SortedList_length+0xaf>
+    0.00 :   2da0:   callq  12c0 <sched_yield@plt>
+         :
+         : 111  length += 1;
+    0.00 :   2da5:   addl   $0x1,-0xc(%rbp)
+         : 111  current_element = current_element->next;
+    0.00 :   2da9:   mov    -0x8(%rbp),%rax
+    0.00 :   2dad:   mov    0x8(%rax),%rax
+    0.00 :   2db1:   mov    %rax,-0x8(%rbp)
+         : 104  if(current_element->key == NULL) return length;
+    0.00 :   2db5:   jmp    2d38 <SortedList_length+0x42>
+         : 115  }
+         :
+         : 117  return length;
+    0.00 :   2db7:   leaveq
+    0.00 :   2db8:   retq
+ Percent |	Source code & Disassembly of libc-2.31.so for cycles (4 samples, percent: local period)
+-------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3      Disassembly of section .text:
+         :
+         : 5      00000000001885e0 <__nss_database_lookup@GLIBC_2.2.5+0x25270>:
+    0.00 :   1885e0: endbr64
+    0.00 :   1885e4: mov    %edi,%ecx
+    0.00 :   1885e6: mov    %rdi,%rdx
+    0.00 :   1885e9: vpxor  %xmm0,%xmm0,%xmm0
+    0.00 :   1885ed: and    $0x3f,%ecx
+    0.00 :   1885f0: cmp    $0x20,%ecx
+    0.00 :   1885f3: ja     188620 <__nss_database_lookup@GLIBC_2.2.5+0x252b0>
+   49.82 :   1885f5: vpcmpeqb (%rdi),%ymm0,%ymm1
+    0.00 :   1885f9: vpmovmskb %ymm1,%eax
+    0.00 :   1885fd: test   %eax,%eax
+    0.00 :   1885ff: jne    1886f0 <__nss_database_lookup@GLIBC_2.2.5+0x25380>
+    0.00 :   188605: add    $0x20,%rdi
+    0.00 :   188609: and    $0x1f,%ecx
+    0.00 :   18860c: and    $0xffffffffffffffe0,%rdi
+    0.00 :   188610: jmp    188654 <__nss_database_lookup@GLIBC_2.2.5+0x252e4>
+    0.00 :   188612: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   18861d: nopl   (%rax)
+    0.00 :   188620: and    $0x1f,%ecx
+    0.00 :   188623: and    $0xffffffffffffffe0,%rdi
+    0.00 :   188627: vpcmpeqb (%rdi),%ymm0,%ymm1
+    0.00 :   18862b: vpmovmskb %ymm1,%eax
+    0.00 :   18862f: sar    %cl,%eax
+    0.00 :   188631: test   %eax,%eax
+    0.00 :   188633: je     188650 <__nss_database_lookup@GLIBC_2.2.5+0x252e0>
+    0.00 :   188635: tzcnt  %eax,%eax
+    0.00 :   188639: add    %rdi,%rax
+    0.00 :   18863c: add    %rcx,%rax
+    0.00 :   18863f: sub    %rdx,%rax
+    0.00 :   188642: vzeroupper
+    0.00 :   188645: retq
+    0.00 :   188646: nopw   %cs:0x0(%rax,%rax,1)
+    0.00 :   188650: add    $0x20,%rdi
+    0.00 :   188654: vpcmpeqb (%rdi),%ymm0,%ymm1
+    0.00 :   188658: vpmovmskb %ymm1,%eax
+    0.00 :   18865c: test   %eax,%eax
+    0.00 :   18865e: jne    1886f0 <__nss_database_lookup@GLIBC_2.2.5+0x25380>
+    0.00 :   188664: vpcmpeqb 0x20(%rdi),%ymm0,%ymm1
+    0.00 :   188669: vpmovmskb %ymm1,%eax
+    0.00 :   18866d: test   %eax,%eax
+    0.00 :   18866f: jne    188700 <__nss_database_lookup@GLIBC_2.2.5+0x25390>
+    0.00 :   188675: vpcmpeqb 0x40(%rdi),%ymm0,%ymm1
+    0.00 :   18867a: vpmovmskb %ymm1,%eax
+    0.00 :   18867e: test   %eax,%eax
+    0.00 :   188680: jne    188720 <__nss_database_lookup@GLIBC_2.2.5+0x253b0>
+    0.00 :   188686: vpcmpeqb 0x60(%rdi),%ymm0,%ymm1
+    0.00 :   18868b: vpmovmskb %ymm1,%eax
+    0.00 :   18868f: test   %eax,%eax
+    0.00 :   188691: jne    18876c <__nss_database_lookup@GLIBC_2.2.5+0x253fc>
+    0.00 :   188697: add    $0x80,%rdi
+    0.00 :   18869e: mov    %rdi,%rcx
+    0.00 :   1886a1: and    $0x7f,%ecx
+    0.00 :   1886a4: and    $0xffffffffffffff80,%rdi
+    0.00 :   1886a8: nopl   0x0(%rax,%rax,1)
+    0.00 :   1886b0: vmovdqa (%rdi),%ymm1
+    0.00 :   1886b4: vmovdqa 0x20(%rdi),%ymm2
+    0.00 :   1886b9: vmovdqa 0x40(%rdi),%ymm3
+    0.00 :   1886be: vmovdqa 0x60(%rdi),%ymm4
+    0.00 :   1886c3: vpminub %ymm1,%ymm2,%ymm5
+    0.00 :   1886c7: vpminub %ymm3,%ymm4,%ymm6
+    0.00 :   1886cb: vpminub %ymm5,%ymm6,%ymm5
+    0.00 :   1886cf: vpcmpeqb %ymm5,%ymm0,%ymm5
+    0.00 :   1886d3: vpmovmskb %ymm5,%eax
+    0.00 :   1886d7: test   %eax,%eax
+    0.00 :   1886d9: jne    188740 <__nss_database_lookup@GLIBC_2.2.5+0x253d0>
+    0.00 :   1886db: add    $0x80,%rdi
+    0.00 :   1886e2: jmp    1886b0 <__nss_database_lookup@GLIBC_2.2.5+0x25340>
+    0.00 :   1886e4: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   1886ef: nop
+   24.90 :   1886f0: tzcnt  %eax,%eax
+    0.00 :   1886f4: add    %rdi,%rax
+   25.28 :   1886f7: sub    %rdx,%rax
+    0.00 :   1886fa: vzeroupper
+    0.00 :   1886fd: retq
+    0.00 :   1886fe: xchg   %ax,%ax
+    0.00 :   188700: tzcnt  %eax,%eax
+    0.00 :   188704: add    $0x20,%rax
+    0.00 :   188708: add    %rdi,%rax
+    0.00 :   18870b: sub    %rdx,%rax
+    0.00 :   18870e: vzeroupper
+    0.00 :   188711: retq
+    0.00 :   188712: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   18871d: nopl   (%rax)
+    0.00 :   188720: tzcnt  %eax,%eax
+    0.00 :   188724: add    $0x40,%rax
+    0.00 :   188728: add    %rdi,%rax
+    0.00 :   18872b: sub    %rdx,%rax
+    0.00 :   18872e: vzeroupper
+    0.00 :   188731: retq
+    0.00 :   188732: data16 nopw %cs:0x0(%rax,%rax,1)
+    0.00 :   18873d: nopl   (%rax)
+    0.00 :   188740: vpcmpeqb %ymm1,%ymm0,%ymm1
+    0.00 :   188744: vpmovmskb %ymm1,%eax
+    0.00 :   188748: test   %eax,%eax
+    0.00 :   18874a: jne    1886f0 <__nss_database_lookup@GLIBC_2.2.5+0x25380>
+    0.00 :   18874c: vpcmpeqb %ymm2,%ymm0,%ymm2
+    0.00 :   188750: vpmovmskb %ymm2,%eax
+    0.00 :   188754: test   %eax,%eax
+    0.00 :   188756: jne    188700 <__nss_database_lookup@GLIBC_2.2.5+0x25390>
+    0.00 :   188758: vpcmpeqb %ymm3,%ymm0,%ymm3
+    0.00 :   18875c: vpmovmskb %ymm3,%eax
+    0.00 :   188760: test   %eax,%eax
+    0.00 :   188762: jne    188720 <__nss_database_lookup@GLIBC_2.2.5+0x253b0>
+    0.00 :   188764: vpcmpeqb %ymm4,%ymm0,%ymm4
+    0.00 :   188768: vpmovmskb %ymm4,%eax
+    0.00 :   18876c: tzcnt  %eax,%eax
+    0.00 :   188770: add    $0x60,%rax
+    0.00 :   188774: add    %rdi,%rax
+    0.00 :   188777: sub    %rdx,%rax
+    0.00 :   18877a: vzeroupper
+    0.00 :   18877d: retq
+ Percent |	Source code & Disassembly of lab2_list for cycles (3 samples, percent: local period)
+----------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    0000000000001877 <thread_action>:
+         : 6    thread_action():
+         : 117  }
+         :
+         : 119  return total_time;
+         : 120  }
+         :
+         : 122  void* thread_action(void* i) {
+    0.00 :   1877:   endbr64
+    0.00 :   187b:   push   %rbp
+    0.00 :   187c:   mov    %rsp,%rbp
+    0.00 :   187f:   sub    $0x70,%rsp
+    0.00 :   1883:   mov    %rdi,-0x68(%rbp)
+    0.00 :   1887:   mov    %fs:0x28,%rax
+    0.00 :   1890:   mov    %rax,-0x8(%rbp)
+    0.00 :   1894:   xor    %eax,%eax
+         : 118  double *amount_time= malloc(sizeof(double));
+    0.00 :   1896:   mov    $0x8,%edi
+    0.00 :   189b:   callq  1330 <malloc@plt>
+    0.00 :   18a0:   mov    %rax,-0x38(%rbp)
+         : 119  *amount_time = 0;
+    0.00 :   18a4:   mov    -0x38(%rbp),%rax
+    0.00 :   18a8:   pxor   %xmm0,%xmm0
+    0.00 :   18ac:   movsd  %xmm0,(%rax)
+         : 120  double time = 0;
+    0.00 :   18b0:   pxor   %xmm0,%xmm0
+    0.00 :   18b4:   movsd  %xmm0,-0x30(%rbp)
+         :
+         : 123  long tid = (long)i;
+    0.00 :   18b9:   mov    -0x68(%rbp),%rax
+    0.00 :   18bd:   mov    %rax,-0x28(%rbp)
+         : 123  long start = tid*num_iterations;
+    0.00 :   18c1:   mov    0x375d(%rip),%eax        # 5024 <num_iterations>
+    0.00 :   18c7:   cltq
+    0.00 :   18c9:   mov    -0x28(%rbp),%rdx
+    0.00 :   18cd:   imul   %rdx,%rax
+    0.00 :   18d1:   mov    %rax,-0x20(%rbp)
+         :
+         : 126  for(int i = start; i < start+num_iterations; i++){
+    0.00 :   18d5:   mov    -0x20(%rbp),%rax
+    0.00 :   18d9:   mov    %eax,-0x50(%rbp)
+    0.00 :   18dc:   jmpq   1988 <thread_action+0x111>
+         : 126  int list_num = hash_string( elements[i].key);
+    0.00 :   18e1:   mov    0x3810(%rip),%rcx        # 50f8 <elements>
+    0.00 :   18e8:   mov    -0x50(%rbp),%eax
+    0.00 :   18eb:   movslq %eax,%rdx
+    0.00 :   18ee:   mov    %rdx,%rax
+    0.00 :   18f1:   add    %rax,%rax
+    0.00 :   18f4:   add    %rdx,%rax
+    0.00 :   18f7:   shl    $0x3,%rax
+    0.00 :   18fb:   add    %rcx,%rax
+    0.00 :   18fe:   mov    0x10(%rax),%rax
+    0.00 :   1902:   mov    %rax,%rdi
+    0.00 :   1905:   callq  14c9 <hash_string>
+    0.00 :   190a:   mov    %eax,-0x3c(%rbp)
+         : 127  time = lock(list_num);
+    0.00 :   190d:   mov    -0x3c(%rbp),%eax
+    0.00 :   1910:   mov    %eax,%edi
+    0.00 :   1912:   callq  1585 <lock>
+    0.00 :   1917:   movq   %xmm0,%rax
+    0.00 :   191c:   mov    %rax,-0x30(%rbp)
+         : 128  *amount_time += time;
+    0.00 :   1920:   mov    -0x38(%rbp),%rax
+    0.00 :   1924:   movsd  (%rax),%xmm0
+    0.00 :   1928:   addsd  -0x30(%rbp),%xmm0
+    0.00 :   192d:   mov    -0x38(%rbp),%rax
+    0.00 :   1931:   movsd  %xmm0,(%rax)
+         : 129  SortedList_insert(&list[list_num], &elements[i]);
+    0.00 :   1935:   mov    0x37bc(%rip),%rcx        # 50f8 <elements>
+    0.00 :   193c:   mov    -0x50(%rbp),%eax
+    0.00 :   193f:   movslq %eax,%rdx
+    0.00 :   1942:   mov    %rdx,%rax
+    0.00 :   1945:   add    %rax,%rax
+    0.00 :   1948:   add    %rdx,%rax
+    0.00 :   194b:   shl    $0x3,%rax
+    0.00 :   194f:   add    %rax,%rcx
+    0.00 :   1952:   mov    0x3797(%rip),%rsi        # 50f0 <list>
+    0.00 :   1959:   mov    -0x3c(%rbp),%eax
+    0.00 :   195c:   movslq %eax,%rdx
+    0.00 :   195f:   mov    %rdx,%rax
+    0.00 :   1962:   add    %rax,%rax
+    0.00 :   1965:   add    %rdx,%rax
+    0.00 :   1968:   shl    $0x3,%rax
+    0.00 :   196c:   add    %rsi,%rax
+    0.00 :   196f:   mov    %rcx,%rsi
+    0.00 :   1972:   mov    %rax,%rdi
+    0.00 :   1975:   callq  2a10 <SortedList_insert>
+         : 130  unlock(list_num);
+    0.00 :   197a:   mov    -0x3c(%rbp),%eax
+    0.00 :   197d:   mov    %eax,%edi
+    0.00 :   197f:   callq  16e3 <unlock>
+         : 125  for(int i = start; i < start+num_iterations; i++){
+    0.00 :   1984:   addl   $0x1,-0x50(%rbp)
+    0.00 :   1988:   mov    -0x50(%rbp),%eax
+    0.00 :   198b:   cltq
+    0.00 :   198d:   mov    0x3691(%rip),%edx        # 5024 <num_iterations>
+    0.00 :   1993:   movslq %edx,%rcx
+    0.00 :   1996:   mov    -0x20(%rbp),%rdx
+    0.00 :   199a:   add    %rcx,%rdx
+    0.00 :   199d:   cmp    %rdx,%rax
+    0.00 :   19a0:   jl     18e1 <thread_action+0x6a>
+         : 133  }
+         :
+         : 135  int length = 0;
+    0.00 :   19a6:   movl   $0x0,-0x54(%rbp)
+         : 134  int time_of_length = get_length_of_list(&length);
+    0.00 :   19ad:   lea    -0x54(%rbp),%rax
+    0.00 :   19b1:   mov    %rax,%rdi
+    0.00 :   19b4:   callq  1783 <get_length_of_list>
+    0.00 :   19b9:   mov    %eax,-0x48(%rbp)
+         : 136  // printf("Thread %ld: the length of the list is %d \n", tid, length);
+         : 137  *amount_time += time_of_length;
+    0.00 :   19bc:   mov    -0x38(%rbp),%rax
+    0.00 :   19c0:   movsd  (%rax),%xmm1
+    0.00 :   19c4:   cvtsi2sdl -0x48(%rbp),%xmm0
+    0.00 :   19c9:   addsd  %xmm1,%xmm0
+    0.00 :   19cd:   mov    -0x38(%rbp),%rax
+    0.00 :   19d1:   movsd  %xmm0,(%rax)
+         :
+         : 139  for(int i =start; i < start+num_iterations; i++) {
+    0.00 :   19d5:   mov    -0x20(%rbp),%rax
+    0.00 :   19d9:   mov    %eax,-0x4c(%rbp)
+    0.00 :   19dc:   jmpq   1afc <thread_action+0x285>
+         : 139  const char* string_to_lookup = elements[i].key;
+    0.00 :   19e1:   mov    0x3710(%rip),%rcx        # 50f8 <elements>
+    0.00 :   19e8:   mov    -0x4c(%rbp),%eax
+    0.00 :   19eb:   movslq %eax,%rdx
+    0.00 :   19ee:   mov    %rdx,%rax
+    0.00 :   19f1:   add    %rax,%rax
+    0.00 :   19f4:   add    %rdx,%rax
+    0.00 :   19f7:   shl    $0x3,%rax
+    0.00 :   19fb:   add    %rcx,%rax
+    0.00 :   19fe:   mov    0x10(%rax),%rax
+    0.00 :   1a02:   mov    %rax,-0x18(%rbp)
+         : 140  int list_num = hash_string(string_to_lookup);
+    0.00 :   1a06:   mov    -0x18(%rbp),%rax
+    0.00 :   1a0a:   mov    %rax,%rdi
+    0.00 :   1a0d:   callq  14c9 <hash_string>
+    0.00 :   1a12:   mov    %eax,-0x44(%rbp)
+         : 141  int return_delete = 0;
+    0.00 :   1a15:   movl   $0x0,-0x40(%rbp)
+         : 142  time = lock(list_num);
+    0.00 :   1a1c:   mov    -0x44(%rbp),%eax
+    0.00 :   1a1f:   mov    %eax,%edi
+    0.00 :   1a21:   callq  1585 <lock>
+    0.00 :   1a26:   movq   %xmm0,%rax
+    0.00 :   1a2b:   mov    %rax,-0x30(%rbp)
+         : 143  *amount_time += time;
+    0.00 :   1a2f:   mov    -0x38(%rbp),%rax
+   66.86 :   1a33:   movsd  (%rax),%xmm0
+    0.00 :   1a37:   addsd  -0x30(%rbp),%xmm0
+    0.00 :   1a3c:   mov    -0x38(%rbp),%rax
+    0.00 :   1a40:   movsd  %xmm0,(%rax)
+         : 144  SortedListElement_t* element = SortedList_lookup(&list[list_num], string_to_lookup);
+    0.00 :   1a44:   mov    0x36a5(%rip),%rcx        # 50f0 <list>
+    0.00 :   1a4b:   mov    -0x44(%rbp),%eax
+    0.00 :   1a4e:   movslq %eax,%rdx
+    0.00 :   1a51:   mov    %rdx,%rax
+    0.00 :   1a54:   add    %rax,%rax
+    0.00 :   1a57:   add    %rdx,%rax
+    0.00 :   1a5a:   shl    $0x3,%rax
+    0.00 :   1a5e:   lea    (%rcx,%rax,1),%rdx
+    0.00 :   1a62:   mov    -0x18(%rbp),%rax
+    0.00 :   1a66:   mov    %rax,%rsi
+    0.00 :   1a69:   mov    %rdx,%rdi
+    0.00 :   1a6c:   callq  2c5a <SortedList_lookup>
+    0.00 :   1a71:   mov    %rax,-0x10(%rbp)
+         : 145  if(element == NULL) {
+    0.00 :   1a75:   cmpq   $0x0,-0x10(%rbp)
+    0.00 :   1a7a:   jne    1aac <thread_action+0x235>
+         : 146  printf("Thread %ld: The element for key %s is null due to corruption\n", tid, string_to_lookup);
+    0.00 :   1a7c:   mov    -0x18(%rbp),%rdx
+    0.00 :   1a80:   mov    -0x28(%rbp),%rax
+    0.00 :   1a84:   mov    %rax,%rsi
+    0.00 :   1a87:   lea    0x164a(%rip),%rdi        # 30d8 <_IO_stdin_used+0xd8>
+    0.00 :   1a8e:   mov    $0x0,%eax
+    0.00 :   1a93:   callq  12a0 <printf@plt>
+         : 147  unlock(list_num);
+    0.00 :   1a98:   mov    -0x44(%rbp),%eax
+    0.00 :   1a9b:   mov    %eax,%edi
+    0.00 :   1a9d:   callq  16e3 <unlock>
+         : 148  exit(2);
+    0.00 :   1aa2:   mov    $0x2,%edi
+    0.00 :   1aa7:   callq  1380 <exit@plt>
+         : 150  } else{
+         : 151  return_delete = SortedList_delete(element);
+    0.00 :   1aac:   mov    -0x10(%rbp),%rax
+    0.00 :   1ab0:   mov    %rax,%rdi
+    0.00 :   1ab3:   callq  2b5b <SortedList_delete>
+    0.00 :   1ab8:   mov    %eax,-0x40(%rbp)
+         : 152  }
+         : 153  unlock(list_num);
+   33.14 :   1abb:   mov    -0x44(%rbp),%eax
+    0.00 :   1abe:   mov    %eax,%edi
+    0.00 :   1ac0:   callq  16e3 <unlock>
+         :
+         : 155  if(return_delete == 1) {
+    0.00 :   1ac5:   cmpl   $0x1,-0x40(%rbp)
+    0.00 :   1ac9:   jne    1af8 <thread_action+0x281>
+         : 155  fprintf(stderr, "Thread %ld: Deletion failed on key due to corruption %s \n", tid, string_to_lookup);
+    0.00 :   1acb:   mov    0x35ee(%rip),%rax        # 50c0 <stderr@@GLIBC_2.2.5>
+    0.00 :   1ad2:   mov    -0x18(%rbp),%rcx
+    0.00 :   1ad6:   mov    -0x28(%rbp),%rdx
+    0.00 :   1ada:   lea    0x1637(%rip),%rsi        # 3118 <_IO_stdin_used+0x118>
+    0.00 :   1ae1:   mov    %rax,%rdi
+    0.00 :   1ae4:   mov    $0x0,%eax
+    0.00 :   1ae9:   callq  1300 <fprintf@plt>
+         : 156  exit(2);
+    0.00 :   1aee:   mov    $0x2,%edi
+    0.00 :   1af3:   callq  1380 <exit@plt>
+         : 138  for(int i =start; i < start+num_iterations; i++) {
+    0.00 :   1af8:   addl   $0x1,-0x4c(%rbp)
+    0.00 :   1afc:   mov    -0x4c(%rbp),%eax
+    0.00 :   1aff:   cltq
+    0.00 :   1b01:   mov    0x351d(%rip),%edx        # 5024 <num_iterations>
+    0.00 :   1b07:   movslq %edx,%rcx
+    0.00 :   1b0a:   mov    -0x20(%rbp),%rdx
+    0.00 :   1b0e:   add    %rcx,%rdx
+    0.00 :   1b11:   cmp    %rdx,%rax
+    0.00 :   1b14:   jl     19e1 <thread_action+0x16a>
+         : 160  }
+         : 161  }
+         : 162  // pthread_exit(NULL);
+         : 163  return (void*) amount_time;
+    0.00 :   1b1a:   mov    -0x38(%rbp),%rax
+         : 161  }
+    0.00 :   1b1e:   mov    -0x8(%rbp),%rsi
+    0.00 :   1b22:   xor    %fs:0x28,%rsi
+    0.00 :   1b2b:   je     1b32 <thread_action+0x2bb>
+    0.00 :   1b2d:   callq  1280 <__stack_chk_fail@plt>
+    0.00 :   1b32:   leaveq
+    0.00 :   1b33:   retq
+ Percent |	Source code & Disassembly of libc-2.31.so for cycles (1 samples, percent: local period)
+-------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3     Disassembly of section .text:
+         :
+         : 5     0000000000097aa0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2cc0>:
+    0.00 :   97aa0:  test   %rsi,%rsi
+    0.00 :   97aa3:  js     980c0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x32e0>
+    0.00 :   97aa9:  push   %r15
+    0.00 :   97aab:  lea    0x17(%rsi),%rax
+    0.00 :   97aaf:  push   %r14
+    0.00 :   97ab1:  push   %r13
+    0.00 :   97ab3:  push   %r12
+    0.00 :   97ab5:  push   %rbp
+    0.00 :   97ab6:  mov    %rsi,%rbp
+    0.00 :   97ab9:  push   %rbx
+    0.00 :   97aba:  mov    %rdi,%rbx
+    0.00 :   97abd:  sub    $0x88,%rsp
+    0.00 :   97ac4:  cmp    $0x1f,%rax
+    0.00 :   97ac8:  ja     97bd0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2df0>
+    0.00 :   97ace:  test   %rdi,%rdi
+    0.00 :   97ad1:  je     980e8 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3308>
+    0.00 :   97ad7:  cmpq   $0x1f,0x1573c1(%rip)        # 1eeea0 <__malloc_initialize_hook@GLIBC_2.2.5+0x50>
+    0.00 :   97adf:  ja     97cc0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2ee0>
+    0.00 :   97ae5:  mov    $0x2,%r14d
+    0.00 :   97aeb:  mov    $0x80,%eax
+    0.00 :   97af0:  mov    $0x20,%r13d
+    0.00 :   97af6:  add    %rbx,%rax
+    0.00 :   97af9:  mov    0x8(%rax),%r8
+    0.00 :   97afd:  lea    -0x10(%rax),%rcx
+    0.00 :   97b01:  cmp    %r8,%rcx
+    0.00 :   97b04:  je     97e78 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3098>
+    0.00 :   97b0a:  mov    0x18(%r8),%rdx
+    0.00 :   97b0e:  cmp    %r8,0x10(%rdx)
+    0.00 :   97b12:  jne    98568 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3788>
+    0.00 :   97b18:  lea    0x155061(%rip),%r9        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   97b1f:  orq    $0x1,0x8(%r8,%r13,1)
+    0.00 :   97b25:  mov    %rdx,0x8(%rax)
+    0.00 :   97b29:  mov    %rcx,0x10(%rdx)
+    0.00 :   97b2d:  cmp    %r9,%rbx
+    0.00 :   97b30:  je     97b37 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2d57>
+    0.00 :   97b32:  orq    $0x4,0x8(%r8)
+    0.00 :   97b37:  mov    0x15423a(%rip),%rsi        # 1ebd78 <h_errlist@@GLIBC_2.2.5+0xc58>
+    0.00 :   97b3e:  mov    %fs:(%rsi),%rdi
+    0.00 :   97b42:  test   %rdi,%rdi
+    0.00 :   97b45:  je     97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97b4b:  lea    -0x11(%r13),%rsi
+    0.00 :   97b4f:  shr    $0x4,%rsi
+    0.00 :   97b53:  cmp    %rsi,0x154776(%rip)        # 1ec2d0 <__fpu_control@@GLIBC_2.2.5+0x12c>
+    0.00 :   97b5a:  jbe    97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97b60:  lea    (%rdi,%rsi,2),%r14
+    0.00 :   97b64:  mov    0x154775(%rip),%r11        # 1ec2e0 <__fpu_control@@GLIBC_2.2.5+0x13c>
+    0.00 :   97b6b:  lea    (%rdi,%rsi,8),%r12
+    0.00 :   97b6f:  movzwl (%r14),%r10d
+    0.00 :   97b73:  movzwl %r10w,%esi
+    0.00 :   97b77:  cmp    %r11,%rsi
+    0.00 :   97b7a:  jae    97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97b80:  cmp    %rdx,%rcx
+    0.00 :   97b83:  je     97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97b89:  mov    0x18(%rdx),%rsi
+    0.00 :   97b8d:  orq    $0x1,0x8(%rdx,%r13,1)
+    0.00 :   97b93:  cmp    %r9,%rbx
+    0.00 :   97b96:  je     97b9d <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2dbd>
+    0.00 :   97b98:  orq    $0x4,0x8(%rdx)
+    0.00 :   97b9d:  mov    0x80(%r12),%r15
+    0.00 :   97ba5:  mov    %rsi,0x8(%rax)
+    0.00 :   97ba9:  add    $0x10,%rdx
+    0.00 :   97bad:  add    $0x1,%r10d
+    0.00 :   97bb1:  mov    %rcx,0x10(%rsi)
+    0.00 :   97bb5:  mov    %rdi,0x8(%rdx)
+    0.00 :   97bb9:  mov    %r15,(%rdx)
+    0.00 :   97bbc:  mov    %rdx,0x80(%r12)
+    0.00 :   97bc4:  mov    %rsi,%rdx
+    0.00 :   97bc7:  mov    %r10w,(%r14)
+    0.00 :   97bcb:  jmp    97b73 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2d93>
+    0.00 :   97bcd:  nopl   (%rax)
+    0.00 :   97bd0:  and    $0xfffffffffffffff0,%rax
+    0.00 :   97bd4:  mov    %rax,%r13
+    0.00 :   97bd7:  test   %rdi,%rdi
+    0.00 :   97bda:  je     980ee <pthread_attr_setschedparam@@GLIBC_2.2.5+0x330e>
+    0.00 :   97be0:  mov    %eax,%r14d
+    0.00 :   97be3:  shr    $0x4,%r14d
+    0.00 :   97be7:  cmp    0x1572b2(%rip),%rax        # 1eeea0 <__malloc_initialize_hook@GLIBC_2.2.5+0x50>
+    0.00 :   97bee:  jbe    97e60 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3080>
+    0.00 :   97bf4:  cmp    $0x3ff,%rax
+    0.00 :   97bfa:  jbe    97df0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3010>
+    0.00 :   97c00:  mov    %rax,%rdi
+    0.00 :   97c03:  mov    %rax,%rcx
+    0.00 :   97c06:  mov    %rax,%rsi
+    0.00 :   97c09:  mov    %rax,%r15
+    0.00 :   97c0c:  shr    $0xc,%rsi
+    0.00 :   97c10:  shr    $0xf,%r15
+    0.00 :   97c14:  mov    $0x2,%edx
+    0.00 :   97c19:  shr    $0x6,%rdi
+    0.00 :   97c1d:  shr    $0x9,%rcx
+    0.00 :   97c21:  lea    0x77(%r15),%r8d
+    0.00 :   97c25:  mov    %rsi,0x58(%rsp)
+    0.00 :   97c2a:  shr    $0x12,%rax
+    0.00 :   97c2e:  cmp    $0xbffff,%r13
+    0.00 :   97c35:  mov    %r15,0x60(%rsp)
+    0.00 :   97c3a:  lea    0x30(%rdi),%r11d
+    0.00 :   97c3e:  cmova  %rdx,%rax
+    0.00 :   97c42:  mov    %r15,%rdx
+    0.00 :   97c45:  lea    0x6e(%rsi),%r15d
+    0.00 :   97c49:  mov    %rdi,0x40(%rsp)
+    0.00 :   97c4e:  mov    %rcx,0x50(%rsp)
+    0.00 :   97c53:  lea    0x7c(%rax),%r9d
+    0.00 :   97c57:  mov    %rsi,%rax
+    0.00 :   97c5a:  mov    %ecx,%esi
+    0.00 :   97c5c:  mov    %r11d,0x4c(%rsp)
+    0.00 :   97c61:  add    $0x5b,%esi
+    0.00 :   97c64:  mov    %r9d,0x68(%rsp)
+    0.00 :   97c69:  mov    %r8d,0x6c(%rsp)
+    0.00 :   97c6e:  mov    %r15d,0x70(%rsp)
+    0.00 :   97c73:  mov    %esi,0x74(%rsp)
+    0.00 :   97c77:  mov    %r11d,0x28(%rsp)
+    0.00 :   97c7c:  cmp    $0x30,%rdi
+    0.00 :   97c80:  jbe    97ca0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2ec0>
+    0.00 :   97c82:  mov    %esi,0x28(%rsp)
+    0.00 :   97c86:  cmp    $0x14,%rcx
+    0.00 :   97c8a:  jbe    97ca0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2ec0>
+    0.00 :   97c8c:  mov    %r15d,0x28(%rsp)
+    0.00 :   97c91:  cmp    $0xa,%rax
+    0.00 :   97c95:  ja     98350 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3570>
+    0.00 :   97c9b:  nopl   0x0(%rax,%rax,1)
+    0.00 :   97ca0:  mov    0x8(%rbx),%eax
+    0.00 :   97ca3:  test   %eax,%eax
+    0.00 :   97ca5:  je     97ecd <pthread_attr_setschedparam@@GLIBC_2.2.5+0x30ed>
+    0.00 :   97cab:  mov    %rbx,%rdi
+    0.00 :   97cae:  callq  959b0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0xbd0>
+    0.00 :   97cb3:  jmpq   97ecd <pthread_attr_setschedparam@@GLIBC_2.2.5+0x30ed>
+    0.00 :   97cb8:  nopl   0x0(%rax,%rax,1)
+    0.00 :   97cc0:  mov    $0x10,%ecx
+    0.00 :   97cc5:  mov    $0x2,%r14d
+    0.00 :   97ccb:  mov    $0x20,%r13d
+    0.00 :   97cd1:  xor    %eax,%eax
+    0.00 :   97cd3:  lea    (%rbx,%rax,8),%rsi
+    0.00 :   97cd7:  mov    0x10(%rsi),%r8
+    0.00 :   97cdb:  test   %r8,%r8
+    0.00 :   97cde:  je     97df0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3010>
+    0.00 :   97ce4:  add    %rbx,%rcx
+    0.00 :   97ce7:  mov    %fs:0x18,%eax
+    0.00 :   97cef:  mov    0x10(%r8),%rdx
+    0.00 :   97cf3:  test   %eax,%eax
+    0.00 :   97cf5:  jne    97dcf <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2fef>
+    0.00 :   97cfb:  mov    %rdx,0x10(%rsi)
+    0.00 :   97cff:  mov    0x8(%r8),%eax
+    0.00 :   97d03:  shr    $0x4,%eax
+    0.00 :   97d06:  cmp    %r14d,%eax
+    0.00 :   97d09:  jne    98460 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3680>
+    0.00 :   97d0f:  mov    0x154062(%rip),%r12        # 1ebd78 <h_errlist@@GLIBC_2.2.5+0xc58>
+    0.00 :   97d16:  mov    %fs:(%r12),%rax
+    0.00 :   97d1b:  test   %rax,%rax
+    0.00 :   97d1e:  je     97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97d24:  lea    -0x11(%r13),%rdi
+    0.00 :   97d28:  shr    $0x4,%rdi
+    0.00 :   97d2c:  cmp    %rdi,0x15459d(%rip)        # 1ec2d0 <__fpu_control@@GLIBC_2.2.5+0x12c>
+    0.00 :   97d33:  jbe    97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97d39:  movzwl (%rax,%rdi,2),%eax
+    0.00 :   97d3d:  lea    0x0(,%rdi,8),%r9
+    0.00 :   97d45:  add    %rdi,%rdi
+    0.00 :   97d48:  cmp    0x154591(%rip),%rax        # 1ec2e0 <__fpu_control@@GLIBC_2.2.5+0x13c>
+    0.00 :   97d4f:  jb     97daa <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2fca>
+    0.00 :   97d51:  jmpq   97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97d56:  nopw   %cs:0x0(%rax,%rax,1)
+    0.00 :   97d60:  mov    %r10,0x10(%rsi)
+    0.00 :   97d64:  mov    %fs:(%r12),%rax
+    0.00 :   97d69:  add    $0x10,%rdx
+    0.00 :   97d6d:  lea    (%rax,%r9,1),%r10
+    0.00 :   97d71:  movq   %rax,%xmm2
+    0.00 :   97d76:  movq   0x80(%r10),%xmm0
+    0.00 :   97d7f:  punpcklqdq %xmm2,%xmm0
+    0.00 :   97d83:  movups %xmm0,(%rdx)
+    0.00 :   97d86:  mov    %rdx,0x80(%r10)
+    0.00 :   97d8d:  lea    (%rax,%rdi,1),%rdx
+    0.00 :   97d91:  movzwl (%rdx),%eax
+    0.00 :   97d94:  add    $0x1,%eax
+    0.00 :   97d97:  mov    %ax,(%rdx)
+    0.00 :   97d9a:  movzwl %ax,%eax
+    0.00 :   97d9d:  cmp    0x15453c(%rip),%rax        # 1ec2e0 <__fpu_control@@GLIBC_2.2.5+0x13c>
+    0.00 :   97da4:  jae    97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97daa:  mov    0x10(%rsi),%rdx
+    0.00 :   97dae:  test   %rdx,%rdx
+    0.00 :   97db1:  je     97e30 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3050>
+    0.00 :   97db3:  mov    %fs:0x18,%eax
+    0.00 :   97dbb:  mov    0x10(%rdx),%r10
+    0.00 :   97dbf:  test   %eax,%eax
+    0.00 :   97dc1:  je     97d60 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2f80>
+    0.00 :   97dc3:  jmp    97e0f <pthread_attr_setschedparam@@GLIBC_2.2.5+0x302f>
+    0.00 :   97dc5:  nopl   (%rax)
+    0.00 :   97dc8:  mov    0x10(%rax),%rdx
+    0.00 :   97dcc:  mov    %rax,%r8
+    0.00 :   97dcf:  mov    %r8,%rax
+    0.00 :   97dd2:  cmpl   $0x0,%fs:0x18
+    0.00 :   97ddb:  je     97dde <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2ffe>
+    0.00 :   97ddd:  lock cmpxchg %rdx,(%rcx)
+    0.00 :   97de2:  cmp    %r8,%rax
+    0.00 :   97de5:  je     97cff <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2f1f>
+    0.00 :   97deb:  test   %rax,%rax
+    0.00 :   97dee:  jne    97dc8 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2fe8>
+    0.00 :   97df0:  lea    -0x2(%r14,%r14,1),%eax
+    0.00 :   97df5:  lea    0x70(,%rax,8),%rax
+    0.00 :   97dfd:  jmpq   97af6 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2d16>
+    0.00 :   97e02:  nopw   0x0(%rax,%rax,1)
+    0.00 :   97e08:  mov    0x10(%rax),%r10
+    0.00 :   97e0c:  mov    %rax,%rdx
+    0.00 :   97e0f:  mov    %rdx,%rax
+    0.00 :   97e12:  cmpl   $0x0,%fs:0x18
+    0.00 :   97e1b:  je     97e1e <pthread_attr_setschedparam@@GLIBC_2.2.5+0x303e>
+    0.00 :   97e1d:  lock cmpxchg %r10,(%rcx)
+    0.00 :   97e22:  cmp    %rdx,%rax
+    0.00 :   97e25:  je     97d64 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2f84>
+    0.00 :   97e2b:  test   %rax,%rax
+    0.00 :   97e2e:  jne    97e08 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3028>
+    0.00 :   97e30:  mov    0x157056(%rip),%esi        # 1eee8c <__malloc_initialize_hook@GLIBC_2.2.5+0x3c>
+    0.00 :   97e36:  add    $0x10,%r8
+    0.00 :   97e3a:  test   %esi,%esi
+    0.00 :   97e3c:  jne    98118 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3338>
+    0.00 :   97e42:  add    $0x88,%rsp
+    0.00 :   97e49:  mov    %r8,%rax
+    0.00 :   97e4c:  pop    %rbx
+    0.00 :   97e4d:  pop    %rbp
+    0.00 :   97e4e:  pop    %r12
+    0.00 :   97e50:  pop    %r13
+    0.00 :   97e52:  pop    %r14
+    0.00 :   97e54:  pop    %r15
+    0.00 :   97e56:  retq
+    0.00 :   97e57:  nopw   0x0(%rax,%rax,1)
+    0.00 :   97e60:  lea    -0x2(%r14),%eax
+    0.00 :   97e64:  lea    0x10(,%rax,8),%rcx
+    0.00 :   97e6c:  jmpq   97cd3 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2ef3>
+    0.00 :   97e71:  nopl   0x0(%rax)
+    0.00 :   97e78:  mov    %r13,%rax
+    0.00 :   97e7b:  mov    %r13,%rdi
+    0.00 :   97e7e:  mov    %r14d,0x28(%rsp)
+    0.00 :   97e83:  shr    $0x6,%rax
+    0.00 :   97e87:  shr    $0x9,%rdi
+    0.00 :   97e8b:  movl   $0x6e,0x70(%rsp)
+    0.00 :   97e93:  mov    %rax,0x40(%rsp)
+    0.00 :   97e98:  add    $0x30,%eax
+    0.00 :   97e9b:  mov    %rdi,0x50(%rsp)
+    0.00 :   97ea0:  add    $0x5b,%edi
+    0.00 :   97ea3:  mov    %edi,0x74(%rsp)
+    0.00 :   97ea7:  mov    %eax,0x4c(%rsp)
+    0.00 :   97eab:  movl   $0x77,0x6c(%rsp)
+    0.00 :   97eb3:  movl   $0x7c,0x68(%rsp)
+    0.00 :   97ebb:  movq   $0x0,0x60(%rsp)
+    0.00 :   97ec4:  movq   $0x0,0x58(%rsp)
+    0.00 :   97ecd:  lea    -0x11(%r13),%rax
+    0.00 :   97ed1:  mov    0x153ea0(%rip),%r12        # 1ebd78 <h_errlist@@GLIBC_2.2.5+0xc58>
+    0.00 :   97ed8:  shr    $0x4,%rax
+    0.00 :   97edc:  mov    %rax,%r15
+    0.00 :   97edf:  xor    %eax,%eax
+    0.00 :   97ee1:  mov    %rax,0x8(%rsp)
+    0.00 :   97ee6:  cmpq   $0x0,%fs:(%r12)
+    0.00 :   97eec:  je     97efe <pthread_attr_setschedparam@@GLIBC_2.2.5+0x311e>
+    0.00 :   97eee:  cmp    %r15,0x1543db(%rip)        # 1ec2d0 <__fpu_control@@GLIBC_2.2.5+0x12c>
+    0.00 :   97ef5:  cmova  %r13,%rax
+    0.00 :   97ef9:  mov    %rax,0x8(%rsp)
+    0.00 :   97efe:  movq   $0x0,(%rsp)
+    0.00 :   97f06:  lea    0x60(%rbx),%r11
+  100.00 :   97f0a:  mov    %rbp,0x20(%rsp)
+    0.00 :   97f0f:  mov    %r14d,0x48(%rsp)
+    0.00 :   97f14:  mov    %r12,%r14
+    0.00 :   97f17:  mov    0x78(%rbx),%rsi
+    0.00 :   97f1b:  cmp    %r11,%rsi
+    0.00 :   97f1e:  je     98268 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3488>
+    0.00 :   97f24:  mov    0x1543bd(%rip),%rbp        # 1ec2e8 <__fpu_control@@GLIBC_2.2.5+0x144>
+    0.00 :   97f2b:  mov    0x1543ae(%rip),%rax        # 1ec2e0 <__fpu_control@@GLIBC_2.2.5+0x13c>
+    0.00 :   97f32:  test   %rbp,%rbp
+    0.00 :   97f35:  setne  0x2f(%rsp)
+    0.00 :   97f3a:  mov    %fs:(%r14),%r10
+    0.00 :   97f3e:  xor    %edi,%edi
+    0.00 :   97f40:  xor    %r8d,%r8d
+    0.00 :   97f43:  mov    %rax,0x10(%rsp)
+    0.00 :   97f48:  lea    0x20(%r13),%rax
+    0.00 :   97f4c:  mov    %rax,0x38(%rsp)
+    0.00 :   97f51:  lea    (%r10,%r15,2),%rax
+    0.00 :   97f55:  mov    %rax,0x18(%rsp)
+    0.00 :   97f5a:  lea    (%r10,%r15,8),%rax
+    0.00 :   97f5e:  mov    %rax,0x30(%rsp)
+    0.00 :   97f63:  mov    0x8(%rsi),%rax
+    0.00 :   97f67:  and    $0xfffffffffffffff8,%rax
+    0.00 :   97f6b:  lea    (%rsi,%rax,1),%r9
+    0.00 :   97f6f:  cmp    $0x10,%rax
+    0.00 :   97f73:  jbe    980d8 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x32f8>
+    0.00 :   97f79:  mov    0x888(%rbx),%rcx
+    0.00 :   97f80:  cmp    %rax,%rcx
+    0.00 :   97f83:  jb     980d8 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x32f8>
+    0.00 :   97f89:  mov    0x8(%r9),%rdx
+    0.00 :   97f8d:  cmp    $0xf,%rdx
+    0.00 :   97f91:  jbe    98130 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3350>
+    0.00 :   97f97:  cmp    %rdx,%rcx
+    0.00 :   97f9a:  jb     98130 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3350>
+    0.00 :   97fa0:  mov    (%r9),%rcx
+    0.00 :   97fa3:  and    $0xfffffffffffffff8,%rcx
+    0.00 :   97fa7:  cmp    %rax,%rcx
+    0.00 :   97faa:  jne    98380 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x35a0>
+    0.00 :   97fb0:  mov    0x18(%rsi),%rcx
+    0.00 :   97fb4:  cmp    0x10(%rcx),%rsi
+    0.00 :   97fb8:  jne    98310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3530>
+    0.00 :   97fbe:  cmp    %r11,0x10(%rsi)
+    0.00 :   97fc2:  jne    98310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3530>
+    0.00 :   97fc8:  test   $0x1,%dl
+    0.00 :   97fcb:  jne    98450 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3670>
+    0.00 :   97fd1:  cmp    $0x3ff,%r13
+    0.00 :   97fd8:  ja     97fe3 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3203>
+    0.00 :   97fda:  cmp    %r11,%rcx
+    0.00 :   97fdd:  je     98390 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x35b0>
+    0.00 :   97fe3:  mov    %rcx,0x78(%rbx)
+    0.00 :   97fe7:  mov    %r11,0x10(%rcx)
+    0.00 :   97feb:  cmp    %r13,%rax
+    0.00 :   97fee:  je     98140 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3360>
+    0.00 :   97ff4:  cmp    $0x3ff,%rax
+    0.00 :   97ffa:  ja     98188 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x33a8>
+    0.00 :   98000:  mov    %eax,%ecx
+    0.00 :   98002:  shr    $0x4,%ecx
+    0.00 :   98005:  lea    -0x2(%rcx,%rcx,1),%eax
+    0.00 :   98009:  cltq
+    0.00 :   9800b:  lea    0x70(%rbx,%rax,8),%rax
+    0.00 :   98010:  mov    (%rax),%r9
+    0.00 :   98013:  lea    -0x10(%rax),%r12
+    0.00 :   98017:  mov    %ecx,%eax
+    0.00 :   98019:  movq   %r9,%xmm0
+    0.00 :   9801e:  movq   %r12,%xmm3
+    0.00 :   98023:  mov    $0x1,%edx
+    0.00 :   98028:  sar    $0x5,%eax
+    0.00 :   9802b:  punpcklqdq %xmm3,%xmm0
+    0.00 :   9802f:  addq   $0x1,(%rsp)
+    0.00 :   98034:  shl    %cl,%edx
+    0.00 :   98036:  cltq
+    0.00 :   98038:  or     %edx,0x860(%rbx,%rax,4)
+    0.00 :   9803f:  mov    (%rsp),%rax
+    0.00 :   98043:  movups %xmm0,0x10(%rsi)
+    0.00 :   98047:  mov    %rsi,0x18(%r9)
+    0.00 :   9804b:  mov    %rsi,0x10(%r12)
+    0.00 :   98050:  test   %r8d,%r8d
+    0.00 :   98053:  je     98250 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3470>
+    0.00 :   98059:  cmp    %rax,%rbp
+    0.00 :   9805c:  jae    98090 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x32b0>
+    0.00 :   9805e:  cmpb   $0x0,0x2f(%rsp)
+    0.00 :   98063:  je     98090 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x32b0>
+    0.00 :   98065:  lea    (%r10,%r15,8),%rax
+    0.00 :   98069:  mov    0x80(%rax),%r8
+    0.00 :   98070:  mov    (%r8),%rdx
+    0.00 :   98073:  mov    %rdx,0x80(%rax)
+    0.00 :   9807a:  subw   $0x1,(%r10,%r15,2)
+    0.00 :   98080:  movq   $0x0,0x8(%r8)
+    0.00 :   98088:  jmpq   97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   9808d:  nopl   (%rax)
+    0.00 :   98090:  add    $0x1,%edi
+    0.00 :   98093:  cmp    $0x270f,%edi
+    0.00 :   98099:  jg     98783 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x39a3>
+    0.00 :   9809f:  mov    0x78(%rbx),%rsi
+    0.00 :   980a3:  cmp    %rsi,%r11
+    0.00 :   980a6:  je     98783 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x39a3>
+    0.00 :   980ac:  mov    $0x1,%r8d
+    0.00 :   980b2:  jmpq   97f63 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3183>
+    0.00 :   980b7:  nopw   0x0(%rax,%rax,1)
+    0.00 :   980c0:  mov    0x153da9(%rip),%rax        # 1ebe70 <h_errlist@@GLIBC_2.2.5+0xd50>
+    0.00 :   980c7:  xor    %r8d,%r8d
+    0.00 :   980ca:  movl   $0xc,%fs:(%rax)
+    0.00 :   980d1:  mov    %r8,%rax
+    0.00 :   980d4:  retq
+    0.00 :   980d5:  nopl   (%rax)
+    0.00 :   980d8:  lea    0x121971(%rip),%rdi        # 1b9a50 <_itoa_lower_digits@@GLIBC_PRIVATE+0x19d0>
+    0.00 :   980df:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   980e4:  nopl   0x0(%rax)
+    0.00 :   980e8:  mov    $0x20,%r13d
+    0.00 :   980ee:  xor    %esi,%esi
+    0.00 :   980f0:  mov    %r13,%rdi
+    0.00 :   980f3:  callq  97230 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2450>
+    0.00 :   980f8:  mov    %rax,%r8
+    0.00 :   980fb:  test   %rax,%rax
+    0.00 :   980fe:  je     98448 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3668>
+    0.00 :   98104:  mov    0x156d82(%rip),%esi        # 1eee8c <__malloc_initialize_hook@GLIBC_2.2.5+0x3c>
+    0.00 :   9810a:  test   %esi,%esi
+    0.00 :   9810c:  je     97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   98112:  nopw   0x0(%rax,%rax,1)
+    0.00 :   98118:  mov    %r8,%rdi
+    0.00 :   9811b:  xor    $0xff,%sil
+    0.00 :   9811f:  mov    %rbp,%rdx
+    0.00 :   98122:  callq  22560 <*ABS*+0xa0570@plt>
+    0.00 :   98127:  mov    %rax,%r8
+    0.00 :   9812a:  jmpq   97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   9812f:  nop
+    0.00 :   98130:  lea    0x121941(%rip),%rdi        # 1b9a78 <_itoa_lower_digits@@GLIBC_PRIVATE+0x19f8>
+    0.00 :   98137:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   9813c:  nopl   0x0(%rax)
+    0.00 :   98140:  or     $0x1,%rdx
+    0.00 :   98144:  lea    0x154a35(%rip),%rax        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   9814b:  mov    %rdx,0x8(%r9)
+    0.00 :   9814f:  cmp    %rax,%rbx
+    0.00 :   98152:  je     98159 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3379>
+    0.00 :   98154:  orq    $0x4,0x8(%rsi)
+    0.00 :   98159:  cmpq   $0x0,0x8(%rsp)
+    0.00 :   9815f:  lea    0x10(%rsi),%r8
+    0.00 :   98163:  je     9817c <pthread_attr_setschedparam@@GLIBC_2.2.5+0x339c>
+    0.00 :   98165:  mov    0x18(%rsp),%r9
+    0.00 :   9816a:  movzwl (%r9),%edx
+    0.00 :   9816e:  mov    %rdx,%rax
+    0.00 :   98171:  cmp    0x10(%rsp),%rdx
+    0.00 :   98176:  jb     98320 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3540>
+    0.00 :   9817c:  mov    0x20(%rsp),%rbp
+    0.00 :   98181:  jmp    98104 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3324>
+    0.00 :   98183:  nopl   0x0(%rax,%rax,1)
+    0.00 :   98188:  mov    %rax,%rcx
+    0.00 :   9818b:  shr    $0x6,%rcx
+    0.00 :   9818f:  add    $0x30,%ecx
+    0.00 :   98192:  cmp    $0xc3f,%rax
+    0.00 :   98198:  jbe    981f0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3410>
+    0.00 :   9819a:  mov    %rax,%rcx
+    0.00 :   9819d:  shr    $0x9,%rcx
+    0.00 :   981a1:  add    $0x5b,%ecx
+    0.00 :   981a4:  cmp    $0x29ff,%rax
+    0.00 :   981aa:  jbe    981f0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3410>
+    0.00 :   981ac:  mov    %rax,%rcx
+    0.00 :   981af:  shr    $0xc,%rcx
+    0.00 :   981b3:  add    $0x6e,%ecx
+    0.00 :   981b6:  cmp    $0xafff,%rax
+    0.00 :   981bc:  jbe    981f0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3410>
+    0.00 :   981be:  mov    %rax,%rcx
+    0.00 :   981c1:  shr    $0xf,%rcx
+    0.00 :   981c5:  add    $0x77,%ecx
+    0.00 :   981c8:  cmp    $0x27fff,%rax
+    0.00 :   981ce:  jbe    981f0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3410>
+    0.00 :   981d0:  mov    %rax,%rcx
+    0.00 :   981d3:  mov    $0x2,%edx
+    0.00 :   981d8:  shr    $0x12,%rcx
+    0.00 :   981dc:  cmp    $0xbffff,%rax
+    0.00 :   981e2:  cmova  %rdx,%rcx
+    0.00 :   981e6:  add    $0x7c,%ecx
+    0.00 :   981e9:  nopl   0x0(%rax)
+    0.00 :   981f0:  lea    -0x2(%rcx,%rcx,1),%edx
+    0.00 :   981f4:  movslq %edx,%rdx
+    0.00 :   981f7:  lea    0x70(%rbx,%rdx,8),%r12
+    0.00 :   981fc:  mov    (%r12),%rdx
+    0.00 :   98200:  lea    -0x10(%r12),%r9
+    0.00 :   98205:  cmp    %rdx,%r9
+    0.00 :   98208:  je     98368 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3588>
+    0.00 :   9820e:  mov    0x8(%r12),%r12
+    0.00 :   98213:  or     $0x1,%rax
+    0.00 :   98217:  mov    %rax,0x78(%rsp)
+    0.00 :   9821c:  mov    0x8(%r12),%rax
+    0.00 :   98221:  test   $0x4,%al
+    0.00 :   98223:  jne    98918 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3b38>
+    0.00 :   98229:  cmp    0x78(%rsp),%rax
+    0.00 :   9822e:  jbe    98578 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3798>
+    0.00 :   98234:  mov    0x28(%rdx),%rax
+    0.00 :   98238:  mov    %rdx,0x20(%rsi)
+    0.00 :   9823c:  mov    %rax,0x28(%rsi)
+    0.00 :   98240:  mov    %rsi,0x20(%rax)
+    0.00 :   98244:  mov    %rsi,0x28(%rdx)
+    0.00 :   98248:  jmpq   98017 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3237>
+    0.00 :   9824d:  nopl   (%rax)
+    0.00 :   98250:  add    $0x1,%edi
+    0.00 :   98253:  cmp    $0x270f,%edi
+    0.00 :   98259:  jg     98268 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3488>
+    0.00 :   9825b:  mov    0x78(%rbx),%rsi
+    0.00 :   9825f:  cmp    %r11,%rsi
+    0.00 :   98262:  jne    97f63 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3183>
+    0.00 :   98268:  cmp    $0x3ff,%r13
+    0.00 :   9826f:  jbe    98294 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x34b4>
+    0.00 :   98271:  mov    0x28(%rsp),%eax
+    0.00 :   98275:  lea    -0x2(%rax,%rax,1),%eax
+    0.00 :   98279:  lea    0x70(%rbx,%rax,8),%rax
+    0.00 :   9827e:  mov    (%rax),%rdx
+    0.00 :   98281:  lea    -0x10(%rax),%rcx
+    0.00 :   98285:  cmp    %rcx,%rdx
+    0.00 :   98288:  je     98294 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x34b4>
+    0.00 :   9828a:  cmp    %r13,0x8(%rdx)
+    0.00 :   9828e:  jae    987e2 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3a02>
+    0.00 :   98294:  mov    0x28(%rsp),%eax
+    0.00 :   98298:  lea    0x1(%rax),%ecx
+    0.00 :   9829b:  add    %eax,%eax
+    0.00 :   9829d:  mov    %ecx,%edi
+    0.00 :   9829f:  lea    0x60(%rbx,%rax,8),%rdx
+    0.00 :   982a4:  shr    $0x5,%edi
+    0.00 :   982a7:  mov    %edi,%eax
+    0.00 :   982a9:  mov    0x860(%rbx,%rax,4),%esi
+    0.00 :   982b0:  mov    $0x1,%eax
+    0.00 :   982b5:  shl    %cl,%eax
+    0.00 :   982b7:  nopw   0x0(%rax,%rax,1)
+    0.00 :   982c0:  cmp    %esi,%eax
+    0.00 :   982c2:  ja     98470 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3690>
+    0.00 :   982c8:  test   %eax,%eax
+    0.00 :   982ca:  jne    982e4 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3504>
+    0.00 :   982cc:  jmpq   98470 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3690>
+    0.00 :   982d1:  nopl   0x0(%rax)
+    0.00 :   982d8:  add    $0x10,%rdx
+    0.00 :   982dc:  add    %eax,%eax
+    0.00 :   982de:  je     98716 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3936>
+    0.00 :   982e4:  test   %esi,%eax
+    0.00 :   982e6:  je     982d8 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x34f8>
+    0.00 :   982e8:  mov    0x18(%rdx),%rcx
+    0.00 :   982ec:  cmp    %rcx,%rdx
+    0.00 :   982ef:  jne    985f6 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3816>
+    0.00 :   982f5:  mov    %eax,%ecx
+    0.00 :   982f7:  add    $0x10,%rdx
+    0.00 :   982fb:  add    %eax,%eax
+    0.00 :   982fd:  not    %ecx
+    0.00 :   982ff:  and    %ecx,%esi
+    0.00 :   98301:  mov    %edi,%ecx
+    0.00 :   98303:  mov    %esi,0x860(%rbx,%rcx,4)
+    0.00 :   9830a:  jmp    982c0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x34e0>
+    0.00 :   9830c:  nopl   0x0(%rax)
+    0.00 :   98310:  lea    0x1217c1(%rip),%rdi        # 1b9ad8 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1a58>
+    0.00 :   98317:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   9831c:  nopl   0x0(%rax)
+    0.00 :   98320:  mov    0x30(%rsp),%r12
+    0.00 :   98325:  add    $0x1,%eax
+    0.00 :   98328:  mov    %r10,0x18(%rsi)
+    0.00 :   9832c:  mov    0x80(%r12),%rdx
+    0.00 :   98334:  mov    %rdx,0x10(%rsi)
+    0.00 :   98338:  mov    %rcx,%rsi
+    0.00 :   9833b:  mov    %r8,0x80(%r12)
+    0.00 :   98343:  mov    %ax,(%r9)
+    0.00 :   98347:  jmpq   980a3 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x32c3>
+    0.00 :   9834c:  nopl   0x0(%rax)
+    0.00 :   98350:  cmp    $0x5,%rdx
+    0.00 :   98354:  cmovb  %r8d,%r9d
+    0.00 :   98358:  mov    %r9d,0x28(%rsp)
+    0.00 :   9835d:  jmpq   97ca0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2ec0>
+    0.00 :   98362:  nopw   0x0(%rax,%rax,1)
+    0.00 :   98368:  movq   %rsi,%xmm0
+    0.00 :   9836d:  mov    %r9,%r12
+    0.00 :   98370:  punpcklqdq %xmm0,%xmm0
+    0.00 :   98374:  movups %xmm0,0x20(%rsi)
+    0.00 :   98378:  jmpq   98017 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3237>
+    0.00 :   9837d:  nopl   (%rax)
+    0.00 :   98380:  lea    0x121719(%rip),%rdi        # 1b9aa0 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1a20>
+    0.00 :   98387:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   9838c:  nopl   0x0(%rax)
+    0.00 :   98390:  cmp    0x68(%rbx),%rsi
+    0.00 :   98394:  jne    97fe3 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3203>
+    0.00 :   9839a:  cmp    %rax,0x38(%rsp)
+    0.00 :   9839f:  jae    97fe3 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3203>
+    0.00 :   983a5:  movq   %rsi,%xmm1
+    0.00 :   983aa:  movq   %r13,%xmm0
+    0.00 :   983af:  lea    (%rsi,%r13,1),%rcx
+    0.00 :   983b3:  sub    %r13,%rax
+    0.00 :   983b6:  punpcklqdq %xmm1,%xmm1
+    0.00 :   983ba:  punpcklqdq %xmm0,%xmm0
+    0.00 :   983be:  mov    %rcx,0x78(%rbx)
+    0.00 :   983c2:  mov    0x20(%rsp),%rbp
+    0.00 :   983c7:  paddq  %xmm1,%xmm0
+    0.00 :   983cb:  movups %xmm0,0x68(%rbx)
+    0.00 :   983cf:  movq   %r11,%xmm0
+    0.00 :   983d4:  punpcklqdq %xmm0,%xmm0
+    0.00 :   983d8:  movups %xmm0,0x10(%rcx)
+    0.00 :   983dc:  cmp    $0x3ff,%rax
+    0.00 :   983e2:  jbe    983ec <pthread_attr_setschedparam@@GLIBC_2.2.5+0x360c>
+    0.00 :   983e4:  pxor   %xmm0,%xmm0
+    0.00 :   983e8:  movups %xmm0,0x20(%rcx)
+    0.00 :   983ec:  lea    0x15478d(%rip),%rdx        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   983f3:  lea    0x10(%rsi),%r8
+    0.00 :   983f7:  cmp    %rdx,%rbx
+    0.00 :   983fa:  setne  %dl
+    0.00 :   983fd:  movzbl %dl,%edx
+    0.00 :   98400:  shl    $0x2,%rdx
+    0.00 :   98404:  or     %r13,%rdx
+    0.00 :   98407:  or     $0x1,%rdx
+    0.00 :   9840b:  mov    %rdx,0x8(%rsi)
+    0.00 :   9840f:  mov    %rax,%rdx
+    0.00 :   98412:  or     $0x1,%rdx
+    0.00 :   98416:  mov    %rdx,0x8(%rcx)
+    0.00 :   9841a:  mov    %rax,(%r9)
+    0.00 :   9841d:  mov    0x156a69(%rip),%eax        # 1eee8c <__malloc_initialize_hook@GLIBC_2.2.5+0x3c>
+    0.00 :   98423:  test   %eax,%eax
+    0.00 :   98425:  je     97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   9842b:  xor    $0xff,%al
+    0.00 :   9842d:  mov    %r8,%rdi
+    0.00 :   98430:  mov    %rbp,%rdx
+    0.00 :   98433:  mov    %eax,%esi
+    0.00 :   98435:  callq  22560 <*ABS*+0xa0570@plt>
+    0.00 :   9843a:  mov    %rax,%r8
+    0.00 :   9843d:  jmpq   97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   98442:  nopw   0x0(%rax,%rax,1)
+    0.00 :   98448:  xor    %r8d,%r8d
+    0.00 :   9844b:  jmpq   97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   98450:  lea    0x1216b1(%rip),%rdi        # 1b9b08 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1a88>
+    0.00 :   98457:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   9845c:  nopl   0x0(%rax)
+    0.00 :   98460:  lea    0x121591(%rip),%rdi        # 1b99f8 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1978>
+    0.00 :   98467:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   9846c:  nopl   0x0(%rax)
+    0.00 :   98470:  lea    0x1(%rdi),%eax
+    0.00 :   98473:  cmp    $0x3,%edi
+    0.00 :   98476:  je     984b5 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x36d5>
+    0.00 :   98478:  mov    %eax,%edx
+    0.00 :   9847a:  mov    0x860(%rbx,%rdx,4),%esi
+    0.00 :   98481:  test   %esi,%esi
+    0.00 :   98483:  jne    986c5 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x38e5>
+    0.00 :   98489:  lea    0x2(%rdi),%eax
+    0.00 :   9848c:  cmp    $0x2,%edi
+    0.00 :   9848f:  je     984b5 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x36d5>
+    0.00 :   98491:  mov    %eax,%edx
+    0.00 :   98493:  mov    0x860(%rbx,%rdx,4),%esi
+    0.00 :   9849a:  test   %esi,%esi
+    0.00 :   9849c:  jne    986c5 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x38e5>
+    0.00 :   984a2:  cmp    $0x1,%edi
+    0.00 :   984a5:  je     984b5 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x36d5>
+    0.00 :   984a7:  mov    0x86c(%rbx),%esi
+    0.00 :   984ad:  test   %esi,%esi
+    0.00 :   984af:  jne    9870f <pthread_attr_setschedparam@@GLIBC_2.2.5+0x392f>
+    0.00 :   984b5:  mov    0x60(%rbx),%r8
+    0.00 :   984b9:  mov    0x8(%r8),%rax
+    0.00 :   984bd:  and    $0xfffffffffffffff8,%rax
+    0.00 :   984c1:  cmp    %rax,0x888(%rbx)
+    0.00 :   984c8:  jb     986de <pthread_attr_setschedparam@@GLIBC_2.2.5+0x38fe>
+    0.00 :   984ce:  lea    0x20(%r13),%rdx
+    0.00 :   984d2:  cmp    %rax,%rdx
+    0.00 :   984d5:  jbe    98735 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3955>
+    0.00 :   984db:  mov    %r11,0x10(%rsp)
+    0.00 :   984e0:  mov    0x8(%rbx),%eax
+    0.00 :   984e3:  test   %eax,%eax
+    0.00 :   984e5:  je     987b3 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x39d3>
+    0.00 :   984eb:  mov    %rbx,%rdi
+    0.00 :   984ee:  callq  959b0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0xbd0>
+    0.00 :   984f3:  mov    0x48(%rsp),%eax
+    0.00 :   984f7:  mov    0x10(%rsp),%r11
+    0.00 :   984fc:  cmp    $0x3ff,%r13
+    0.00 :   98503:  mov    %eax,0x28(%rsp)
+    0.00 :   98507:  jbe    97f17 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3137>
+    0.00 :   9850d:  mov    0x4c(%rsp),%eax
+    0.00 :   98511:  cmpq   $0x30,0x40(%rsp)
+    0.00 :   98517:  mov    %eax,0x28(%rsp)
+    0.00 :   9851b:  jbe    97f17 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3137>
+    0.00 :   98521:  mov    0x74(%rsp),%eax
+    0.00 :   98525:  cmpq   $0x14,0x50(%rsp)
+    0.00 :   9852b:  mov    %eax,0x28(%rsp)
+    0.00 :   9852f:  jbe    97f17 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3137>
+    0.00 :   98535:  mov    0x70(%rsp),%eax
+    0.00 :   98539:  cmpq   $0xa,0x58(%rsp)
+    0.00 :   9853f:  mov    %eax,0x28(%rsp)
+    0.00 :   98543:  jbe    97f17 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3137>
+    0.00 :   98549:  mov    0x6c(%rsp),%eax
+    0.00 :   9854d:  cmpq   $0x4,0x60(%rsp)
+    0.00 :   98553:  cmova  0x68(%rsp),%eax
+    0.00 :   98558:  mov    %eax,0x28(%rsp)
+    0.00 :   9855c:  jmpq   97f17 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3137>
+    0.00 :   98561:  nopl   0x0(%rax)
+    0.00 :   98568:  lea    0x1214b1(%rip),%rdi        # 1b9a20 <_itoa_lower_digits@@GLIBC_PRIVATE+0x19a0>
+    0.00 :   9856f:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   98574:  nopl   0x0(%rax)
+    0.00 :   98578:  mov    0x8(%rdx),%r9
+    0.00 :   9857c:  test   $0x4,%r9b
+    0.00 :   98580:  jne    98943 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3b63>
+    0.00 :   98586:  mov    0x78(%rsp),%rax
+    0.00 :   9858b:  jmp    985a2 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x37c2>
+    0.00 :   9858d:  nopl   (%rax)
+    0.00 :   98590:  mov    0x20(%rdx),%rdx
+    0.00 :   98594:  mov    0x8(%rdx),%r9
+    0.00 :   98598:  test   $0x4,%r9b
+    0.00 :   9859c:  jne    988b5 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3ad5>
+    0.00 :   985a2:  cmp    %r9,%rax
+    0.00 :   985a5:  jb     98590 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x37b0>
+    0.00 :   985a7:  je     985f0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3810>
+    0.00 :   985a9:  mov    0x28(%rdx),%rax
+    0.00 :   985ad:  mov    %rdx,0x20(%rsi)
+    0.00 :   985b1:  mov    %rax,0x28(%rsi)
+    0.00 :   985b5:  mov    0x28(%rdx),%rax
+    0.00 :   985b9:  cmp    %rdx,0x20(%rax)
+    0.00 :   985bd:  jne    986ea <pthread_attr_setschedparam@@GLIBC_2.2.5+0x390a>
+    0.00 :   985c3:  mov    %rsi,0x28(%rdx)
+    0.00 :   985c7:  mov    0x28(%rsi),%rax
+    0.00 :   985cb:  mov    %rdx,%r9
+    0.00 :   985ce:  mov    %rsi,0x20(%rax)
+    0.00 :   985d2:  mov    0x18(%r9),%r12
+    0.00 :   985d6:  cmp    %r9,0x10(%r12)
+    0.00 :   985db:  je     98017 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3237>
+    0.00 :   985e1:  lea    0x121590(%rip),%rdi        # 1b9b78 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1af8>
+    0.00 :   985e8:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   985ed:  nopl   (%rax)
+    0.00 :   985f0:  mov    0x10(%rdx),%r9
+    0.00 :   985f4:  jmp    985d2 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x37f2>
+    0.00 :   985f6:  mov    0x8(%rcx),%r14
+    0.00 :   985fa:  mov    0x20(%rsp),%rbp
+    0.00 :   985ff:  and    $0xfffffffffffffff8,%r14
+    0.00 :   98603:  cmp    %r13,%r14
+    0.00 :   98606:  jb     988e0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3b00>
+    0.00 :   9860c:  mov    %r14,%r12
+    0.00 :   9860f:  mov    %rcx,%rdi
+    0.00 :   98612:  mov    %r11,0x8(%rsp)
+    0.00 :   98617:  sub    %r13,%r12
+    0.00 :   9861a:  mov    %rcx,(%rsp)
+    0.00 :   9861e:  callq  958d0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0xaf0>
+    0.00 :   98623:  cmp    $0x1f,%r12
+    0.00 :   98627:  mov    (%rsp),%rcx
+    0.00 :   9862b:  mov    0x8(%rsp),%r11
+    0.00 :   98630:  jbe    986f6 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3916>
+    0.00 :   98636:  mov    0x70(%rbx),%rax
+    0.00 :   9863a:  lea    (%rcx,%r13,1),%rdx
+    0.00 :   9863e:  cmp    %r11,0x18(%rax)
+    0.00 :   98642:  jne    988d4 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3af4>
+    0.00 :   98648:  movq   %rax,%xmm0
+    0.00 :   9864d:  movq   %r11,%xmm5
+    0.00 :   98652:  punpcklqdq %xmm5,%xmm0
+    0.00 :   98656:  movups %xmm0,0x10(%rdx)
+    0.00 :   9865a:  mov    %rdx,0x70(%rbx)
+    0.00 :   9865e:  mov    %rdx,0x18(%rax)
+    0.00 :   98662:  cmp    $0x3ff,%r13
+    0.00 :   98669:  ja     9866f <pthread_attr_setschedparam@@GLIBC_2.2.5+0x388f>
+    0.00 :   9866b:  mov    %rdx,0x68(%rbx)
+    0.00 :   9866f:  cmp    $0x3ff,%r12
+    0.00 :   98676:  jbe    98680 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x38a0>
+    0.00 :   98678:  pxor   %xmm0,%xmm0
+    0.00 :   9867c:  movups %xmm0,0x20(%rdx)
+    0.00 :   98680:  lea    0x1544f9(%rip),%rax        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   98687:  cmp    %rax,%rbx
+    0.00 :   9868a:  setne  %al
+    0.00 :   9868d:  movzbl %al,%eax
+    0.00 :   98690:  shl    $0x2,%rax
+    0.00 :   98694:  or     %r13,%rax
+    0.00 :   98697:  or     $0x1,%rax
+    0.00 :   9869b:  mov    %rax,0x8(%rcx)
+    0.00 :   9869f:  mov    %r12,%rax
+    0.00 :   986a2:  or     $0x1,%rax
+    0.00 :   986a6:  mov    %rax,0x8(%rdx)
+    0.00 :   986aa:  mov    %r12,(%rcx,%r14,1)
+    0.00 :   986ae:  mov    0x1567d8(%rip),%eax        # 1eee8c <__malloc_initialize_hook@GLIBC_2.2.5+0x3c>
+    0.00 :   986b4:  lea    0x10(%rcx),%r8
+    0.00 :   986b8:  test   %eax,%eax
+    0.00 :   986ba:  je     97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   986c0:  jmpq   9842b <pthread_attr_setschedparam@@GLIBC_2.2.5+0x364b>
+    0.00 :   986c5:  mov    %eax,%edi
+    0.00 :   986c7:  mov    %edi,%eax
+    0.00 :   986c9:  shl    $0x6,%eax
+    0.00 :   986cc:  sub    $0x2,%eax
+    0.00 :   986cf:  lea    0x60(%rbx,%rax,8),%rdx
+    0.00 :   986d4:  mov    $0x1,%eax
+    0.00 :   986d9:  jmpq   982e4 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3504>
+    0.00 :   986de:  lea    0x11ce84(%rip),%rdi        # 1b5569 <_libc_intl_domainname@@GLIBC_2.2.5+0x1151>
+    0.00 :   986e5:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   986ea:  lea    0x121447(%rip),%rdi        # 1b9b38 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1ab8>
+    0.00 :   986f1:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   986f6:  lea    0x154483(%rip),%rax        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   986fd:  orq    $0x1,0x8(%rcx,%r14,1)
+    0.00 :   98703:  cmp    %rax,%rbx
+    0.00 :   98706:  je     986ae <pthread_attr_setschedparam@@GLIBC_2.2.5+0x38ce>
+    0.00 :   98708:  orq    $0x4,0x8(%rcx)
+    0.00 :   9870d:  jmp    986ae <pthread_attr_setschedparam@@GLIBC_2.2.5+0x38ce>
+    0.00 :   9870f:  mov    $0x3,%edi
+    0.00 :   98714:  jmp    986c7 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x38e7>
+    0.00 :   98716:  lea    0x121923(%rip),%rcx        # 1ba040 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1fc0>
+    0.00 :   9871d:  mov    $0xfb1,%edx
+    0.00 :   98722:  lea    0x11ccad(%rip),%rsi        # 1b53d6 <_libc_intl_domainname@@GLIBC_2.2.5+0xfbe>
+    0.00 :   98729:  lea    0x11ce30(%rip),%rdi        # 1b5560 <_libc_intl_domainname@@GLIBC_2.2.5+0x1148>
+    0.00 :   98730:  callq  952b0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x4d0>
+    0.00 :   98735:  lea    0x154444(%rip),%rdx        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   9873c:  sub    %r13,%rax
+    0.00 :   9873f:  lea    (%r8,%r13,1),%rcx
+    0.00 :   98743:  mov    0x20(%rsp),%rbp
+    0.00 :   98748:  cmp    %rdx,%rbx
+    0.00 :   9874b:  mov    %rcx,0x60(%rbx)
+    0.00 :   9874f:  setne  %dl
+    0.00 :   98752:  or     $0x1,%rax
+    0.00 :   98756:  add    $0x10,%r8
+    0.00 :   9875a:  movzbl %dl,%edx
+    0.00 :   9875d:  shl    $0x2,%rdx
+    0.00 :   98761:  or     %r13,%rdx
+    0.00 :   98764:  or     $0x1,%rdx
+    0.00 :   98768:  mov    %rdx,-0x8(%r8)
+    0.00 :   9876c:  mov    %rax,0x8(%rcx)
+    0.00 :   98770:  mov    0x156716(%rip),%eax        # 1eee8c <__malloc_initialize_hook@GLIBC_2.2.5+0x3c>
+    0.00 :   98776:  test   %eax,%eax
+    0.00 :   98778:  je     97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   9877e:  jmpq   9842b <pthread_attr_setschedparam@@GLIBC_2.2.5+0x364b>
+    0.00 :   98783:  mov    %r14,%r12
+    0.00 :   98786:  mov    %fs:(%r12),%rax
+    0.00 :   9878b:  lea    (%rax,%r15,8),%rdx
+    0.00 :   9878f:  mov    0x80(%rdx),%r8
+    0.00 :   98796:  mov    (%r8),%rcx
+    0.00 :   98799:  mov    %rcx,0x80(%rdx)
+    0.00 :   987a0:  subw   $0x1,(%rax,%r15,2)
+    0.00 :   987a6:  movq   $0x0,0x8(%r8)
+    0.00 :   987ae:  jmpq   97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   987b3:  mov    %rbx,%rsi
+    0.00 :   987b6:  mov    %r13,%rdi
+    0.00 :   987b9:  mov    0x20(%rsp),%rbp
+    0.00 :   987be:  callq  97230 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x2450>
+    0.00 :   987c3:  mov    %rax,%r8
+    0.00 :   987c6:  test   %rax,%rax
+    0.00 :   987c9:  je     98448 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3668>
+    0.00 :   987cf:  mov    0x1566b7(%rip),%eax        # 1eee8c <__malloc_initialize_hook@GLIBC_2.2.5+0x3c>
+    0.00 :   987d5:  test   %eax,%eax
+    0.00 :   987d7:  je     97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   987dd:  jmpq   9842b <pthread_attr_setschedparam@@GLIBC_2.2.5+0x364b>
+    0.00 :   987e2:  mov    0x20(%rsp),%rbp
+    0.00 :   987e7:  mov    0x28(%rdx),%r14
+    0.00 :   987eb:  jmp    987f1 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3a11>
+    0.00 :   987ed:  mov    0x28(%r14),%r14
+    0.00 :   987f1:  mov    0x8(%r14),%rdx
+    0.00 :   987f5:  mov    %rdx,%r15
+    0.00 :   987f8:  and    $0xfffffffffffffff8,%r15
+    0.00 :   987fc:  cmp    %r13,%r15
+    0.00 :   987ff:  jb     987ed <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3a0d>
+    0.00 :   98801:  cmp    %r14,0x8(%rax)
+    0.00 :   98805:  je     98813 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3a33>
+    0.00 :   98807:  mov    0x10(%r14),%rax
+    0.00 :   9880b:  cmp    0x8(%rax),%rdx
+    0.00 :   9880f:  cmove  %rax,%r14
+    0.00 :   98813:  mov    %r15,%r12
+    0.00 :   98816:  mov    %r14,%rdi
+    0.00 :   98819:  mov    %r11,(%rsp)
+    0.00 :   9881d:  callq  958d0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0xaf0>
+    0.00 :   98822:  sub    %r13,%r12
+    0.00 :   98825:  mov    (%rsp),%r11
+    0.00 :   98829:  cmp    $0x1f,%r12
+    0.00 :   9882d:  jbe    988ff <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3b1f>
+    0.00 :   98833:  mov    0x70(%rbx),%rax
+    0.00 :   98837:  lea    (%r14,%r13,1),%rdx
+    0.00 :   9883b:  cmp    %r11,0x18(%rax)
+    0.00 :   9883f:  jne    98937 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3b57>
+    0.00 :   98845:  movq   %rax,%xmm0
+    0.00 :   9884a:  movq   %r11,%xmm4
+    0.00 :   9884f:  punpcklqdq %xmm4,%xmm0
+    0.00 :   98853:  movups %xmm0,0x10(%rdx)
+    0.00 :   98857:  mov    %rdx,0x70(%rbx)
+    0.00 :   9885b:  mov    %rdx,0x18(%rax)
+    0.00 :   9885f:  cmp    $0x3ff,%r12
+    0.00 :   98866:  jbe    98870 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3a90>
+    0.00 :   98868:  pxor   %xmm0,%xmm0
+    0.00 :   9886c:  movups %xmm0,0x20(%rdx)
+    0.00 :   98870:  lea    0x154309(%rip),%rax        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   98877:  cmp    %rax,%rbx
+    0.00 :   9887a:  setne  %al
+    0.00 :   9887d:  movzbl %al,%eax
+    0.00 :   98880:  shl    $0x2,%rax
+    0.00 :   98884:  or     %r13,%rax
+    0.00 :   98887:  or     $0x1,%rax
+    0.00 :   9888b:  mov    %rax,0x8(%r14)
+    0.00 :   9888f:  mov    %r12,%rax
+    0.00 :   98892:  or     $0x1,%rax
+    0.00 :   98896:  mov    %rax,0x8(%rdx)
+    0.00 :   9889a:  mov    %r12,(%r14,%r15,1)
+    0.00 :   9889e:  mov    0x1565e8(%rip),%eax        # 1eee8c <__malloc_initialize_hook@GLIBC_2.2.5+0x3c>
+    0.00 :   988a4:  lea    0x10(%r14),%r8
+    0.00 :   988a8:  test   %eax,%eax
+    0.00 :   988aa:  je     97e42 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3062>
+    0.00 :   988b0:  jmpq   9842b <pthread_attr_setschedparam@@GLIBC_2.2.5+0x364b>
+    0.00 :   988b5:  lea    0x121784(%rip),%rcx        # 1ba040 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1fc0>
+    0.00 :   988bc:  mov    $0xf10,%edx
+    0.00 :   988c1:  lea    0x11cb0e(%rip),%rsi        # 1b53d6 <_libc_intl_domainname@@GLIBC_2.2.5+0xfbe>
+    0.00 :   988c8:  lea    0x11cc7a(%rip),%rdi        # 1b5549 <_libc_intl_domainname@@GLIBC_2.2.5+0x1131>
+    0.00 :   988cf:  callq  952b0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x4d0>
+    0.00 :   988d4:  lea    0x12132d(%rip),%rdi        # 1b9c08 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1b88>
+    0.00 :   988db:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   988e0:  lea    0x121759(%rip),%rcx        # 1ba040 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1fc0>
+    0.00 :   988e7:  mov    $0xfc4,%edx
+    0.00 :   988ec:  lea    0x11cae3(%rip),%rsi        # 1b53d6 <_libc_intl_domainname@@GLIBC_2.2.5+0xfbe>
+    0.00 :   988f3:  lea    0x1212de(%rip),%rdi        # 1b9bd8 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1b58>
+    0.00 :   988fa:  callq  952b0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x4d0>
+    0.00 :   988ff:  lea    0x15427a(%rip),%rax        # 1ecb80 <__malloc_hook@@GLIBC_2.2.5+0x10>
+    0.00 :   98906:  orq    $0x1,0x8(%r14,%r15,1)
+    0.00 :   9890c:  cmp    %rax,%rbx
+    0.00 :   9890f:  je     9889e <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3abe>
+    0.00 :   98911:  orq    $0x4,0x8(%r14)
+    0.00 :   98916:  jmp    9889e <pthread_attr_setschedparam@@GLIBC_2.2.5+0x3abe>
+    0.00 :   98918:  lea    0x121721(%rip),%rcx        # 1ba040 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1fc0>
+    0.00 :   9891f:  mov    $0xeff,%edx
+    0.00 :   98924:  lea    0x11caab(%rip),%rsi        # 1b53d6 <_libc_intl_domainname@@GLIBC_2.2.5+0xfbe>
+    0.00 :   9892b:  lea    0x11cbfc(%rip),%rdi        # 1b552e <_libc_intl_domainname@@GLIBC_2.2.5+0x1116>
+    0.00 :   98932:  callq  952b0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x4d0>
+    0.00 :   98937:  lea    0x121272(%rip),%rdi        # 1b9bb0 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1b30>
+    0.00 :   9893e:  callq  95310 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x530>
+    0.00 :   98943:  lea    0x1216f6(%rip),%rcx        # 1ba040 <_itoa_lower_digits@@GLIBC_PRIVATE+0x1fc0>
+    0.00 :   9894a:  mov    $0xf0c,%edx
+    0.00 :   9894f:  lea    0x11ca80(%rip),%rsi        # 1b53d6 <_libc_intl_domainname@@GLIBC_2.2.5+0xfbe>
+    0.00 :   98956:  lea    0x11cbec(%rip),%rdi        # 1b5549 <_libc_intl_domainname@@GLIBC_2.2.5+0x1131>
+    0.00 :   9895d:  callq  952b0 <pthread_attr_setschedparam@@GLIBC_2.2.5+0x4d0>
+ Percent |	Source code & Disassembly of libm-2.31.so for cycles (2 samples, percent: local period)
+-------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3     Disassembly of section .text:
+         :
+         : 5     00000000000411f0 <pow@@GLIBC_2.29>:
+    0.00 :   411f0:  endbr64
+  100.00 :   411f4:  sub    $0x18,%rsp
+    0.00 :   411f8:  movsd  %xmm1,0x8(%rsp)
+    0.00 :   411fe:  movsd  %xmm0,(%rsp)
+    0.00 :   41203:  callq  d310 <*ABS*+0x2cd90@plt>
+    0.00 :   41208:  movsd  (%rsp),%xmm2
+    0.00 :   4120d:  movq   0x7309b(%rip),%xmm4        # b42b0 <f64xsubf128@@GLIBC_2.28+0x33ea0>
+    0.00 :   41215:  movsd  0x730ab(%rip),%xmm3        # b42c8 <f64xsubf128@@GLIBC_2.28+0x33eb8>
+    0.00 :   4121d:  movapd %xmm0,%xmm5
+    0.00 :   41221:  movsd  0x8(%rsp),%xmm1
+    0.00 :   41227:  andpd  %xmm4,%xmm5
+    0.00 :   4122b:  ucomisd %xmm5,%xmm3
+    0.00 :   4122f:  jb     41240 <pow@@GLIBC_2.29+0x50>
+    0.00 :   41231:  pxor   %xmm6,%xmm6
+    0.00 :   41235:  ucomisd %xmm6,%xmm0
+    0.00 :   41239:  jnp    41270 <pow@@GLIBC_2.29+0x80>
+    0.00 :   4123b:  add    $0x18,%rsp
+    0.00 :   4123f:  retq
+    0.00 :   41240:  andpd  %xmm4,%xmm2
+    0.00 :   41244:  ucomisd %xmm2,%xmm3
+    0.00 :   41248:  jb     4123b <pow@@GLIBC_2.29+0x4b>
+    0.00 :   4124a:  andpd  %xmm4,%xmm1
+    0.00 :   4124e:  ucomisd %xmm1,%xmm3
+    0.00 :   41252:  jb     4123b <pow@@GLIBC_2.29+0x4b>
+    0.00 :   41254:  ucomisd %xmm0,%xmm0
+    0.00 :   41258:  jnp    41292 <pow@@GLIBC_2.29+0xa2>
+    0.00 :   4125a:  mov    0x10cd57(%rip),%rax        # 14dfb8 <f64xsubf128@@GLIBC_2.28+0xcdba8>
+    0.00 :   41261:  movl   $0x21,%fs:(%rax)
+    0.00 :   41268:  jmp    4123b <pow@@GLIBC_2.29+0x4b>
+    0.00 :   4126a:  nopw   0x0(%rax,%rax,1)
+    0.00 :   41270:  jne    4123b <pow@@GLIBC_2.29+0x4b>
+    0.00 :   41272:  movapd %xmm2,%xmm5
+    0.00 :   41276:  andpd  %xmm4,%xmm5
+    0.00 :   4127a:  ucomisd %xmm5,%xmm3
+    0.00 :   4127e:  jb     4123b <pow@@GLIBC_2.29+0x4b>
+    0.00 :   41280:  ucomisd %xmm6,%xmm2
+    0.00 :   41284:  jp     41288 <pow@@GLIBC_2.29+0x98>
+    0.00 :   41286:  je     4123b <pow@@GLIBC_2.29+0x4b>
+    0.00 :   41288:  andpd  %xmm4,%xmm1
+    0.00 :   4128c:  ucomisd %xmm1,%xmm3
+    0.00 :   41290:  jb     4123b <pow@@GLIBC_2.29+0x4b>
+    0.00 :   41292:  mov    0x10cd1f(%rip),%rax        # 14dfb8 <f64xsubf128@@GLIBC_2.28+0xcdba8>
+    0.00 :   41299:  movl   $0x22,%fs:(%rax)
+    0.00 :   412a0:  jmp    4123b <pow@@GLIBC_2.29+0x4b>
+ Percent |	Source code & Disassembly of lab2_list for cycles (1 samples, percent: local period)
+----------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3    Disassembly of section .text:
+         :
+         : 5    0000000000002b5b <SortedList_delete>:
+         : 6    SortedList_delete():
+         : 47   }
+         :
+         : 49   }
+         :
+         :
+         : 52   int SortedList_delete( SortedListElement_t *element) {
+    0.00 :   2b5b:   endbr64
+    0.00 :   2b5f:   push   %rbp
+    0.00 :   2b60:   mov    %rsp,%rbp
+    0.00 :   2b63:   sub    $0x30,%rsp
+    0.00 :   2b67:   mov    %rdi,-0x28(%rbp)
+         : 48   if(element == NULL) {
+    0.00 :   2b6b:   cmpq   $0x0,-0x28(%rbp)
+    0.00 :   2b70:   jne    2b7c <SortedList_delete+0x21>
+         : 49   return 1;
+    0.00 :   2b72:   mov    $0x1,%eax
+    0.00 :   2b77:   jmpq   2c58 <SortedList_delete+0xfd>
+         : 52   }
+         :
+         : 54   if(element->next->prev != element || element->prev->next != element) {
+    0.00 :   2b7c:   mov    -0x28(%rbp),%rax
+    0.00 :   2b80:   mov    0x8(%rax),%rax
+    0.00 :   2b84:   mov    (%rax),%rax
+    0.00 :   2b87:   cmp    %rax,-0x28(%rbp)
+    0.00 :   2b8b:   jne    2b9e <SortedList_delete+0x43>
+    0.00 :   2b8d:   mov    -0x28(%rbp),%rax
+    0.00 :   2b91:   mov    (%rax),%rax
+    0.00 :   2b94:   mov    0x8(%rax),%rax
+    0.00 :   2b98:   cmp    %rax,-0x28(%rbp)
+    0.00 :   2b9c:   je     2ba8 <SortedList_delete+0x4d>
+         : 53   return 1;
+    0.00 :   2b9e:   mov    $0x1,%eax
+    0.00 :   2ba3:   jmpq   2c58 <SortedList_delete+0xfd>
+         : 56   }
+         :
+         : 58   if(element->next == element->prev) {
+    0.00 :   2ba8:   mov    -0x28(%rbp),%rax
+    0.00 :   2bac:   mov    0x8(%rax),%rdx
+    0.00 :   2bb0:   mov    -0x28(%rbp),%rax
+    0.00 :   2bb4:   mov    (%rax),%rax
+    0.00 :   2bb7:   cmp    %rax,%rdx
+    0.00 :   2bba:   jne    2c13 <SortedList_delete+0xb8>
+         : 58   //there is going to be an empty list
+         : 59   if(element->next->key != NULL) {
+    0.00 :   2bbc:   mov    -0x28(%rbp),%rax
+    0.00 :   2bc0:   mov    0x8(%rax),%rax
+    0.00 :   2bc4:   mov    0x10(%rax),%rax
+    0.00 :   2bc8:   test   %rax,%rax
+    0.00 :   2bcb:   je     2bd7 <SortedList_delete+0x7c>
+         : 59   return 1;
+    0.00 :   2bcd:   mov    $0x1,%eax
+    0.00 :   2bd2:   jmpq   2c58 <SortedList_delete+0xfd>
+         : 61   }
+         : 62   SortedListElement_t* empty_list = element->next;
+    0.00 :   2bd7:   mov    -0x28(%rbp),%rax
+    0.00 :   2bdb:   mov    0x8(%rax),%rax
+    0.00 :   2bdf:   mov    %rax,-0x8(%rbp)
+         : 62   if(opt_yield & DELETE_YIELD) sched_yield();
+    0.00 :   2be3:   mov    0x24e3(%rip),%eax        # 50cc <opt_yield>
+    0.00 :   2be9:   and    $0x2,%eax
+    0.00 :   2bec:   test   %eax,%eax
+    0.00 :   2bee:   je     2bf5 <SortedList_delete+0x9a>
+    0.00 :   2bf0:   callq  12c0 <sched_yield@plt>
+         : 63   empty_list->next = NULL;
+    0.00 :   2bf5:   mov    -0x8(%rbp),%rax
+    0.00 :   2bf9:   movq   $0x0,0x8(%rax)
+         : 64   empty_list->prev = NULL;
+    0.00 :   2c01:   mov    -0x8(%rbp),%rax
+    0.00 :   2c05:   movq   $0x0,(%rax)
+         : 65   return 0;
+    0.00 :   2c0c:   mov    $0x0,%eax
+    0.00 :   2c11:   jmp    2c58 <SortedList_delete+0xfd>
+         : 68   }
+         :
+         : 70   SortedListElement_t* prev_elem = element->prev;
+    0.00 :   2c13:   mov    -0x28(%rbp),%rax
+    0.00 :   2c17:   mov    (%rax),%rax
+    0.00 :   2c1a:   mov    %rax,-0x18(%rbp)
+         : 69   SortedListElement_t* next_elem = element->next;
+    0.00 :   2c1e:   mov    -0x28(%rbp),%rax
+  100.00 :   2c22:   mov    0x8(%rax),%rax
+    0.00 :   2c26:   mov    %rax,-0x10(%rbp)
+         :
+         : 72   if(opt_yield & DELETE_YIELD) sched_yield();
+    0.00 :   2c2a:   mov    0x249c(%rip),%eax        # 50cc <opt_yield>
+    0.00 :   2c30:   and    $0x2,%eax
+    0.00 :   2c33:   test   %eax,%eax
+    0.00 :   2c35:   je     2c3c <SortedList_delete+0xe1>
+    0.00 :   2c37:   callq  12c0 <sched_yield@plt>
+         :
+         : 74   prev_elem->next = next_elem;
+    0.00 :   2c3c:   mov    -0x18(%rbp),%rax
+    0.00 :   2c40:   mov    -0x10(%rbp),%rdx
+    0.00 :   2c44:   mov    %rdx,0x8(%rax)
+         : 74   next_elem->prev = prev_elem;
+    0.00 :   2c48:   mov    -0x10(%rbp),%rax
+    0.00 :   2c4c:   mov    -0x18(%rbp),%rdx
+    0.00 :   2c50:   mov    %rdx,(%rax)
+         :
+         : 77   return 0;
+    0.00 :   2c53:   mov    $0x0,%eax
+         : 77   }
+    0.00 :   2c58:   leaveq
+    0.00 :   2c59:   retq
+ Percent |	Source code & Disassembly of libc-2.31.so for cycles (1 samples, percent: local period)
+-------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3     Disassembly of section .text:
+         :
+         : 5     00000000000dd0c0 <__clock_gettime@@GLIBC_PRIVATE>:
+    0.00 :   dd0c0:  endbr64
+    0.00 :   dd0c4:  push   %r12
+    0.00 :   dd0c6:  mov    %rsi,%r12
+    0.00 :   dd0c9:  push   %rbp
+    0.00 :   dd0ca:  mov    %edi,%ebp
+    0.00 :   dd0cc:  sub    $0x8,%rsp
+  100.00 :   dd0d0:  mov    0x10ed89(%rip),%rax        # 1ebe60 <_rtld_global_ro@GLIBC_PRIVATE>
+    0.00 :   dd0d7:  mov    0x1a0(%rax),%rax
+    0.00 :   dd0de:  test   %rax,%rax
+    0.00 :   dd0e1:  je     dd118 <__clock_gettime@@GLIBC_PRIVATE+0x58>
+    0.00 :   dd0e3:  callq  *%rax
+    0.00 :   dd0e5:  movslq %eax,%rdx
+    0.00 :   dd0e8:  cmp    $0xfffffffffffff000,%rdx
+    0.00 :   dd0ef:  jbe    dd10c <__clock_gettime@@GLIBC_PRIVATE+0x4c>
+    0.00 :   dd0f1:  cmp    $0xffffffffffffffda,%rdx
+    0.00 :   dd0f5:  je     dd118 <__clock_gettime@@GLIBC_PRIVATE+0x58>
+    0.00 :   dd0f7:  mov    0x10ed72(%rip),%rax        # 1ebe70 <h_errlist@@GLIBC_2.2.5+0xd50>
+    0.00 :   dd0fe:  neg    %edx
+    0.00 :   dd100:  mov    %edx,%fs:(%rax)
+    0.00 :   dd103:  mov    $0xffffffff,%eax
+    0.00 :   dd108:  endbr64
+    0.00 :   dd10c:  add    $0x8,%rsp
+    0.00 :   dd110:  pop    %rbp
+    0.00 :   dd111:  pop    %r12
+    0.00 :   dd113:  retq
+    0.00 :   dd114:  nopl   0x0(%rax)
+    0.00 :   dd118:  mov    %r12,%rsi
+    0.00 :   dd11b:  mov    %ebp,%edi
+    0.00 :   dd11d:  mov    $0xe4,%eax
+    0.00 :   dd122:  syscall
+    0.00 :   dd124:  mov    %rax,%rdx
+    0.00 :   dd127:  cmp    $0xfffffffffffff000,%rax
+    0.00 :   dd12d:  ja     dd0f7 <__clock_gettime@@GLIBC_PRIVATE+0x37>
+    0.00 :   dd12f:  add    $0x8,%rsp
+    0.00 :   dd133:  pop    %rbp
+    0.00 :   dd134:  pop    %r12
+    0.00 :   dd136:  retq
+ Percent |	Source code & Disassembly of libc-2.31.so for cycles (1 samples, percent: local period)
+-------------------------------------------------------------------------------------------------------
+         :
+         :
+         :
+         : 3      Disassembly of section .text:
+         :
+         : 5      000000000011f120 <__clone@@GLIBC_2.2.5>:
+    0.00 :   11f120: endbr64
+    0.00 :   11f124: mov    $0xffffffffffffffea,%rax
+    0.00 :   11f12b: test   %rdi,%rdi
+    0.00 :   11f12e: je     11f16d <__clone@@GLIBC_2.2.5+0x4d>
+    0.00 :   11f130: test   %rsi,%rsi
+    0.00 :   11f133: je     11f16d <__clone@@GLIBC_2.2.5+0x4d>
+    0.00 :   11f135: sub    $0x10,%rsi
+    0.00 :   11f139: mov    %rcx,0x8(%rsi)
+    0.00 :   11f13d: mov    %rdi,(%rsi)
+    0.00 :   11f140: mov    %rdx,%rdi
+    0.00 :   11f143: mov    %r8,%rdx
+    0.00 :   11f146: mov    %r9,%r8
+    0.00 :   11f149: mov    0x8(%rsp),%r10
+    0.00 :   11f14e: mov    $0x38,%eax
+    0.00 :   11f153: syscall
+  100.00 :   11f155: test   %rax,%rax
+    0.00 :   11f158: jl     11f16d <__clone@@GLIBC_2.2.5+0x4d>
+    0.00 :   11f15a: je     11f15d <__clone@@GLIBC_2.2.5+0x3d>
+    0.00 :   11f15c: retq
+    0.00 :   11f15d: xor    %ebp,%ebp
+    0.00 :   11f15f: pop    %rax
+    0.00 :   11f160: pop    %rdi
+    0.00 :   11f161: callq  *%rax
+    0.00 :   11f163: mov    %rax,%rdi
+    0.00 :   11f166: mov    $0x3c,%eax
+    0.00 :   11f16b: syscall
+    0.00 :   11f16d: mov    0xcccfc(%rip),%rcx        # 1ebe70 <h_errlist@@GLIBC_2.2.5+0xd50>
+    0.00 :   11f174: neg    %eax
+    0.00 :   11f176: mov    %eax,%fs:(%rcx)
+    0.00 :   11f179: or     $0xffffffffffffffff,%rax
+    0.00 :   11f17d: retq
