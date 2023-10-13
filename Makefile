@@ -4,6 +4,7 @@ all: lab2_list
 lab2_list: lab2_list.c
 	gcc -Wall -Wextra -g lab2_list.c SortedList.c -o lab2_list -lpthread -lm
 
+lab2_list.csv: tests
 
 tests: 
 	> lab2b_list.csv
@@ -34,7 +35,7 @@ tests:
 		done \
 	done
 
-graphs: lab2_list.csv
+graphs: 
 	gnuplot lab2_list.gp
 
 profile.out: 
